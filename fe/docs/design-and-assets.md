@@ -34,8 +34,13 @@ Dibuat dengan built-in imagegen, kemudian dikonversi ke WebP untuk web. Gambar i
 - `public/images/product-tenderloin.webp`
 - `public/images/product-shortplate.webp`
 - `public/images/product-chicken.webp`
+- `public/images/story-selection-v2.webp`: pengganti foto editorial bagian Selected; adegan butcher memilih ribeye. Dibuat dengan built-in imagegen, bersifat ilustratif.
 
 ### Final prompts
+
+**Story / Selected, revisi 2**
+
+Use case: photorealistic-natural. Asset type: portrait editorial photograph for the craftsmanship section of a luxury Indonesian beef supplier website. Create an exceptionally realistic high-end food magazine photograph in portrait 4:5 composition. Scene: a professional butcher in a dark charcoal apron, cropped tightly from chest down so no face is visible, carefully selecting a substantial fresh raw beef ribeye loin on a rich dark end-grain walnut butcher block. Only one hand wearing a clean fitted black nitrile glove gently rests on the top of the loin at the upper right; anatomically correct hand and five fingers. The hero subject is the beautifully detailed deep burgundy red cut face of the beef, with authentic delicate ivory marbling, facing toward the camera in the middle of the photograph. One thick steak cut from the loin sits naturally in front of it. Shoot close at a low three-quarter angle with shallow depth of field, genuine organic meat texture and subtle moisture, no excessive gloss. Warm directional window light from upper left, dramatic but natural soft shadows, charcoal and oxblood palette with ivory highlights. Quiet, confident artisanal atmosphere with very subtle film texture, premium European butcher brand photography. Leave the bottom quarter predominantly as dark shadowed walnut surface for ivory typography to overlay. The composition must remain compelling when cropped to square; keep the beef fully in the central two thirds. No knives or cleavers, no herbs, no scattered salt, no plates, no packaging, no logos, no text, no watermark, no border, no CGI or plastic food appearance. This is a photograph, not a layout or mockup.
 
 **Hero**
 

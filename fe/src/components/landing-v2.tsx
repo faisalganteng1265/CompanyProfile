@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LandingHero from "./landing-hero";
+import LandingIntro from "./landing-intro";
 import WhyChooseUs from "./why-choose-us";
 import PartnersCarousel from "./partners-carousel";
 import { Arrow } from "./icons";
@@ -65,6 +66,8 @@ function CutMark({ light = false }: { light?: boolean }) {
 }
 export default function LandingV2() {
   const root = useRef<HTMLDivElement>(null);
+  const [introReady, setIntroReady] = useState(false);
+  const revealLanding = useCallback(() => setIntroReady(true), []);
   const [question, setQuestion] = useState<number | null>(0);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -197,9 +200,14 @@ export default function LandingV2() {
   }, []);
 
   return (
-    <div ref={root} className="home-v2">
+    <div
+      ref={root}
+      className="home-v2"
+      data-intro={introReady ? "ready" : "loading"}
+    >
+      <LandingIntro onReveal={revealLanding} />
       <main id="main">
-        <LandingHero />
+        <LandingHero introReady={introReady} />
         <div className="v2-page-content">
           <div className="v2-hero-continuation">
             <section

@@ -8,7 +8,11 @@ import Ambient from "./ambient";
 import { Arrow, Asterisk } from "./icons";
 
 /** The original Tatsuo hero, retained at the user's request. */
-export default function LandingHero() {
+export default function LandingHero({
+  introReady = true,
+}: {
+  introReady?: boolean;
+}) {
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -25,6 +29,7 @@ export default function LandingHero() {
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
       media.add("(prefers-reduced-motion: no-preference)", () => {
+        if (!introReady) return;
         gsap.from(".hero-line > span", {
           yPercent: 110,
           rotate: 3,
@@ -53,7 +58,7 @@ export default function LandingHero() {
       media.revert();
       context.revert();
     };
-  }, []);
+  }, [introReady]);
   return (
     <div ref={root} className="v2-original-hero">
       <section

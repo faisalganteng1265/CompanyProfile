@@ -82,8 +82,18 @@ export default function SiteFooter() {
         <div className="container">
           <div className="tatsuo-footer-grid">
             <div className="footer-company-block">
-              <Link href="/" className="footer-brand-name">
-                TATSUO<span>BEEF INDONESIA</span>
+              <Link
+                href="/"
+                className="footer-brand-logo"
+                aria-label="Tatsuo Beef — Beranda"
+              >
+                <Image
+                  src="/images/logo-original.jpg"
+                  alt="Tatsuo Beef"
+                  width={1600}
+                  height={703}
+                  sizes="190px"
+                />
               </Link>
               <span className="footer-column-label">OUR HOME</span>
               <address>

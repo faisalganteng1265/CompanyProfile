@@ -109,20 +109,43 @@ export default function WhyChooseUs() {
       aria-labelledby="why-choose-heading"
     >
       <div className="container why-story-layout">
-        <div
-          className="why-story-photo"
-          style={{
-            position: "relative",
-            aspectRatio: "var(--why-photo-ratio, 0.77)",
-          }}
-        >
-          <Image
-            src="/images/story-selection-v2.webp"
-            alt="Pemilihan ribeye bermarbling dengan perhatian pada kualitas"
-            width={1122}
-            height={1402}
-            sizes="(max-width: 760px) 90vw, 42vw"
-          />
+        <div className="why-story-visual">
+          <div
+            className="why-story-photo"
+            style={{
+              position: "relative",
+              aspectRatio: "var(--why-photo-ratio, 0.77)",
+            }}
+          >
+            <Image
+              src="/images/story-selection-v2.webp"
+              alt="Pemilihan ribeye bermarbling dengan perhatian pada kualitas"
+              width={1122}
+              height={1402}
+              sizes="(max-width: 760px) 90vw, 42vw"
+            />
+          </div>
+          <div className="why-story-tag-anchor">
+            <div className="why-story-tag">
+              <span className="why-story-tag-hole" aria-hidden="true" />
+              <Image
+                className="why-story-butcher-icon"
+                src="/images/butcher-cleavers-v1.png"
+                alt=""
+                width={1280}
+                height={1280}
+                sizes="80px"
+              />
+              <strong>
+                10<span>+</span>
+              </strong>
+              <span className="why-story-tag-caption">
+                Years Experience
+                <br />
+                Butcher
+              </span>
+            </div>
+          </div>
         </div>
         <div className="why-story-copy">
           <span className="why-story-eyebrow">

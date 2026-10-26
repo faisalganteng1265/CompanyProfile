@@ -145,3 +145,9 @@ Logo diunduh dari bagian Our Partners situs Tatsuo, bukan digambar ulang atau di
 - Bale Bebakaran: `bale-bebakaran.webp`, sumber `https://tatsuobeef.co.id/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-02-at-09.33.19.jpeg`.
 
 Perbaikan warning Next Image pada landing menambahkan posisi dan rasio/tinggi awal pada pembungkus gambar fill. Foto Selected memakai loading eager sesuai laporan LCP pengguna. Tidak menjalankan localhost, build, atau tes untuk perubahan ini.
+
+### Butcher label icon
+
+Asset: `public/images/butcher-cleavers-v1.png`. Generated with the built-in imagegen tool, transparent background, used in the hanging experience label. Original alpha preserved.
+
+Prompt: Use case: logo-brand. Asset type: small premium butcher emblem for a red website hanging label. Create exactly two traditional butcher meat cleavers crossed diagonally in a balanced X, wide rectangular blades at upper left and upper right, slender riveted handles pointing downward left and right. Beautiful confident artisan butcher shop mark, refined silhouette, subtly rounded blade corners, small circular hanging hole in each blade and two simple handle rivet cutouts. Flat solid warm ivory #fffaf2 shapes, transparent negative-space details. Consistent elegant proportions, unmistakably actual meat cleavers, crisp clean edges readable at 64px. Centered single isolated emblem occupies 85% of square canvas. Truly transparent background. No text, no letters, no badge border, no shadows, no gradients, no mockup, no extra objects.

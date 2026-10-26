@@ -4,7 +4,22 @@
   color: var(--ink);
 }
 .home-v2 .v2-original-hero {
+  position: sticky;
+  top: var(--hero-sticky-top, 96px);
+  z-index: 0;
   background: var(--dark);
+}
+.home-v2 .v2-page-content {
+  position: relative;
+  z-index: 1;
+  display: flow-root;
+  background: #fff;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-v2 .v2-original-hero {
+    position: relative;
+    top: auto;
+  }
 }
 .v2-small-label {
   font-family: var(--font-body), sans-serif;

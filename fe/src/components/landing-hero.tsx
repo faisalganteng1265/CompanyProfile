@@ -12,6 +12,16 @@ export default function LandingHero() {
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    const header = document.querySelector<HTMLElement>(".site-header");
+    const syncStickyOffset = () => {
+      root.current?.style.setProperty(
+        "--hero-sticky-top",
+        `${header?.getBoundingClientRect().height ?? 96}px`,
+      );
+    };
+    syncStickyOffset();
+    const headerObserver = new ResizeObserver(syncStickyOffset);
+    if (header) headerObserver.observe(header);
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
       media.add("(prefers-reduced-motion: no-preference)", () => {
@@ -36,30 +46,10 @@ export default function LandingHero() {
           { scale: 1.12 },
           { scale: 1, duration: 2.2, ease: "power2.out" },
         );
-        gsap.to(".hero-image-wrap", {
-          yPercent: 16,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-        gsap.to(".hero-copy", {
-          y: 80,
-          opacity: 0.35,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".hero",
-            start: "20% top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
       });
     }, root);
     return () => {
+      headerObserver.disconnect();
       media.revert();
       context.revert();
     };

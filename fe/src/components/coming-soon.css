@@ -1,0 +1,104 @@
+.coming-soon {
+  background: #f4f0e7;
+  min-height: calc(100svh - 100px);
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  color: var(--ink);
+  padding-block: 64px;
+}
+.coming-soon-content {
+  text-align: center;
+}
+.coming-soon-label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.coming-soon-mark {
+  display: inline-block;
+  margin-block: 28px;
+  color: var(--red);
+  animation: comingSoonTurn 24s linear infinite;
+}
+.coming-soon-mark svg {
+  width: 30px;
+  height: 30px;
+}
+.coming-soon h1 {
+  font-family: var(--font-editorial), serif;
+  font-weight: 400;
+  font-size: clamp(82px, 10vw, 150px);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+.coming-soon h1 em {
+  font-style: normal;
+  color: var(--red);
+}
+.coming-soon p {
+  margin-top: 32px;
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+.coming-soon-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 30px;
+}
+.coming-soon-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--red);
+  color: var(--red);
+  font-size: 10px;
+}
+.coming-soon-actions a:first-child {
+  padding-inline: 22px;
+  background: var(--red);
+  color: #fff;
+}
+.coming-soon-actions svg {
+  width: 16px;
+}
+.coming-soon-signature {
+  display: block;
+  margin-top: 56px;
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+}
+@keyframes comingSoonTurn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 600px) {
+  .coming-soon {
+    padding-block: 45px;
+  }
+  .coming-soon-actions {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .coming-soon p {
+    font-size: 11px;
+  }
+  .coming-soon-signature {
+    margin-top: 40px;
+    font-size: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .coming-soon-mark {
+    animation: none;
+  }
+}

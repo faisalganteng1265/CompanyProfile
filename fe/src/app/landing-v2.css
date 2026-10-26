@@ -1576,13 +1576,13 @@
 .v2-craft-stage {
   display: contents;
 }
-@media (min-width: 1000px) and (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   .v2-craft-stage {
     --craft-top: 96px;
     --craft-height: clamp(650px, calc(100svh - var(--craft-top)), 1000px);
     display: block;
     position: relative;
-    height: calc(var(--craft-height) + 105svh);
+    height: calc(var(--craft-height) + var(--craft-travel, 105svh));
     background: #191914;
   }
   .v2-craft-stage > .v2-craft {
@@ -1593,4 +1593,40 @@
 }
 html.lenis {
   scroll-behavior: auto;
+}
+
+@media (max-width: 999px) and (prefers-reduced-motion: no-preference) {
+  .v2-craft-stage {
+    --craft-height: max(1px, calc(100svh - var(--craft-top)));
+    --craft-travel: 85svh;
+  }
+  .v2-craft-stage > .v2-craft {
+    min-height: 0;
+    max-height: none;
+  }
+  .v2-craft-stage .v2-craft-last {
+    display: flex;
+  }
+  .v2-craft-stage .v2-craft-last > p {
+    font-size: clamp(50px, 12vw, 100px);
+    letter-spacing: -0.045em;
+  }
+}
+@media (max-width: 999px) and (max-height: 600px) and (prefers-reduced-motion: no-preference) {
+  .v2-craft-stage .v2-craft-content {
+    padding-block: 16px;
+  }
+  .v2-craft-stage .v2-craft-first {
+    padding-block: 12px;
+  }
+  .v2-craft-stage .v2-craft-first h2 {
+    font-size: clamp(28px, 8svh, 48px);
+  }
+  .v2-craft-stage .v2-craft-first > p {
+    margin-top: 12px;
+    font-size: 9px;
+  }
+  .v2-craft-stage .v2-craft-last > p {
+    font-size: clamp(40px, 13svh, 72px);
+  }
 }

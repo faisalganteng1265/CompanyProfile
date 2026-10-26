@@ -167,80 +167,58 @@ export default function LandingV2() {
           scrollTrigger: { start: 0, end: "max", scrub: 0.2 },
         });
       });
-      media.add(
-        "(min-width: 1000px) and (prefers-reduced-motion: no-preference)",
-        () => {
-          const stage =
-            root.current?.querySelector<HTMLElement>(".v2-craft-stage");
-          const header = document.querySelector<HTMLElement>(".site-header");
-          const syncOffset = () =>
-            stage?.style.setProperty(
-              "--craft-top",
-              `${header?.getBoundingClientRect().height ?? 96}px`,
-            );
-          syncOffset();
-          const observer = new ResizeObserver(syncOffset);
-          if (header) observer.observe(header);
-          const timeline = gsap.timeline({
-            scrollTrigger: {
-              trigger: ".v2-craft-stage",
-              start: () =>
-                `top ${header?.getBoundingClientRect().height ?? 96}px`,
-              end: "bottom bottom",
-              scrub: true,
-              invalidateOnRefresh: true,
-            },
-          });
-          timeline
-            .to(
-              ".v2-craft-mask",
-              {
-                clipPath: "polygon(0% 0%,100% 0%,100% 100%,0% 100%)",
-                ease: "none",
-                duration: 1,
-              },
-              0,
-            )
-            .to(
-              ".v2-craft-image",
-              { scale: 1.03, xPercent: -3, ease: "none", duration: 1 },
-              0,
-            )
-            .to(
-              ".v2-craft-slash",
-              { xPercent: -100, opacity: 0, duration: 0.7 },
-              0,
-            )
-            .to(".v2-craft-first", { y: -45, opacity: 0, duration: 0.35 }, 0.4)
-            .fromTo(
-              ".v2-craft-last",
-              { y: 50, opacity: 0 },
-              { y: 0, opacity: 1, duration: 0.4 },
-              0.65,
-            );
-          return () => observer.disconnect();
-        },
-      );
-      media.add(
-        "(max-width: 999px) and (prefers-reduced-motion: no-preference)",
-        () => {
-          gsap.fromTo(
-            ".v2-craft-image",
-            { scale: 1.15, yPercent: -5 },
-            {
-              scale: 1.03,
-              yPercent: 5,
-              ease: "none",
-              scrollTrigger: {
-                trigger: ".v2-craft",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1,
-              },
-            },
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        const stage =
+          root.current?.querySelector<HTMLElement>(".v2-craft-stage");
+        const header = document.querySelector<HTMLElement>(".site-header");
+        const syncOffset = () =>
+          stage?.style.setProperty(
+            "--craft-top",
+            `${header?.getBoundingClientRect().height ?? 96}px`,
           );
-        },
-      );
+        syncOffset();
+        const observer = new ResizeObserver(syncOffset);
+        if (header) observer.observe(header);
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".v2-craft-stage",
+            start: () =>
+              `top ${header?.getBoundingClientRect().height ?? 96}px`,
+            end: () =>
+              `+=${Math.max(1, (stage?.offsetHeight ?? 0) - (stage?.querySelector<HTMLElement>(".v2-craft")?.offsetHeight ?? 0))}`,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        });
+        timeline
+          .to(
+            ".v2-craft-mask",
+            {
+              clipPath: "polygon(0% 0%,100% 0%,100% 100%,0% 100%)",
+              ease: "none",
+              duration: 1,
+            },
+            0,
+          )
+          .to(
+            ".v2-craft-image",
+            { scale: 1.03, xPercent: -3, ease: "none", duration: 1 },
+            0,
+          )
+          .to(
+            ".v2-craft-slash",
+            { xPercent: -100, opacity: 0, duration: 0.7 },
+            0,
+          )
+          .to(".v2-craft-first", { y: -45, opacity: 0, duration: 0.35 }, 0.4)
+          .fromTo(
+            ".v2-craft-last",
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.4 },
+            0.65,
+          );
+        return () => observer.disconnect();
+      });
     }, root);
     let active = true;
     document.fonts.ready.then(() => {

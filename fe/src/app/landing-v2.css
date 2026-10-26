@@ -13,7 +13,7 @@
   position: relative;
   z-index: 1;
   display: flow-root;
-  background: #fff;
+  background: transparent;
 }
 @media (prefers-reduced-motion: reduce) {
   .home-v2 .v2-original-hero {
@@ -708,6 +708,10 @@
 }
 .home-v2 .partners-heading-row h2 {
   font-size: 45px;
+}
+.v2-faq-background {
+  background: #fff;
+  display: flow-root;
 }
 .v2-questions {
   display: grid;
@@ -1473,5 +1477,69 @@
   .v2-product-rating > svg {
     width: 12px;
     height: 12px;
+  }
+}
+
+/* The hero photograph continues along the sides of the opening sections. */
+.v2-hero-continuation {
+  background: transparent;
+}
+.v2-hero-continuation > .v2-about-brief,
+.v2-hero-continuation > .v2-favourites {
+  background: #fff;
+  padding-inline: clamp(20px, 2.3vw, 36px);
+}
+.v2-hero-continuation > .why-story-section {
+  width: calc(100% - 112px);
+  max-width: 1408px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 2.3vw, 36px);
+}
+.v2-hero-continuation .why-story-layout {
+  width: 100%;
+}
+.v2-hero-continuation > .v2-running-line {
+  background: #f5f1e8;
+}
+@media (min-width: 761px) and (max-width: 1150px) {
+  .v2-hero-continuation > .why-story-section {
+    width: calc(100% - 72px);
+  }
+}
+@media (max-width: 760px) {
+  .v2-hero-continuation > .why-story-section {
+    width: calc(100% - 40px);
+  }
+  .v2-hero-continuation > .v2-about-brief,
+  .v2-hero-continuation > .v2-favourites,
+  .v2-hero-continuation > .why-story-section {
+    padding-inline: 16px;
+  }
+}
+
+/* Keep the later white panels inset so the stationary hero stays visible. */
+.home-v2 .partners-section,
+.home-v2 .v2-faq-background {
+  width: calc(100% - 112px);
+  max-width: 1408px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 2.3vw, 36px);
+  background: #fff;
+}
+.home-v2 .partners-section > .container,
+.home-v2 .v2-faq-background > .container {
+  width: 100%;
+}
+@media (min-width: 761px) and (max-width: 1150px) {
+  .home-v2 .partners-section,
+  .home-v2 .v2-faq-background {
+    width: calc(100% - 72px);
+  }
+}
+@media (max-width: 760px) {
+  .home-v2 .partners-section,
+  .home-v2 .v2-faq-background {
+    width: calc(100% - 40px);
+    padding-inline: 16px;
   }
 }

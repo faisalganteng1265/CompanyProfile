@@ -193,123 +193,125 @@ export default function LandingV2() {
       <main id="main">
         <LandingHero />
         <div className="v2-page-content">
-          <section
-            id="tentang"
-            className="v2-about-brief container"
-            aria-labelledby="v2-about-brief-heading"
-          >
-            <div className="v2-about-halal v2-reveal">
-              <Image
-                src="/images/tatsuo-halal-certificate.png"
-                alt="Informasi sertifikasi halal produk Tatsuo Beef beserta kode QR"
-                width={196}
-                height={196}
-                sizes="196px"
-                unoptimized
-              />
+          <div className="v2-hero-continuation">
+            <section
+              id="tentang"
+              className="v2-about-brief container"
+              aria-labelledby="v2-about-brief-heading"
+            >
+              <div className="v2-about-halal v2-reveal">
+                <Image
+                  src="/images/tatsuo-halal-certificate.png"
+                  alt="Informasi sertifikasi halal produk Tatsuo Beef beserta kode QR"
+                  width={196}
+                  height={196}
+                  sizes="196px"
+                  unoptimized
+                />
+              </div>
+              <h2 id="v2-about-brief-heading" className="v2-reveal">
+                Bahan pilihan.
+                <br />
+                <em>Mitra untuk dapur Anda.</em>
+              </h2>
+              <div className="v2-about-brief-copy v2-reveal">
+                <p>
+                  Sejak 2023, PT. Tatsuo Beef Indonesia hadir sebagai mitra
+                  pengadaan daging sapi, ayam, dan bahan pangan pilihan untuk
+                  bisnis kuliner. Kami membantu restoran, hotel, dan katering
+                  menemukan bahan yang tepat untuk setiap sajian.
+                </p>
+                <Link href="/tentang" className="v2-underlined-link">
+                  Tentang Kami <Arrow diagonal />
+                </Link>
+              </div>
+            </section>
+            <div className="v2-running-line" aria-hidden="true">
+              <div className="v2-running-copy">
+                {[0, 1, 2, 3].map((i) => (
+                  <span key={i}>
+                    GOOD MEAT <CutMark /> GREAT PARTNERSHIP <CutMark />
+                  </span>
+                ))}
+              </div>
+              <span className="v2-running-caption">
+                THE TATSUO WAY / EST. 2023
+              </span>
             </div>
-            <h2 id="v2-about-brief-heading" className="v2-reveal">
-              Bahan pilihan.
-              <br />
-              <em>Mitra untuk dapur Anda.</em>
-            </h2>
-            <div className="v2-about-brief-copy v2-reveal">
-              <p>
-                Sejak 2023, PT. Tatsuo Beef Indonesia hadir sebagai mitra
-                pengadaan daging sapi, ayam, dan bahan pangan pilihan untuk
-                bisnis kuliner. Kami membantu restoran, hotel, dan katering
-                menemukan bahan yang tepat untuk setiap sajian.
-              </p>
-              <Link href="/tentang" className="v2-underlined-link">
-                Tentang Kami <Arrow diagonal />
-              </Link>
-            </div>
-          </section>
-          <div className="v2-running-line" aria-hidden="true">
-            <div className="v2-running-copy">
-              {[0, 1, 2, 3].map((i) => (
-                <span key={i}>
-                  GOOD MEAT <CutMark /> GREAT PARTNERSHIP <CutMark />
-                </span>
-              ))}
-            </div>
-            <span className="v2-running-caption">
-              THE TATSUO WAY / EST. 2023
-            </span>
-          </div>
 
-          <section id="produk" className="v2-favourites container">
-            <h2 className="v2-favourites-title v2-reveal">Produk Unggulan</h2>
-            <div className="v2-favourites-grid">
-              {cuts.map((cut) => (
-                <article className="v2-favourite" key={cut.slug}>
-                  <Link
-                    className="v2-favourite-image-link"
-                    href={`/produk/${cut.slug}`}
-                    aria-label={`Kenali ${cut.name}`}
-                  >
-                    <div
-                      className="v2-favourite-image"
-                      style={{ aspectRatio: "4 / 3", position: "relative" }}
-                    >
-                      <Image
-                        src={`/images/${cut.image}.webp`}
-                        alt={cut.name}
-                        width={1000}
-                        height={1000}
-                        sizes="(max-width: 600px) 90vw, (max-width: 1000px) 44vw, 23vw"
-                      />
-                    </div>
-                  </Link>
-                  <h3>
-                    <Link href={`/produk/${cut.slug}`}>{cut.name}</Link>
-                  </h3>
-                  <div className="v2-cut-bottom">
-                    <span
-                      className="v2-product-rating"
-                      role="img"
-                      aria-label="Rating 4,5 dari 5 bintang"
-                    >
-                      {[0, 1, 2, 3, 4].map((star) => (
-                        <svg
-                          key={star}
-                          viewBox="0 0 24 24"
-                          width="14"
-                          height="14"
-                          aria-hidden="true"
-                        >
-                          <path
-                            d="m12 2.5 2.9 5.9 6.5.95-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.95Z"
-                            fill="#e4dcd0"
-                          />
-                          <path
-                            d="m12 2.5 2.9 5.9 6.5.95-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.95Z"
-                            fill="currentColor"
-                            style={
-                              star === 4
-                                ? { clipPath: "inset(0 50% 0 0)" }
-                                : undefined
-                            }
-                          />
-                        </svg>
-                      ))}
-                    </span>
+            <section id="produk" className="v2-favourites container">
+              <h2 className="v2-favourites-title v2-reveal">Produk Unggulan</h2>
+              <div className="v2-favourites-grid">
+                {cuts.map((cut) => (
+                  <article className="v2-favourite" key={cut.slug}>
                     <Link
+                      className="v2-favourite-image-link"
                       href={`/produk/${cut.slug}`}
-                      aria-label={`Lihat detail ${cut.name}`}
+                      aria-label={`Kenali ${cut.name}`}
                     >
-                      LIHAT PRODUK{" "}
-                      <span>
-                        <Arrow />
-                      </span>
+                      <div
+                        className="v2-favourite-image"
+                        style={{ aspectRatio: "4 / 3", position: "relative" }}
+                      >
+                        <Image
+                          src={`/images/${cut.image}.webp`}
+                          alt={cut.name}
+                          width={1000}
+                          height={1000}
+                          sizes="(max-width: 600px) 90vw, (max-width: 1000px) 44vw, 23vw"
+                        />
+                      </div>
                     </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
+                    <h3>
+                      <Link href={`/produk/${cut.slug}`}>{cut.name}</Link>
+                    </h3>
+                    <div className="v2-cut-bottom">
+                      <span
+                        className="v2-product-rating"
+                        role="img"
+                        aria-label="Rating 4,5 dari 5 bintang"
+                      >
+                        {[0, 1, 2, 3, 4].map((star) => (
+                          <svg
+                            key={star}
+                            viewBox="0 0 24 24"
+                            width="14"
+                            height="14"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="m12 2.5 2.9 5.9 6.5.95-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.95Z"
+                              fill="#e4dcd0"
+                            />
+                            <path
+                              d="m12 2.5 2.9 5.9 6.5.95-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.95Z"
+                              fill="currentColor"
+                              style={
+                                star === 4
+                                  ? { clipPath: "inset(0 50% 0 0)" }
+                                  : undefined
+                              }
+                            />
+                          </svg>
+                        ))}
+                      </span>
+                      <Link
+                        href={`/produk/${cut.slug}`}
+                        aria-label={`Lihat detail ${cut.name}`}
+                      >
+                        LIHAT PRODUK{" "}
+                        <span>
+                          <Arrow />
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
 
-          <WhyChooseUs />
+            <WhyChooseUs />
+          </div>
 
           <section className="v2-craft" aria-labelledby="v2-craft-heading">
             <div className="v2-craft-mask">
@@ -369,59 +371,64 @@ export default function LandingV2() {
 
           <PartnersCarousel />
 
-          <section className="v2-questions container">
-            <div className="v2-questions-intro">
-              <span className="v2-small-label">A FEW THINGS TO KNOW</span>
-              <h2>
-                Good
-                <br />
-                <em>questions.</em>
-              </h2>
-              <p>
-                Hal-hal yang mungkin ingin Anda tahu
-                <br />
-                sebelum kita mulai bekerja sama.
-              </p>
-              <a
-                href={whatsapp()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="v2-underlined-link"
-              >
-                Tanya langsung <Arrow diagonal />
-              </a>
-            </div>
-            <div className="v2-question-list">
-              {questions.map(([title, answer], index) => (
-                <div
-                  className={`v2-question ${question === index ? "is-open" : ""}`}
-                  key={title}
+          <div className="v2-faq-background">
+            <section className="v2-questions container">
+              <div className="v2-questions-intro">
+                <span className="v2-small-label">A FEW THINGS TO KNOW</span>
+                <h2>
+                  Good
+                  <br />
+                  <em>questions.</em>
+                </h2>
+                <p>
+                  Hal-hal yang mungkin ingin Anda tahu
+                  <br />
+                  sebelum kita mulai bekerja sama.
+                </p>
+                <a
+                  href={whatsapp()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="v2-underlined-link"
                 >
-                  <h3>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setQuestion(question === index ? null : index)
-                      }
-                      aria-expanded={question === index}
-                      aria-controls={`v2-answer-${index}`}
-                    >
-                      <span className="v2-question-index">0{index + 1}</span>
-                      <span>{title}</span>
-                      <span className="v2-question-toggle" aria-hidden="true" />
-                    </button>
-                  </h3>
+                  Tanya langsung <Arrow diagonal />
+                </a>
+              </div>
+              <div className="v2-question-list">
+                {questions.map(([title, answer], index) => (
                   <div
-                    id={`v2-answer-${index}`}
-                    className="v2-answer"
-                    hidden={question !== index}
+                    className={`v2-question ${question === index ? "is-open" : ""}`}
+                    key={title}
                   >
-                    <p>{answer}</p>
+                    <h3>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setQuestion(question === index ? null : index)
+                        }
+                        aria-expanded={question === index}
+                        aria-controls={`v2-answer-${index}`}
+                      >
+                        <span className="v2-question-index">0{index + 1}</span>
+                        <span>{title}</span>
+                        <span
+                          className="v2-question-toggle"
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      id={`v2-answer-${index}`}
+                      className="v2-answer"
+                      hidden={question !== index}
+                    >
+                      <p>{answer}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
       </main>
       <div className="scroll-progress v2-progress" aria-hidden="true" />

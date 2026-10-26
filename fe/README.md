@@ -47,7 +47,11 @@ URL WordPress lama memiliki redirect permanen ke halaman baru.
 
 ## File utama
 
-- `src/components/landing-page.tsx`: konten, komponen, interaksi, dan GSAP.
+- `src/components/landing-v2.tsx`: landing aktif versi 2, empat produk editorial, storytelling scroll, dan FAQ.
+- `src/components/landing-hero.tsx`: hero asli yang dipertahankan.
+- `src/components/landing-page.tsx`: kode landing versi sebelumnya.
+- `src/components/site-footer.tsx`: footer global dengan CTA, produk, dan gelombang.
+- `src/app/landing-v2.css` dan `src/app/footer.css`: desain landing versi 2 dan footer.
 - `src/components/ambient.tsx`: partikel latar canvas.
 - `src/app/globals.css`: visual, responsivitas, dan animasi CSS.
 - `src/app/layout.tsx`: font lokal dan metadata.

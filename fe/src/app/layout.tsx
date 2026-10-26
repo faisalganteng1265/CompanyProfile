@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import "./pages.css";
+import "./footer.css";
 import SiteFrame from "@/components/site-frame";
 
 const display = localFont({

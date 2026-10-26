@@ -1,5 +1,43 @@
 # Design & asset notes
 
+## Landing page versi 2 — The Good Cut
+
+Hero asli dipertahankan sesuai arahan terakhir pengguna. Markup dan animasinya dipisahkan ke `src/components/landing-hero.tsx`. Komposisi hero baru yang sempat direncanakan tidak diterapkan; aset cutout sapi dipakai pada footer.
+
+Landing aktif memakai `src/components/landing-v2.tsx` dan `src/app/landing-v2.css`. Komponen `landing-page.tsx` tetap disimpan sebagai versi sebelumnya. Halaman lain dan Lenis tetap tersedia.
+
+### Referensi desain
+
+- Referensi screenshot Fall Favorites dari pengguna: empat foto landscape sejajar, kategori kecil, judul serif besar, serta tautan detail di atas garis tipis. Empat pilihan Tatsuo: Buntut Sapi, Tenderloin Meltique, Shortplate Beef, Boneless Dada Ayam.
+- https://www.eathungrytiger.com/ dan https://artemiilebedev.com/work/hungry-tiger: pendekatan objek fotografis, interaksi, dan storytelling brand pangan. Tidak menyalin aset atau kode referensi.
+- https://arianatorres.com/papito/: identitas butcher kontemporer, label merah, dan bahasa visual cetak. Tidak menyalin logo/brand referensi.
+- Screenshot footer FreshBox desktop dan mobile dari pengguna: CTA dengan produk di sisi kiri-kanan, transisi gelombang menuju footer merah, dan kolom navigasi. Disesuaikan dengan identitas Tatsuo serta font yang sudah dipilih.
+
+### Gerak dan struktur
+
+- Hero asli dan Lenis dipertahankan.
+- Empat kartu produk editorial terhubung ke detail produk, tanpa kotak dekoratif.
+- Section fotografi memakai reveal diagonal dengan GSAP ScrollTrigger, dipin khusus desktop; mobile memakai parallax tanpa pin.
+- Copy cerita brand mendapat penekanan warna saat scroll.
+- Enam indikator Why Choose Us tetap tersedia dengan komposisi baru.
+- Carousel partner putih, logo besar dan rapat, tetap sebelum FAQ.
+- Footer global memakai potongan foto transparan, latar garis bergerak, wave di desktop, dan transisi angular untuk mobile. Tidak memakai badge Framer atau link legal yang belum tersedia.
+- Semua animasi tambahan menghormati reduced motion. Perubahan ini hanya ditulis dan diformat; tidak menjalankan localhost, build, tes, commit, atau push.
+
+### Aset generatif tambahan
+
+**Beef cutout / footer**
+
+Mode: built-in imagegen. Aset lokal: `public/images/hero-good-cut-v2.webp`. Transparansi dipertahankan saat konversi WebP. Ilustrasi fotografis, bukan dokumentasi stok aktual.
+
+Use case: product-mockup. Asset type: transparent photographic cutout for a luxury butcher website hero. Create an exceptionally photorealistic studio food photograph of two thick prime raw beef ribeye steaks, one slightly behind and overlapping the other in a natural diagonal arrangement. Three-quarter overhead camera angle, not fully top down, so the thickness and sculptural shape of the steaks is visible. The front steak has remarkable authentic ivory fat marbling through deep natural burgundy red meat, with a subtle creamy fat cap; the rear steak supports the composition. Entire steaks completely in frame with generous transparent padding around all edges. Beautiful soft warm directional studio light from upper left, subtle realistic moisture, fine natural organic meat texture, sophisticated restrained contrast. A clean high-end commercial food photograph, extraordinary detail, not CGI, not plastic, not exaggerated white marbling. Isolated on a genuinely transparent background. No board, no plate, no surface, no props, no herbs, no salt, no hands, no packaging, no text, no logos, no frame. Preserve a natural subtle contact shadow between the two overlapping steaks, but no hard rectangular background. Landscape composition with the steaks forming a strong irregular sculptural silhouette suitable to layer over large editorial typography.
+
+**Chicken cutout / footer**
+
+Mode: built-in imagegen. Aset lokal: `public/images/footer-chicken-v2.webp`. Transparansi dipertahankan saat konversi WebP. Ilustrasi fotografis, bukan dokumentasi stok aktual.
+
+Use case: product-mockup. Asset type: transparent photographic cutout for the corner of a premium meat supplier website footer. Two beautiful fresh raw boneless skinless chicken breast fillets placed together in a compact natural overlapping diagonal arrangement, photographed from a three-quarter overhead angle. Immaculate authentic pale natural peach-pink ivory chicken texture, subtle realistic moisture, not glossy plastic. Soft warm directional studio light, exceptionally photorealistic commercial food photography, no CGI. Entire fillets fully in frame with generous clear transparent padding around the edges. Isolate on a genuinely transparent background. No plate, no board, no props, no herbs, no salt, no utensils, no hands, no text, no logo, no watermark, no opaque rectangular background. Landscape composition. Preserve natural subtle shading between the fillets only.
+
 ## Pengembangan multi halaman
 
 - `/tentang`: cerita perusahaan, manifesto, nilai, dan jalur ke katalog/kontak.

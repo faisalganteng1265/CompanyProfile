@@ -1,0 +1,149 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Ambient from "./ambient";
+import { Arrow, Asterisk } from "./icons";
+
+/** The original Tatsuo hero, retained at the user's request. */
+export default function LandingHero() {
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const media = gsap.matchMedia();
+    const context = gsap.context(() => {
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from(".hero-line > span", {
+          yPercent: 110,
+          rotate: 3,
+          duration: 1.3,
+          stagger: 0.13,
+          ease: "power4.out",
+          delay: 0.15,
+        });
+        gsap.from(".hero-reveal", {
+          y: 22,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.12,
+          delay: 0.6,
+          ease: "power3.out",
+        });
+        gsap.fromTo(
+          ".hero-image",
+          { scale: 1.12 },
+          { scale: 1, duration: 2.2, ease: "power2.out" },
+        );
+        gsap.to(".hero-image-wrap", {
+          yPercent: 16,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
+        gsap.to(".hero-copy", {
+          y: 80,
+          opacity: 0.35,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "20% top",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
+      });
+    }, root);
+    return () => {
+      media.revert();
+      context.revert();
+    };
+  }, []);
+  return (
+    <div ref={root} className="v2-original-hero">
+      <section
+        className="hero"
+        aria-labelledby="hero-heading"
+        style={{ position: "relative", minHeight: "min(715px, 100svh)" }}
+      >
+        <div
+          className="hero-image-wrap"
+          style={{ position: "absolute", inset: 0 }}
+        >
+          <Image
+            className="hero-image"
+            src="/images/hero.webp"
+            alt="Potongan ribeye dengan marbling di atas papan kayu gelap"
+            fill
+            priority
+            sizes="100vw"
+            quality={90}
+          />
+        </div>
+        <div className="hero-shade" />
+        <div className="hero-light" aria-hidden="true" />
+        <Ambient />
+        <div className="hero-copy container">
+          <p className="eyebrow hero-reveal">
+            <span className="tiny-cross">+</span> THE ART OF GOOD MEAT
+          </p>
+          <h1 id="hero-heading">
+            <span className="hero-line">
+              <span>Good meat.</span>
+            </span>
+            <span className="hero-line">
+              <span>Great</span>
+            </span>
+            <span className="hero-line">
+              <span className="hero-last-line">partnership.</span>
+            </span>
+          </h1>
+          <p className="hero-description hero-reveal">
+            Di balik setiap hidangan istimewa,
+            <br />
+            ada bahan pilihan dan mitra yang tepat.
+          </p>
+          <a href="#produk" className="button button-red hero-reveal">
+            <span>Temukan pilihan Anda</span>
+            <Arrow diagonal />
+          </a>
+        </div>
+        <div className="quality-seal" aria-hidden="true">
+          <svg viewBox="0 0 140 140">
+            <defs>
+              <path
+                id="seal-circle"
+                d="M70,70m-52,0a52,52 0 1,1 104,0a52,52 0 1,1 -104,0"
+              />
+            </defs>
+            <text>
+              <textPath href="#seal-circle" textLength="324">
+                TATSUO BEEF · SELECTED WITH CARE ·{" "}
+              </textPath>
+            </text>
+          </svg>
+          <Asterisk />
+          <span>
+            EST.
+            <br />
+            2023
+          </span>
+        </div>
+        <div className="hero-bottom container">
+          <a href="#tentang" className="scroll-cue">
+            <span className="scroll-stem" />
+            SCROLL TO DISCOVER
+          </a>
+        </div>
+        <div className="hero-edge" aria-hidden="true">
+          THE BEGINNING OF SOMETHING GREAT
+        </div>
+      </section>
+    </div>
+  );
+}

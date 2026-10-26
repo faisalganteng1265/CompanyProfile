@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Asterisk, Contours } from "./icons";
+import "./why-choose-us.css";
 
 const standards = [
   { label: "Kualitas mutu tinggi", value: 99 },
@@ -22,8 +22,8 @@ export default function WhyChooseUs() {
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
       media.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from(".why-heading", {
-          y: 35,
+        gsap.from(".why-story-copy", {
+          y: 30,
           opacity: 0,
           duration: 1,
           ease: "power3.out",
@@ -32,49 +32,68 @@ export default function WhyChooseUs() {
             start: "top 85%",
             once: true,
           },
+          clearProps: "transform,opacity",
         });
-        gsap.from(".why-meter-fill", {
-          scaleX: 0,
-          transformOrigin: "left",
-          stagger: 0.12,
-          duration: 1.6,
-          ease: "power3.inOut",
+        const stats = gsap.utils.toArray<HTMLElement>(".why-story-stat");
+        const restoreStats: (() => void)[] = [];
+        const timeline = gsap.timeline({
           scrollTrigger: {
-            trigger: ".why-metrics",
-            start: "top 85%",
-            once: true,
-          },
-        });
-        gsap.utils
-          .toArray<HTMLElement>(".why-count")
-          .forEach((element, index) => {
-            const value = Number(element.dataset.value);
-            const counter = { value: 0 };
-            gsap.to(counter, {
-              value,
-              duration: 1.6,
-              delay: index * 0.12,
-              ease: "power2.out",
-              onUpdate: () => {
-                element.textContent = String(Math.round(counter.value));
-              },
-              scrollTrigger: {
-                trigger: ".why-metrics",
-                start: "top 85%",
-                once: true,
-              },
-            });
-          });
-        gsap.to(".why-background", {
-          yPercent: 12,
-          ease: "none",
-          scrollTrigger: {
-            trigger: root.current,
-            start: "top bottom",
+            trigger: root.current?.querySelector(".why-story-stats"),
+            start: "top 88%",
             end: "bottom top",
-            scrub: 1.2,
+            toggleActions: "restart reset restart reset",
           },
         });
+
+        stats.forEach((stat, index) => {
+          const number = stat.querySelector<HTMLElement>(".why-story-count");
+          const ring = stat.querySelector<SVGCircleElement>(".why-ring-fill");
+          if (!number || !ring) return;
+          const target = Number(number.dataset.value);
+          const counter = { value: 0 };
+          number.textContent = "0";
+          ring.style.strokeDashoffset = "100";
+
+          // One animated value drives both the number and its circular progress.
+          timeline.to(
+            counter,
+            {
+              value: target,
+              duration: 2.2,
+              ease: "power2.inOut",
+              onUpdate: () => {
+                number.textContent = String(Math.round(counter.value));
+                ring.style.strokeDashoffset = String(100 - counter.value);
+              },
+              onComplete: () => {
+                number.textContent = String(target);
+                ring.style.strokeDashoffset = String(100 - target);
+              },
+            },
+            index * 0.16,
+          );
+
+          restoreStats.push(() => {
+            number.textContent = String(target);
+            ring.style.strokeDashoffset = String(100 - target);
+          });
+        });
+        gsap.fromTo(
+          ".why-story-photo img",
+          { yPercent: -3, scale: 1.07 },
+          {
+            yPercent: 3,
+            scale: 1.07,
+            ease: "none",
+            scrollTrigger: {
+              trigger: root.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.2,
+            },
+          },
+        );
+        return () => restoreStats.forEach((restore) => restore());
       });
     }, root);
     return () => {
@@ -86,65 +105,74 @@ export default function WhyChooseUs() {
   return (
     <section
       ref={root}
-      className="why-choose-section"
-      style={{ position: "relative", minHeight: 300 }}
+      className="why-story-section"
       aria-labelledby="why-choose-heading"
     >
-      <div
-        className="why-background"
-        style={{ position: "absolute", inset: "-15% 0" }}
-      >
-        <Image src="/images/hero.webp" alt="" fill sizes="100vw" />
-      </div>
-      <div className="why-shade" aria-hidden="true" />
-      <Contours />
-      <div className="container why-content">
-        <div className="why-kicker">
-          <span className="eyebrow">TATSUO BEEF EXPERIENCE</span>
-          <Asterisk />
+      <div className="container why-story-layout">
+        <div
+          className="why-story-photo"
+          style={{
+            position: "relative",
+            aspectRatio: "var(--why-photo-ratio, 0.77)",
+          }}
+        >
+          <Image
+            src="/images/story-selection-v2.webp"
+            alt="Pemilihan ribeye bermarbling dengan perhatian pada kualitas"
+            width={1122}
+            height={1402}
+            sizes="(max-width: 760px) 90vw, 42vw"
+          />
         </div>
-        <div className="why-heading">
+        <div className="why-story-copy">
+          <span className="why-story-eyebrow">
+            <span aria-hidden="true" /> Why choose us
+          </span>
           <h2 id="why-choose-heading">
-            Why choose us.
+            Kualitas yang terasa.
             <br />
-            <em>Good reasons. Great partnership.</em>
+            <em>Kemitraan yang terjaga.</em>
           </h2>
           <p>
-            Mutu, pelayanan, dan komitmen.
-            <br />
-            Hal-hal yang kami jaga dalam setiap kemitraan.
+            Bahan pilihan, pelayanan yang responsif, dan komitmen dalam setiap
+            kerja sama. Inilah yang kami bawa ke dapur Anda.
           </p>
-        </div>
-        <dl className="why-metrics">
-          {standards.map((standard, index) => (
-            <div className="why-metric" key={standard.label}>
-              <dt>
-                <span className="why-metric-index">0{index + 1}</span>
-                {standard.label}
-              </dt>
-              <dd>
-                <span
-                  className="why-count"
-                  data-value={standard.value}
-                  aria-hidden="true"
-                >
-                  {standard.value}
-                </span>
-                <span aria-hidden="true">%</span>
-                <span className="sr-only">{standard.value} persen</span>
-              </dd>
-              <div className="why-meter-track" aria-hidden="true">
-                <span
-                  className="why-meter-fill"
-                  style={{ width: `${standard.value}%` }}
-                />
+          <dl className="why-story-stats">
+            {standards.map((standard) => (
+              <div className="why-story-stat" key={standard.label}>
+                <dt>{standard.label}</dt>
+                <dd>
+                  <svg
+                    className="why-stat-ring"
+                    viewBox="0 0 100 100"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle cx="50" cy="50" r="44" className="why-ring-track" />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="44"
+                      pathLength="100"
+                      strokeDasharray="100"
+                      className="why-ring-fill"
+                      style={{ strokeDashoffset: 100 - standard.value }}
+                    />
+                  </svg>
+                  <span className="why-ring-value" aria-hidden="true">
+                    <span
+                      className="why-story-count"
+                      data-value={standard.value}
+                    >
+                      {standard.value}
+                    </span>
+                    <span>%</span>
+                  </span>
+                  <span className="sr-only">{standard.value} persen</span>
+                </dd>
               </div>
-            </div>
-          ))}
-        </dl>
-        <div className="why-foot">
-          <span>THE STANDARD WE STAND FOR.</span>
-          <span>SELECTED WITH CARE. DELIVERED WITH PRIDE.</span>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

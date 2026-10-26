@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Arrow } from "./icons";
-import { company } from "@/lib/company";
+import SiteFooter from "./site-footer";
 import LandingScroll from "./landing-scroll";
 
 const navigation = [
@@ -137,54 +137,7 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
       </header>
       <div inert={menuOpen} className="site-content">
         {children}
-        <footer className="site-footer">
-          <div className="container">
-            <div className="footer-top">
-              <Link className="footer-title" href="/">
-                TATSUO<span>BEEF INDONESIA</span>
-              </Link>
-              <div className="footer-address">
-                <span className="eyebrow">COME SAY HELLO</span>
-                <p>
-                  Jl. Kurma, Dregan RT03/RW06, Pabelan,
-                  <br />
-                  Kartasura, Sukoharjo, Jawa Tengah 57169
-                </p>
-                <a
-                  href={company.maps}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Lihat di Google Maps <Arrow diagonal />
-                </a>
-              </div>
-              <div className="footer-connect">
-                <span className="eyebrow">EXPLORE TATSUO</span>
-                {[...navigation, ["Hubungi kami", "/kontak"]].map(
-                  ([label, href]) => (
-                    <Link key={href} href={href}>
-                      {label}
-                      <Arrow diagonal />
-                    </Link>
-                  ),
-                )}
-                <a href={`mailto:${company.email}`}>
-                  Email kami <Arrow diagonal />
-                </a>
-              </div>
-            </div>
-            <div className="footer-wordmark" aria-hidden="true">
-              TATSUO BEEF<span>®</span>
-            </div>
-            <div className="footer-bottom">
-              <span>© 2026 {company.name}</span>
-              <span>SELECTED WITH CARE. DELIVERED WITH PRIDE.</span>
-              <a href="#">
-                Kembali ke atas <Arrow className="arrow-up" />
-              </a>
-            </div>
-          </div>
-        </footer>
+        <SiteFooter />
       </div>
     </>
   );

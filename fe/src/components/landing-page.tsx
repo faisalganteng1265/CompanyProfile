@@ -386,14 +386,6 @@ export default function LandingPage() {
               <span className="scroll-stem" />
               SCROLL TO DISCOVER
             </a>
-            <span className="hero-caption">
-              SELECTED CUTS.
-              <br />
-              UNCOMPROMISING QUALITY.
-            </span>
-            <span className="hero-counter">
-              01 <span>/ 04</span>
-            </span>
           </div>
           <div className="hero-edge" aria-hidden="true">
             THE BEGINNING OF SOMETHING GREAT

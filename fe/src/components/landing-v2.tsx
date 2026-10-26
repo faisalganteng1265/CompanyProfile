@@ -329,6 +329,35 @@ export default function LandingV2() {
                   <Link href={`/produk/${cut.slug}`}>{cut.name}</Link>
                 </h3>
                 <div className="v2-cut-bottom">
+                  <span
+                    className="v2-product-rating"
+                    role="img"
+                    aria-label="Rating 4,5 dari 5 bintang"
+                  >
+                    {[0, 1, 2, 3, 4].map((star) => (
+                      <svg
+                        key={star}
+                        viewBox="0 0 24 24"
+                        width="14"
+                        height="14"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="m12 2.5 2.9 5.9 6.5.95-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.95Z"
+                          fill="#e4dcd0"
+                        />
+                        <path
+                          d="m12 2.5 2.9 5.9 6.5.95-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.95Z"
+                          fill="currentColor"
+                          style={
+                            star === 4
+                              ? { clipPath: "inset(0 50% 0 0)" }
+                              : undefined
+                          }
+                        />
+                      </svg>
+                    ))}
+                  </span>
                   <Link
                     href={`/produk/${cut.slug}`}
                     aria-label={`Lihat detail ${cut.name}`}

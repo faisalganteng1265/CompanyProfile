@@ -1404,3 +1404,59 @@
     font-size: 35px;
   }
 }
+
+.v2-about-brief-copy > p {
+  font-size: 14px;
+  color: #000000;
+}
+@media (max-width: 760px) {
+  .v2-about-brief-copy > p {
+    font-size: 13px;
+  }
+}
+
+.v2-cut-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.v2-cut-bottom > .v2-product-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0;
+  color: var(--red);
+  flex-shrink: 0;
+}
+.v2-product-rating > svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+.v2-cut-bottom > a {
+  flex-shrink: 0;
+}
+@media (max-width: 760px) {
+  .v2-cut-bottom {
+    gap: 8px;
+  }
+  .v2-cut-bottom > .v2-product-rating {
+    gap: 2px;
+  }
+  .v2-product-rating > svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.v2-product-rating > svg {
+  width: 17px;
+  height: 17px;
+}
+@media (max-width: 760px) {
+  .v2-product-rating > svg {
+    width: 12px;
+    height: 12px;
+  }
+}

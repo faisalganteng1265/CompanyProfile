@@ -87,9 +87,13 @@ export default function WhyChooseUs() {
     <section
       ref={root}
       className="why-choose-section"
+      style={{ position: "relative", minHeight: 300 }}
       aria-labelledby="why-choose-heading"
     >
-      <div className="why-background">
+      <div
+        className="why-background"
+        style={{ position: "absolute", inset: "-15% 0" }}
+      >
         <Image src="/images/hero.webp" alt="" fill sizes="100vw" />
       </div>
       <div className="why-shade" aria-hidden="true" />

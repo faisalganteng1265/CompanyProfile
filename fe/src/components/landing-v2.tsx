@@ -86,15 +86,69 @@ export default function LandingV2() {
         });
         gsap.utils
           .toArray<HTMLElement>(".v2-favourite")
-          .forEach((el, index) => {
-            gsap.from(el, {
-              y: index % 2 ? 70 : 35,
-              opacity: 0,
-              duration: 1.1,
-              ease: "power3.out",
-              scrollTrigger: { trigger: el, start: "top 95%", once: true },
-              clearProps: "transform,opacity",
+          .forEach((card, index) => {
+            const frame = card.querySelector(".v2-favourite-image-link");
+            const photo = card.querySelector(".v2-product-photo-motion");
+            const title = card.querySelector("h3");
+            const details = card.querySelector(".v2-cut-bottom");
+            if (!frame || !photo || !title || !details) return;
+            const entrance = gsap.timeline({
+              delay: (index % 4) * 0.09,
+              scrollTrigger: {
+                trigger: card,
+                start: "top 91%",
+                end: "bottom top",
+                toggleActions: "restart reset restart reset",
+              },
             });
+            entrance
+              .fromTo(
+                frame,
+                {
+                  clipPath: "inset(0% 0% 100% 0%)",
+                  y: 32,
+                },
+                {
+                  clipPath: "inset(0% 0% 0% 0%)",
+                  y: 0,
+                  duration: 1.2,
+                  ease: "power3.inOut",
+                },
+                0,
+              )
+              .fromTo(
+                photo,
+                { scale: 1.2, yPercent: -7 },
+                {
+                  scale: 1,
+                  yPercent: 0,
+                  duration: 1.65,
+                  ease: "power3.out",
+                },
+                0.08,
+              )
+              .fromTo(
+                title,
+                { y: 22, opacity: 0 },
+                {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.8,
+                  ease: "power3.out",
+                },
+                0.5,
+              )
+              .fromTo(
+                details,
+                { y: 14, opacity: 0 },
+                {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.7,
+                  ease: "power3.out",
+                },
+                0.67,
+              );
           });
         gsap.to(".v2-running-copy", {
           xPercent: -18,
@@ -269,13 +323,15 @@ export default function LandingV2() {
                         className="v2-favourite-image"
                         style={{ aspectRatio: "4 / 3", position: "relative" }}
                       >
-                        <Image
-                          src={`/images/${cut.image}.webp`}
-                          alt={cut.name}
-                          width={1000}
-                          height={1000}
-                          sizes="(max-width: 600px) 90vw, (max-width: 1000px) 44vw, 23vw"
-                        />
+                        <div className="v2-product-photo-motion">
+                          <Image
+                            src={`/images/${cut.image}.webp`}
+                            alt={cut.name}
+                            width={1000}
+                            height={1000}
+                            sizes="(max-width: 600px) 90vw, (max-width: 1000px) 44vw, 23vw"
+                          />
+                        </div>
                       </div>
                     </Link>
                     <h3>

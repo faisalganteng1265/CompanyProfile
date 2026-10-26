@@ -170,7 +170,11 @@
   background: #23221e;
   overflow: hidden;
 }
-.v2-favourite-image > img {
+.v2-product-photo-motion {
+  width: 100%;
+  height: 100%;
+}
+.v2-product-photo-motion > img {
   display: block;
   width: 100%;
   height: 100%;

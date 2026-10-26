@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Ambient from "./ambient";
 import WhyChooseUs from "./why-choose-us";
+import PartnersCarousel from "./partners-carousel";
 
 const whatsapp = (message: string, number = "6281274877474") =>
   `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
@@ -312,8 +313,15 @@ export default function LandingPage() {
   return (
     <div ref={root} className="site-root">
       <main id="main">
-        <section className="hero" aria-labelledby="hero-heading">
-          <div className="hero-image-wrap">
+        <section
+          className="hero"
+          aria-labelledby="hero-heading"
+          style={{ position: "relative", minHeight: "min(715px, 100svh)" }}
+        >
+          <div
+            className="hero-image-wrap"
+            style={{ position: "absolute", inset: 0 }}
+          >
             <Image
               className="hero-image"
               src="/images/hero.webp"
@@ -494,10 +502,18 @@ export default function LandingPage() {
               <button
                 key={product.id}
                 className="product-card"
+                style={{ width: "100%" }}
                 onClick={() => setSelected(product)}
                 aria-label={`Lihat detail ${product.name}`}
               >
-                <div className="product-image">
+                <div
+                  className="product-image"
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "var(--product-image-ratio, 1 / 1.09)",
+                  }}
+                >
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -593,9 +609,17 @@ export default function LandingPage() {
 
         <section className="story section-space container">
           <div className="story-visual">
-            <div className="story-photo">
+            <div
+              className="story-photo"
+              style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: "var(--story-image-ratio, 0.94)",
+              }}
+            >
               <Image
                 src="/images/story-selection-v2.webp"
+                loading="eager"
                 alt="Butcher memilih potongan ribeye bermarbling di atas meja kayu"
                 fill
                 className="parallax-image"
@@ -680,6 +704,8 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
+        <PartnersCarousel />
 
         <section className="faq-section container section-space">
           <div className="faq-intro reveal">
@@ -810,7 +836,13 @@ export default function LandingPage() {
             >
               ✕
             </button>
-            <div className="dialog-image">
+            <div
+              className="dialog-image"
+              style={{
+                position: "relative",
+                minHeight: "var(--dialog-image-min-height, 500px)",
+              }}
+            >
               <Image
                 src={selected.image}
                 alt={selected.name}

@@ -1,5 +1,5 @@
 .tatsuo-footer {
-  --footer-red: #9f2027;
+  --footer-red: var(--red);
   --footer-cream: #f4e8d2;
   background: var(--footer-red);
   color: var(--footer-cream);

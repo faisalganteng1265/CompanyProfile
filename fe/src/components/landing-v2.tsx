@@ -51,30 +51,6 @@ const questions = [
     "Tatsuo berlokasi di Kartasura, Sukoharjo. Diskusikan tujuan pengiriman dengan tim kami untuk mengonfirmasi jangkauan, jadwal, dan biayanya.",
   ],
 ];
-const voices = [
-  {
-    quote:
-      "Stok Shortplate Beef mereka selalu kontinu, dan tim sales-nya sangat responsif. Sangat fair dan profesional.",
-    name: "Arief",
-    role: "Manajer Pembelian, Seoul Grill",
-    label: "A PARTNER YOU CAN COUNT ON",
-  },
-  {
-    quote:
-      "Kualitas buntut sapinya konsisten, dagingnya empuk, dan membuat kaldu kami benar-benar kaya rasa.",
-    name: "Chef Budi",
-    role: "Waroeng SS Sambal",
-    label: "GOOD INGREDIENTS. MEMORABLE DISHES.",
-  },
-  {
-    quote:
-      "Tekstur juicy dan kelembutannya sempurna untuk menu steak kami. Pelayanan juga selalu prima.",
-    name: "Maria",
-    role: "Pemilik Western Steakhouse",
-    label: "THE DETAILS MAKE A DIFFERENCE",
-  },
-];
-
 function CutMark({ light = false }: { light?: boolean }) {
   return (
     <span
@@ -87,27 +63,9 @@ function CutMark({ light = false }: { light?: boolean }) {
     </span>
   );
 }
-function Eyebrow({
-  number,
-  children,
-}: {
-  number: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="v2-eyebrow">
-      <span>{number}</span>
-      <span>{children}</span>
-      <span className="v2-eyebrow-rule" />
-    </div>
-  );
-}
-
 export default function LandingV2() {
   const root = useRef<HTMLDivElement>(null);
   const [question, setQuestion] = useState<number | null>(0);
-  const [voice, setVoice] = useState(0);
-  const current = voices[voice];
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const media = gsap.matchMedia();
@@ -145,32 +103,6 @@ export default function LandingV2() {
             scrub: 1.4,
           },
         });
-        gsap.from(".v2-about-word", {
-          color: "#c6c0b5",
-          stagger: 0.08,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".v2-about-statement",
-            start: "top 80%",
-            end: "bottom 45%",
-            scrub: 1,
-          },
-        });
-        gsap.fromTo(
-          ".v2-about-image img",
-          { yPercent: -6, scale: 1.1 },
-          {
-            yPercent: 6,
-            scale: 1.1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".v2-about",
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
-          },
-        );
         gsap.to(".v2-progress", {
           scaleX: 1,
           transformOrigin: "left",
@@ -261,6 +193,7 @@ export default function LandingV2() {
       <main id="main">
         <LandingHero />
         <section
+          id="tentang"
           className="v2-about-brief container"
           aria-labelledby="v2-about-brief-heading"
         >
@@ -427,100 +360,6 @@ export default function LandingV2() {
               <Link href="/tentang">
                 Cerita di balik Tatsuo <Arrow diagonal />
               </Link>
-            </div>
-          </div>
-        </section>
-
-        <section id="tentang" className="v2-about container">
-          <div className="v2-about-intro">
-            <Eyebrow number="03">GOOD PEOPLE. GOOD PARTNERSHIP.</Eyebrow>
-            <p className="v2-about-statement">
-              {"Bukan sekadar bahan yang Anda beli. Tapi mitra yang Anda percaya."
-                .split(" ")
-                .map((word, i) => (
-                  <span className="v2-about-word" key={`${word}-${i}`}>
-                    {word}{" "}
-                  </span>
-                ))}
-            </p>
-          </div>
-          <div className="v2-about-lower">
-            <div className="v2-about-image">
-              <Image
-                src="/images/hero.webp"
-                alt="Detail marbling daging sapi pilihan"
-                width={1672}
-                height={941}
-                sizes="(max-width: 760px) 90vw, 38vw"
-              />
-              <div className="v2-butcher-ticket">
-                <span>THE GOOD CUT</span>
-                <strong>2023</strong>
-                <span>OUR STORY BEGINS.</span>
-                <div aria-hidden="true" className="v2-barcode" />
-              </div>
-            </div>
-            <div className="v2-about-copy v2-reveal">
-              <p className="v2-about-lead">
-                Di dapur Anda, setiap bahan punya peran.
-                <br />
-                Dalam bisnis Anda, setiap mitra juga.
-              </p>
-              <p>
-                Sejak 2023, PT. Tatsuo Beef Indonesia hadir untuk memenuhi
-                kebutuhan daging sapi, ayam, dan bahan pangan pilihan bagi usaha
-                kuliner. Dari menu yang baru direncanakan hingga sajian yang
-                sudah menjadi favorit.
-              </p>
-              <p>
-                Kami menjaga hubungan melalui hal-hal sederhana: pilihan yang
-                tepat, komunikasi yang terbuka, dan komitmen untuk tumbuh
-                bersama.
-              </p>
-              <Link href="/tentang" className="v2-underlined-link">
-                Kenali Tatsuo lebih dekat <Arrow diagonal />
-              </Link>
-              <div className="v2-business-types">
-                <span>RESTAURANTS</span>
-                <span>HOSPITALITY</span>
-                <span>FOOD SERVICE</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="v2-voices">
-          <div className="container">
-            <div className="v2-voices-top">
-              <CutMark light />
-              <span>GOOD WORDS FROM GOOD COMPANY</span>
-              <span>0{voice + 1} / 03</span>
-            </div>
-            <div className="v2-voice-content" aria-live="polite">
-              <span className="v2-voice-label">{current.label}</span>
-              <blockquote key={voice}>{current.quote}</blockquote>
-              <div className="v2-voice-bottom">
-                <div>
-                  <span className="v2-voice-name">{current.name}</span>
-                  <span className="v2-voice-role">{current.role}</span>
-                </div>
-                <div className="v2-voice-controls">
-                  <button
-                    type="button"
-                    aria-label="Testimoni sebelumnya"
-                    onClick={() => setVoice((voice + 2) % 3)}
-                  >
-                    <Arrow className="arrow-back" />
-                  </button>
-                  <button
-                    type="button"
-                    aria-label="Testimoni berikutnya"
-                    onClick={() => setVoice((voice + 1) % 3)}
-                  >
-                    <Arrow />
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </section>

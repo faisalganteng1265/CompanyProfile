@@ -95,7 +95,7 @@ Setelah permintaan pengguna untuk berfokus pada penulisan kode, perubahan sectio
 
 ## Logo partner dan carousel
 
-Carousel looping ditempatkan tepat sebelum FAQ pada landing page. Dua grup identik membentuk perulangan tanpa jeda. Animasi berhenti saat di-hover, dijeda melalui tombol, atau berada di luar viewport. Reduced motion menampilkan grid statis dan menyembunyikan grup duplikat dari tampilan serta pembaca layar.
+Carousel looping ditempatkan tepat sebelum FAQ pada landing page. Dua grup identik membentuk perulangan tanpa jeda. Animasi berhenti saat di-hover atau berada di luar viewport. Tombol pause dan bingkai/kotak tiap logo dihapus sesuai permintaan pengguna; carousel hanya menampilkan logo tanpa caption per gambar. Reduced motion menampilkan grid statis dan menyembunyikan grup duplikat dari tampilan serta pembaca layar.
 
 Logo diunduh dari bagian Our Partners situs Tatsuo, bukan digambar ulang atau dibuat secara generatif. Berkas lokal di `public/images/partners` dikonversi ke WebP dengan desain logo tetap utuh.
 

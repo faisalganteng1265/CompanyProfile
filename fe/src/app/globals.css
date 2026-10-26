@@ -2690,7 +2690,7 @@ body:has(dialog[open]) {
 .partners-section {
   padding-block: 65px 36px;
   border-bottom: 1px solid var(--line);
-  background: var(--cream);
+  background: #ffffff;
 }
 .partners-heading-row {
   display: flex;
@@ -2720,29 +2720,10 @@ body:has(dialog[open]) {
   color: var(--muted);
   line-height: 1.9;
 }
-.partners-playback {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--red);
-  padding: 10px 13px;
-  transition:
-    background 0.3s,
-    border-color 0.3s;
-}
-.partners-playback > span {
-  font-size: 6px;
-  letter-spacing: 1px;
-}
-.partners-playback:hover {
-  background: var(--paper);
-  border-color: #b8ac99;
-}
+
 .partners-viewport {
   overflow: hidden;
+  padding-block: 14px;
   mask-image: linear-gradient(
     90deg,
     transparent,
@@ -2759,63 +2740,42 @@ body:has(dialog[open]) {
 .partner-marquee-group {
   display: flex;
   flex-shrink: 0;
-  gap: 24px;
-  padding: 0 24px 0 0;
+  gap: 4px;
+  padding: 0 4px 0 0;
   margin: 0;
   list-style: none;
 }
 .partners-viewport:hover .partner-marquee-track {
   animation-play-state: paused;
 }
-.partner-logo-card {
-  width: 220px;
-  height: 170px;
+.partner-logo-item {
+  width: 232px;
+  height: 228px;
   flex-shrink: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  border: 1px solid var(--line);
-  background: #eee9df66;
-  transition:
-    background 0.4s,
-    border-color 0.4s;
-}
-.partner-logo-card:hover {
-  background: var(--paper);
-  border-color: #c0b6a5;
 }
 .partner-logo-frame {
-  width: 170px;
-  height: 100px;
-  display: grid;
-  place-items: center;
+  width: 232px;
+  height: 204px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   mix-blend-mode: multiply;
-  overflow: hidden;
 }
 .partner-logo-frame > img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.partner-logo-card:hover img {
-  transform: scale(1.04);
-}
-.partner-logo-square {
-  width: 100px;
-}
-.partner-logo-square > img,
-.partner-logo-contain > img {
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
+  object-position: center;
 }
-.partner-logo-caption {
-  font-size: 6px;
-  color: var(--muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
+
 .partners-footnote {
   display: flex;
   align-items: center;
@@ -2832,17 +2792,15 @@ body:has(dialog[open]) {
   }
 }
 @media (max-width: 1100px) {
-  .partner-logo-card {
-    width: 200px;
-    height: 160px;
+  .partner-logo-item {
+    width: 212px;
+    height: 208px;
   }
   .partner-logo-frame {
-    width: 155px;
-    height: 92px;
+    width: 212px;
+    height: 184px;
   }
-  .partner-logo-square {
-    width: 92px;
-  }
+
   .partners-heading-aside {
     gap: 20px;
   }
@@ -2871,34 +2829,20 @@ body:has(dialog[open]) {
   .partners-heading-aside > p {
     display: none;
   }
-  .partners-playback {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-  }
-  .partners-playback > span {
-    display: none;
-  }
+
   .partner-marquee-group {
-    gap: 16px;
-    padding-right: 16px;
+    gap: 4px;
+    padding-right: 4px;
   }
-  .partner-logo-card {
-    width: 175px;
-    height: 145px;
-    gap: 12px;
+  .partner-logo-item {
+    width: 184px;
+    height: 188px;
   }
   .partner-logo-frame {
-    width: 138px;
-    height: 85px;
+    width: 184px;
+    height: 164px;
   }
-  .partner-logo-square {
-    width: 85px;
-  }
-  .partner-logo-caption {
-    font-size: 5px;
-    letter-spacing: 0.7px;
-  }
+
   .partners-footnote {
     font-size: 5px;
     letter-spacing: 0.7px;
@@ -2920,14 +2864,12 @@ body:has(dialog[open]) {
     width: 100%;
     padding: 0;
   }
+  .partner-logo-item[aria-hidden="true"],
   .partner-marquee-group[aria-hidden="true"] {
     display: none;
   }
-  .partner-logo-card {
+  .partner-logo-item {
     width: 100%;
-  }
-  .partners-playback {
-    display: none;
   }
 }
 @media (prefers-reduced-motion: reduce) and (max-width: 760px) {

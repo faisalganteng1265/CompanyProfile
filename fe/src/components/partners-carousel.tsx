@@ -4,47 +4,41 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const partners = [
-  { name: "Kanzler", image: "kanzler", width: 500, height: 500, shape: "wide" },
+  { name: "Kanzler", image: "kanzler", width: 500, height: 500 },
   {
     name: "Mie Gacoan",
     image: "mie-gacoan",
     width: 600,
     height: 600,
-    shape: "wide",
   },
   {
     name: "Waroeng SS",
     image: "waroeng-ss",
     width: 554,
     height: 554,
-    shape: "square",
   },
   {
     name: "Dkriuk Fried Chicken",
     image: "dkriuk",
     width: 600,
     height: 600,
-    shape: "wide",
   },
   {
     name: "Steak Moen-Moen",
     image: "steak-moen-moen",
     width: 600,
     height: 209,
-    shape: "contain",
   },
   {
     name: "Bale Bebakaran",
     image: "bale-bebakaran",
     width: 554,
     height: 554,
-    shape: "wide",
   },
 ];
 
 export default function PartnersCarousel() {
   const section = useRef<HTMLElement>(null);
-  const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(true);
   useEffect(() => {
     if (!section.current) return;
@@ -60,6 +54,7 @@ export default function PartnersCarousel() {
     <section
       ref={section}
       className="partners-section"
+      style={{ backgroundColor: "#ffffff" }}
       aria-labelledby="partners-heading"
     >
       <div className="container">
@@ -78,36 +73,6 @@ export default function PartnersCarousel() {
               <br />
               Bersama nama-nama yang Anda kenal.
             </p>
-            <button
-              className="partners-playback"
-              type="button"
-              onClick={() => setPaused(!paused)}
-              aria-label={
-                paused ? "Putar carousel partner" : "Jeda carousel partner"
-              }
-              aria-pressed={paused}
-            >
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 20 20"
-                fill="none"
-                aria-hidden="true"
-              >
-                {paused ? (
-                  <path d="m7 4 9 6-9 6V4Z" fill="currentColor" />
-                ) : (
-                  <>
-                    <path
-                      d="M7 4v12M13 4v12"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    />
-                  </>
-                )}
-              </svg>
-              <span>{paused ? "PLAY" : "PAUSE"}</span>
-            </button>
           </div>
         </div>
         <div
@@ -119,7 +84,7 @@ export default function PartnersCarousel() {
           <div
             className="partner-marquee-track"
             style={{
-              animationPlayState: paused || !visible ? "paused" : undefined,
+              animationPlayState: !visible ? "paused" : undefined,
             }}
           >
             {[0, 1].map((copy) => (
@@ -128,23 +93,26 @@ export default function PartnersCarousel() {
                 className="partner-marquee-group"
                 aria-hidden={copy === 1 ? true : undefined}
               >
-                {partners.map((partner) => (
-                  <li key={partner.image} className="partner-logo-card">
-                    <div
-                      className={`partner-logo-frame partner-logo-${partner.shape}`}
-                    >
+                {[...partners, ...partners].map((partner, index) => (
+                  <li
+                    key={`${partner.image}-${index}`}
+                    className="partner-logo-item"
+                    aria-hidden={index >= partners.length ? true : undefined}
+                  >
+                    <div className="partner-logo-frame">
                       <Image
                         src={`/images/partners/${partner.image}.webp`}
-                        alt={copy === 0 ? partner.name : ""}
+                        alt={
+                          copy === 0 && index < partners.length
+                            ? partner.name
+                            : ""
+                        }
                         width={partner.width}
                         height={partner.height}
-                        sizes="180px"
+                        sizes="(max-width: 760px) 184px, 232px"
                         draggable={false}
                       />
                     </div>
-                    <span className="partner-logo-caption" aria-hidden="true">
-                      {partner.name}
-                    </span>
                   </li>
                 ))}
               </ul>

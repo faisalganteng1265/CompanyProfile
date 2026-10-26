@@ -92,3 +92,18 @@ Section alur kemitraan “Dari percakapan pertama, ke kemitraan berikutnya” di
 Section tersendiri “Why Choose Us” ditambahkan dengan enam indikator dari konten lama/screenshot pengguna: kualitas mutu tinggi 99%, kepuasan klien 98%, pelayanan terbaik 97%, delivery on time 95%, harga bersaing 95%, komitmen dan integritas 95%. Angka mengikuti materi klien, bukan hasil pengukuran baru. Animasi meliputi angka, garis indikator, parallax foto latar, dan contour.
 
 Setelah permintaan pengguna untuk berfokus pada penulisan kode, perubahan section terakhir tidak menjalani pemeriksaan browser, build, atau tes tambahan.
+
+## Logo partner dan carousel
+
+Carousel looping ditempatkan tepat sebelum FAQ pada landing page. Dua grup identik membentuk perulangan tanpa jeda. Animasi berhenti saat di-hover, dijeda melalui tombol, atau berada di luar viewport. Reduced motion menampilkan grid statis dan menyembunyikan grup duplikat dari tampilan serta pembaca layar.
+
+Logo diunduh dari bagian Our Partners situs Tatsuo, bukan digambar ulang atau dibuat secara generatif. Berkas lokal di `public/images/partners` dikonversi ke WebP dengan desain logo tetap utuh.
+
+- Kanzler: `kanzler.webp`, sumber `https://tatsuobeef.co.id/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-02-at-09.30.19.jpeg`.
+- Mie Gacoan: `mie-gacoan.webp`, sumber `https://tatsuobeef.co.id/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-02-at-09.33.19-1.jpeg`.
+- Waroeng SS: `waroeng-ss.webp`, sumber `https://tatsuobeef.co.id/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-02-at-09.33.19-2.jpeg`.
+- Dkriuk: `dkriuk.webp`, sumber `https://tatsuobeef.co.id/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-02-at-09.31.29.jpeg`.
+- Steak Moen-Moen: `steak-moen-moen.webp`, sumber `https://tatsuobeef.co.id/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-02-at-09.30.18.jpeg`.
+- Bale Bebakaran: `bale-bebakaran.webp`, sumber `https://tatsuobeef.co.id/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-02-at-09.33.19.jpeg`.
+
+Perbaikan warning Next Image pada landing menambahkan posisi dan rasio/tinggi awal pada pembungkus gambar fill. Foto Selected memakai loading eager sesuai laporan LCP pengguna. Tidak menjalankan localhost, build, atau tes untuk perubahan ini.

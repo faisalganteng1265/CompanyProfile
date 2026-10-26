@@ -682,10 +682,11 @@ export default function LandingPage() {
           <div className="story-visual">
             <div className="story-photo">
               <Image
-                src="/images/ribeye.jpg"
-                alt="Pilihan daging sapi dan peralatan pemotongan di atas meja kayu"
+                src="/images/story-selection-v2.webp"
+                alt="Butcher memilih potongan ribeye bermarbling di atas meja kayu"
                 fill
                 className="parallax-image"
+                quality={90}
                 sizes="(max-width: 760px) 100vw, 50vw"
               />
             </div>

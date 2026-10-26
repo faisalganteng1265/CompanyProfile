@@ -55,7 +55,8 @@ test("mobile menu and layout work at narrow widths", async ({ page }) => {
   await expect(
     page.getByRole("navigation", { name: "Navigasi mobile" }),
   ).not.toBeVisible();
-  await expect(page).toHaveURL(/#produk$/);
+  await expect(page).toHaveURL(/\/produk$/);
+  await page.goto("/");
   await page.waitForTimeout(1800);
   for (const width of [320, 390, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
@@ -86,4 +87,30 @@ test("reduced motion preserves visible content and disables ambient motion", asy
   );
   await page.locator(".promise").scrollIntoViewIfNeeded();
   await expect(page.locator(".promise h2")).toHaveCSS("opacity", "1");
+});
+
+test("Lenis smooths the landing route, pauses for dialogs, and cleans up on navigation", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveClass(/lenis/);
+  await page.mouse.wheel(0, 650);
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeGreaterThan(100);
+  await page
+    .getByRole("button", { name: "Lihat detail Tenderloin Meltique" })
+    .click();
+  await expect(page.locator("html")).toHaveClass(/lenis-stopped/);
+  await page.keyboard.press("Escape");
+  await expect(page.locator("html")).not.toHaveClass(/lenis-stopped/);
+  await page
+    .locator(".desktop-nav")
+    .getByRole("link", { name: "Tentang kami" })
+    .click();
+  await expect(page).toHaveURL(/\/tentang$/);
+  await expect(page.locator("html")).not.toHaveClass(/lenis/);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  await expect(page.locator("html")).not.toHaveClass(/lenis/);
 });

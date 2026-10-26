@@ -1,6 +1,6 @@
 # Tatsuo Beef — Company Profile
 
-Redesign landing page PT. Tatsuo Beef Indonesia menggunakan Next.js 16, React 19, TypeScript, Tailwind CSS 4, dan GSAP ScrollTrigger.
+Website company profile multi halaman PT. Tatsuo Beef Indonesia menggunakan Next.js 16, React 19, TypeScript, Tailwind CSS 4, GSAP ScrollTrigger, dan Lenis untuk smooth scroll landing page.
 
 ## Menjalankan
 
@@ -33,6 +33,18 @@ Tes browser memakai server yang sudah berjalan. Gunakan `PLAYWRIGHT_BASE_URL` un
 - Font lokal dan gambar lokal yang dioptimalkan melalui Next.js Image.
 - Prettier: `npm run format` dan `npm run format:check`.
 
+## Halaman
+
+- `/`: landing page dengan Lenis dan animasi GSAP.
+- `/tentang`: cerita dan nilai perusahaan.
+- `/produk`: katalog lengkap 25 produk dengan pencarian dan filter kategori.
+- `/produk/[slug]`: detail produk dan jalur konsultasi.
+- `/distribusi`: penyimpanan, alur pengadaan, dan jaringan kemitraan interaktif.
+- `/kontak`: sales, lokasi, dan formulir persiapan pesan WhatsApp.
+- `/sitemap.xml`: sitemap halaman dan produk.
+
+URL WordPress lama memiliki redirect permanen ke halaman baru.
+
 ## File utama
 
 - `src/components/landing-page.tsx`: konten, komponen, interaksi, dan GSAP.
@@ -42,4 +54,6 @@ Tes browser memakai server yang sudah berjalan. Gunakan `PLAYWRIGHT_BASE_URL` un
 - `public/images`: aset yang digunakan halaman.
 - `docs/design-and-assets.md`: referensi, asal aset, dan catatan penyerahan.
 
-Ini adalah frontend landing page. Tombol konsultasi membuka WhatsApp; tidak ada backend, CMS, atau penyimpanan pesanan.
+Ini adalah frontend company profile. Formulir konsultasi menyiapkan pesan yang dapat ditinjau pengunjung sebelum membuka WhatsApp; tidak ada backend, CMS, atau penyimpanan pesanan. Harga, stok, dan jangkauan pengiriman dikonfirmasi bersama sales.
+
+Komponen bersama: `src/components/site-frame.tsx` untuk navigasi/footer, `motion-page.tsx` untuk animasi halaman interior, `landing-scroll.tsx` untuk Lenis. Data produk ada di `src/lib/products.ts`, kontak perusahaan di `src/lib/company.ts`.

@@ -2456,3 +2456,214 @@ body:has(dialog[open]) {
     font-size: 14px;
   }
 }
+
+/* Six original Tatsuo standards, reinterpreted in the editorial design system. */
+.why-choose-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--dark);
+  color: var(--cream);
+  padding-block: 70px 40px;
+}
+.why-background {
+  position: absolute;
+  inset: -15% 0;
+  z-index: -3;
+}
+.why-background > img {
+  object-fit: cover;
+  object-position: center 63%;
+  filter: saturate(0.65);
+}
+.why-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #171b16ed, #171b16c9),
+    linear-gradient(0deg, #171b16d9, transparent 70%);
+  z-index: -2;
+}
+.why-choose-section > .contours {
+  color: #d5bc9c;
+  opacity: 0.1;
+  top: -300px;
+  right: -390px;
+  z-index: -1;
+}
+.why-content {
+  position: relative;
+}
+.why-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.why-kicker > .eyebrow {
+  color: #ccb697;
+  font-size: 8px;
+}
+.why-kicker > svg {
+  width: 27px;
+  height: 27px;
+  color: #d1baa0;
+  animation: sealRotate 50s linear infinite;
+}
+.why-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 50px;
+  margin-top: 35px;
+}
+.why-heading h2 {
+  font-size: clamp(42px, 4.5vw, 68px);
+  line-height: 1.2;
+}
+.why-heading h2 em {
+  display: inline-block;
+  color: #d6c2a5;
+  font-size: 0.61em;
+  letter-spacing: -1px;
+  line-height: 1.3;
+  margin-top: 10px;
+}
+.why-heading > p {
+  font-size: 10px;
+  color: #b9b5a8;
+  line-height: 1.9;
+  margin-bottom: 9px;
+}
+.why-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 85px;
+  row-gap: 31px;
+  margin: 49px 0 0;
+}
+.why-metric {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 15px 25px;
+  align-items: baseline;
+}
+.why-metric > dt {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  font-size: 12px;
+}
+.why-metric-index {
+  font-size: 6px;
+  letter-spacing: 1px;
+  color: #aa967a;
+}
+.why-metric > dd {
+  font-family: var(--font-editorial), serif;
+  font-size: 35px;
+  line-height: 1;
+  letter-spacing: -1px;
+  margin: 0;
+}
+.why-metric > dd > span:nth-child(2) {
+  font-family: var(--font-body), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0;
+  color: #c4b398;
+  margin-left: 3px;
+}
+.why-meter-track {
+  grid-column: 1/-1;
+  height: 2px;
+  background: #f4f0e725;
+  overflow: hidden;
+}
+.why-meter-fill {
+  display: block;
+  height: 100%;
+  background: var(--brand-red);
+}
+.why-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  padding-top: 24px;
+  margin-top: 45px;
+  border-top: 1px solid #f4f0e721;
+  font-size: 6px;
+  letter-spacing: 1.2px;
+  color: #a59d8a;
+}
+@media (max-width: 1100px) {
+  .why-metrics {
+    column-gap: 45px;
+  }
+  .why-heading {
+    gap: 30px;
+  }
+  .why-heading h2 {
+    font-size: 49px;
+  }
+  .why-heading > p {
+    font-size: 9px;
+  }
+}
+@media (max-width: 760px) {
+  .why-choose-section {
+    padding-block: 43px 28px;
+  }
+  .why-kicker > .eyebrow {
+    font-size: 6px;
+  }
+  .why-kicker > svg {
+    width: 23px;
+    height: 23px;
+  }
+  .why-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 19px;
+    margin-top: 27px;
+  }
+  .why-heading h2 {
+    font-size: 40px;
+    letter-spacing: -1.5px;
+  }
+  .why-heading h2 em {
+    font-size: 0.6em;
+    letter-spacing: -0.5px;
+    margin-top: 8px;
+  }
+  .why-heading > p {
+    font-size: 10px;
+    margin: 0;
+  }
+  .why-metrics {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 34px;
+  }
+  .why-metric {
+    gap: 13px 20px;
+  }
+  .why-metric > dt {
+    font-size: 11px;
+    gap: 13px;
+  }
+  .why-metric > dd {
+    font-size: 32px;
+  }
+  .why-metric > dd > span:nth-child(2) {
+    font-size: 8px;
+  }
+  .why-foot {
+    margin-top: 33px;
+    padding-top: 20px;
+    font-size: 5px;
+    letter-spacing: 0.6px;
+  }
+  .why-foot > span:last-child {
+    max-width: 135px;
+    text-align: right;
+  }
+}

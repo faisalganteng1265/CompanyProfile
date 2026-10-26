@@ -59,7 +59,7 @@ export default function LandingHero() {
       <section
         className="hero"
         aria-labelledby="hero-heading"
-        style={{ position: "relative", minHeight: "min(715px, 100svh)" }}
+        style={{ position: "relative" }}
       >
         <div
           className="hero-image-wrap"

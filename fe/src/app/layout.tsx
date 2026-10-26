@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import "lenis/dist/lenis.css";
 import "./globals.css";
+import "./pages.css";
+import SiteFrame from "@/components/site-frame";
 
 const display = localFont({
   src: "./fonts/TrajanPro3-Regular.woff2",
@@ -49,7 +52,9 @@ export default function RootLayout({
       lang="id"
       className={`${display.variable} ${editorial.variable} ${sans.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <SiteFrame>{children}</SiteFrame>
+      </body>
     </html>
   );
 }

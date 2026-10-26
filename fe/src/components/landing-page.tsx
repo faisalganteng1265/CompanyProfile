@@ -1,16 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Ambient from "./ambient";
+import WhyChooseUs from "./why-choose-us";
 
-const navigation = [
-  ["Tentang kami", "#tentang"],
-  ["Pilihan produk", "#produk"],
-  ["Kemitraan", "#kemitraan"],
-];
 const whatsapp = (message: string, number = "6281274877474") =>
   `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 const inquiry =
@@ -159,7 +156,6 @@ function Contours({ className = "" }: { className?: string }) {
 export default function LandingPage() {
   const root = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [filter, setFilter] = useState("Semua pilihan");
   const [selected, setSelected] = useState<Product | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -261,23 +257,6 @@ export default function LandingPage() {
             scrub: 1.5,
           },
         });
-        gsap.utils.toArray<SVGPathElement>(".route-path").forEach((path) => {
-          const length = path.getTotalLength();
-          gsap.fromTo(
-            path,
-            { strokeDasharray: length, strokeDashoffset: length },
-            {
-              strokeDashoffset: 0,
-              ease: "none",
-              scrollTrigger: {
-                trigger: ".partnership",
-                start: "top 75%",
-                end: "65% center",
-                scrub: 1,
-              },
-            },
-          );
-        });
         gsap.to(".scroll-progress", {
           scaleX: 1,
           transformOrigin: "left",
@@ -298,20 +277,6 @@ export default function LandingPage() {
     const frame = requestAnimationFrame(() => ScrollTrigger.refresh());
     return () => cancelAnimationFrame(frame);
   }, [filter]);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const close = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
-    };
-    window.addEventListener("keydown", close);
-    return () => {
-      document.body.style.overflow = previous;
-      window.removeEventListener("keydown", close);
-    };
-  }, [menuOpen]);
 
   useEffect(() => {
     if (selected && dialog.current && !dialog.current.open)
@@ -346,66 +311,7 @@ export default function LandingPage() {
 
   return (
     <div ref={root} className="site-root">
-      <a href="#main" className="skip-link">
-        Langsung ke konten
-      </a>
-      <div className="announcement">
-        <span>PREMIUM MEAT. EXCELLENT SERVICE.</span>
-        <span>
-          BASED IN SOLO, SERVING YOUR VISION <span className="status-dot" />
-        </span>
-      </div>
-      <header className="site-header">
-        <a className="brand" href="#" aria-label="Tatsuo Beef — Beranda">
-          <Image
-            src="/images/logo-original.jpg"
-            width={144}
-            height={63}
-            alt="Tatsuo Beef"
-            priority
-          />
-          <span className="brand-sub">INDONESIA · EST. 2023</span>
-        </a>
-        <nav className="desktop-nav" aria-label="Navigasi utama">
-          {navigation.map(([label, href]) => (
-            <a key={href} href={href}>
-              {label}
-            </a>
-          ))}
-        </nav>
-        <a className="header-contact" href="#kontak">
-          Mari bicara <Arrow diagonal />
-        </a>
-        <button
-          className={`menu-toggle ${menuOpen ? "is-open" : ""}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
-        >
-          <span />
-          <span />
-        </button>
-        {menuOpen && (
-          <nav
-            id="mobile-menu"
-            className="mobile-menu"
-            aria-label="Navigasi mobile"
-          >
-            {[...navigation, ["Hubungi kami", "#kontak"]].map(
-              ([label, href], i) => (
-                <a key={href} href={href} onClick={() => setMenuOpen(false)}>
-                  <small>0{i + 1}</small>
-                  {label}
-                  <Arrow diagonal />
-                </a>
-              ),
-            )}
-            <p>GOOD MEAT. GREAT PARTNERSHIP.</p>
-          </nav>
-        )}
-      </header>
-      <main id="main" inert={menuOpen}>
+      <main id="main">
         <section className="hero" aria-labelledby="hero-heading">
           <div className="hero-image-wrap">
             <Image
@@ -514,9 +420,9 @@ export default function LandingPage() {
                 Kami tumbuh bersama Anda. Dengan pasokan yang konsisten,
                 komunikasi yang terbuka, dan perhatian pada setiap kebutuhan.
               </p>
-              <a className="text-link" href="#kemitraan">
-                Kenali cara kami bekerja <Arrow diagonal />
-              </a>
+              <Link className="text-link" href="/tentang">
+                Kenali cerita kami <Arrow diagonal />
+              </Link>
             </div>
           </div>
           <div className="intro-foot reveal">
@@ -617,6 +523,11 @@ export default function LandingPage() {
               </button>
             ))}
           </div>
+          <div className="catalog-page-link">
+            <Link href="/produk" className="text-link">
+              Jelajahi seluruh koleksi <Arrow diagonal />
+            </Link>
+          </div>
           <div className="catalog-bottom">
             <p>Ada kebutuhan potongan lain? Kami bantu carikan.</p>
             <a
@@ -678,6 +589,8 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <WhyChooseUs />
+
         <section className="story section-space container">
           <div className="story-visual">
             <div className="story-photo">
@@ -718,108 +631,12 @@ export default function LandingPage() {
               yang selalu dirindukan. Setiap dapur punya cerita. Kami ada untuk
               membantu Anda mewujudkannya.
             </p>
-            <a className="text-link reveal" href="#kontak">
+            <Link className="text-link reveal" href="/kontak">
               Ceritakan kebutuhan dapur Anda <Arrow diagonal />
-            </a>
+            </Link>
             <span className="story-signature">
               A good partnership makes all the difference.
             </span>
-          </div>
-        </section>
-
-        <section id="kemitraan" className="partnership section-space">
-          <div className="container">
-            <SectionLabel number="04">A better way, together</SectionLabel>
-            <div className="section-heading reveal">
-              <h2>
-                Dari percakapan pertama,
-                <br />
-                <em>ke kemitraan berikutnya.</em>
-              </h2>
-              <p>
-                Langkah sederhana untuk menemukan
-                <br />
-                pasokan yang tepat bagi usaha Anda.
-              </p>
-            </div>
-            <div className="partnership-content">
-              <div className="distribution-visual">
-                <svg viewBox="0 0 500 380" fill="none" aria-hidden="true">
-                  <g stroke="currentColor" opacity=".13">
-                    {Array.from({ length: 9 }, (_, i) => (
-                      <ellipse
-                        key={i}
-                        cx="250"
-                        cy="190"
-                        rx={40 + i * 24}
-                        ry={35 + i * 17}
-                      />
-                    ))}
-                    <path d="M0 190h500M250 0v380" />
-                  </g>
-                  <path
-                    className="route-path"
-                    d="M90 90Q250 15 330 94T405 215Q320 330 250 205Q170 100 100 270"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeDasharray="5 5"
-                  />
-                  <circle cx="250" cy="205" r="9" fill="currentColor" />
-                  <circle
-                    className="map-pulse"
-                    cx="250"
-                    cy="205"
-                    r="19"
-                    stroke="currentColor"
-                  />
-                  <circle cx="90" cy="90" r="4" fill="currentColor" />
-                  <circle cx="330" cy="94" r="4" fill="currentColor" />
-                  <circle cx="405" cy="215" r="4" fill="currentColor" />
-                  <circle cx="100" cy="270" r="4" fill="currentColor" />
-                  <path
-                    d="m242 205 6 6 10-13"
-                    stroke="var(--cream)"
-                    strokeWidth="2"
-                  />
-                </svg>
-                <span className="map-origin">
-                  KARTASURA, SOLO<span>7.55° S · 110.75° E</span>
-                </span>
-                <span className="map-label">
-                  YOUR NEXT GOOD PARTNERSHIP
-                  <br />
-                  STARTS RIGHT HERE.
-                </span>
-              </div>
-              <div className="steps">
-                {[
-                  [
-                    "01",
-                    "Mari saling kenal.",
-                    "Ceritakan usaha, menu, dan kebutuhan pasokan Anda kepada tim kami.",
-                  ],
-                  [
-                    "02",
-                    "Temukan pilihan Anda.",
-                    "Diskusikan potongan, ketersediaan, dan penawaran yang sesuai dengan kebutuhan dapur.",
-                  ],
-                  [
-                    "03",
-                    "Siap tumbuh bersama.",
-                    "Sepakati pemesanan dan pengiriman. Kami bantu menjaga pasokan untuk langkah berikutnya.",
-                  ],
-                ].map(([n, title, desc]) => (
-                  <div className="step reveal" key={n}>
-                    <span>{n}</span>
-                    <div>
-                      <h3>{title}</h3>
-                      <p>{desc}</p>
-                    </div>
-                    <Arrow diagonal />
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
@@ -972,56 +789,11 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
-      <footer className="site-footer" inert={menuOpen}>
-        <div className="container">
-          <div className="footer-top">
-            <a className="footer-title" href="#">
-              TATSUO<span>BEEF INDONESIA</span>
-            </a>
-            <div className="footer-address">
-              <span className="eyebrow">COME SAY HELLO</span>
-              <p>
-                Jl. Kurma, Dregan RT03/RW06, Pabelan,
-                <br />
-                Kartasura, Sukoharjo, Jawa Tengah 57169
-              </p>
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Jl.+Kurma+Dregan+Pabelan+Kartasura+Sukoharjo"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Lihat di Google Maps <Arrow diagonal />
-              </a>
-            </div>
-            <div className="footer-connect">
-              <span className="eyebrow">STAY CONNECTED</span>
-              <a href="mailto:tatsuobeefindonesia@gmail.com">
-                Email kami <Arrow diagonal />
-              </a>
-              <a href="#produk">
-                Pilihan produk <Arrow diagonal />
-              </a>
-              <a href="#tentang">
-                Tentang Tatsuo <Arrow diagonal />
-              </a>
-            </div>
-          </div>
-          <div className="footer-wordmark" aria-hidden="true">
-            TATSUO BEEF<span>®</span>
-          </div>
-          <div className="footer-bottom">
-            <span>© 2026 PT. Tatsuo Beef Indonesia</span>
-            <span>SELECTED WITH CARE. DELIVERED WITH PRIDE.</span>
-            <a href="#">
-              Kembali ke atas <Arrow className="arrow-up" />
-            </a>
-          </div>
-        </div>
-      </footer>
       <div className="scroll-progress" aria-hidden="true" />
       <dialog
         ref={dialog}
         aria-label="Detail produk"
+        data-lenis-prevent
         className="product-dialog"
         onCancel={() => setSelected(null)}
         onClose={() => setSelected(null)}

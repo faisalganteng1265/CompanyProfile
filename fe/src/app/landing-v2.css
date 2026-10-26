@@ -1548,3 +1548,26 @@
     padding-inline: 16px;
   }
 }
+
+/* Native sticky keeps the stack in document flow without fixed-position jumps. */
+.v2-craft-stage {
+  display: contents;
+}
+@media (min-width: 1000px) and (prefers-reduced-motion: no-preference) {
+  .v2-craft-stage {
+    --craft-top: 96px;
+    --craft-height: clamp(650px, calc(100svh - var(--craft-top)), 1000px);
+    display: block;
+    position: relative;
+    height: calc(var(--craft-height) + 105svh);
+    background: #191914;
+  }
+  .v2-craft-stage > .v2-craft {
+    position: sticky;
+    top: var(--craft-top);
+    height: var(--craft-height);
+  }
+}
+html.lenis {
+  scroll-behavior: auto;
+}

@@ -113,17 +113,24 @@ export default function LandingV2() {
       media.add(
         "(min-width: 1000px) and (prefers-reduced-motion: no-preference)",
         () => {
-          const headerHeight =
-            document.querySelector(".site-header")?.getBoundingClientRect()
-              .height || 96;
+          const stage =
+            root.current?.querySelector<HTMLElement>(".v2-craft-stage");
+          const header = document.querySelector<HTMLElement>(".site-header");
+          const syncOffset = () =>
+            stage?.style.setProperty(
+              "--craft-top",
+              `${header?.getBoundingClientRect().height ?? 96}px`,
+            );
+          syncOffset();
+          const observer = new ResizeObserver(syncOffset);
+          if (header) observer.observe(header);
           const timeline = gsap.timeline({
             scrollTrigger: {
-              trigger: ".v2-craft",
-              start: `top ${headerHeight}`,
-              end: "+=105%",
-              pin: true,
-              scrub: 1,
-              anticipatePin: 1,
+              trigger: ".v2-craft-stage",
+              start: () =>
+                `top ${header?.getBoundingClientRect().height ?? 96}px`,
+              end: "bottom bottom",
+              scrub: true,
               invalidateOnRefresh: true,
             },
           });
@@ -154,6 +161,7 @@ export default function LandingV2() {
               { y: 0, opacity: 1, duration: 0.4 },
               0.65,
             );
+          return () => observer.disconnect();
         },
       );
       media.add(
@@ -313,62 +321,63 @@ export default function LandingV2() {
             <WhyChooseUs />
           </div>
 
-          <section className="v2-craft" aria-labelledby="v2-craft-heading">
-            <div className="v2-craft-mask">
-              <Image
-                className="v2-craft-image"
-                src="/images/story-selection-v2.webp"
-                alt="Butcher memilih ribeye bermarbling dengan cermat"
-                width={1122}
-                height={1402}
-                sizes="100vw"
-                loading="eager"
-              />
-            </div>
-            <div className="v2-craft-scrim" />
-            <span className="v2-craft-slash" aria-hidden="true" />
-            <div className="container v2-craft-content">
-              <div className="v2-craft-top">
-                <span>THE ART BEHIND THE CUT</span>
-                <span>02 / THE SELECTION</span>
+          <div className="v2-craft-stage">
+            <section className="v2-craft" aria-labelledby="v2-craft-heading">
+              <div className="v2-craft-mask">
+                <Image
+                  className="v2-craft-image"
+                  src="/images/story-selection-v2.webp"
+                  alt="Butcher memilih ribeye bermarbling dengan cermat"
+                  width={1122}
+                  height={1402}
+                  sizes="100vw"
+                  loading="eager"
+                />
               </div>
-              <div className="v2-craft-first">
-                <h2 id="v2-craft-heading">
-                  Behind
-                  <br />
-                  every
-                  <br />
-                  <em>great dish.</em>
-                </h2>
-                <p>
-                  Ada pilihan yang cermat.
-                  <br />
-                  Ada perhatian pada detail.
-                  <br />
-                  Ada mitra yang peduli.
-                </p>
+              <div className="v2-craft-scrim" />
+              <span className="v2-craft-slash" aria-hidden="true" />
+              <div className="container v2-craft-content">
+                <div className="v2-craft-top">
+                  <span>THE ART BEHIND THE CUT</span>
+                  <span>02 / THE SELECTION</span>
+                </div>
+                <div className="v2-craft-first">
+                  <h2 id="v2-craft-heading">
+                    Behind
+                    <br />
+                    every
+                    <br />
+                    <em>great dish.</em>
+                  </h2>
+                  <p>
+                    Ada pilihan yang cermat.
+                    <br />
+                    Ada perhatian pada detail.
+                    <br />
+                    Ada mitra yang peduli.
+                  </p>
+                </div>
+                <div className="v2-craft-last" aria-hidden="true">
+                  <span>IT ALWAYS STARTS WITH</span>
+                  <p>
+                    A little
+                    <br />
+                    <em>more care.</em>
+                  </p>
+                </div>
+                <div className="v2-craft-bottom">
+                  <span>
+                    SELECTED WITH INTENTION.
+                    <br />
+                    DELIVERED WITH PRIDE.
+                  </span>
+                  <Link href="/tentang">
+                    Cerita di balik Tatsuo <Arrow diagonal />
+                  </Link>
+                </div>
               </div>
-              <div className="v2-craft-last" aria-hidden="true">
-                <span>IT ALWAYS STARTS WITH</span>
-                <p>
-                  A little
-                  <br />
-                  <em>more care.</em>
-                </p>
-              </div>
-              <div className="v2-craft-bottom">
-                <span>
-                  SELECTED WITH INTENTION.
-                  <br />
-                  DELIVERED WITH PRIDE.
-                </span>
-                <Link href="/tentang">
-                  Cerita di balik Tatsuo <Arrow diagonal />
-                </Link>
-              </div>
-            </div>
-          </section>
-
+            </section>
+          </div>
           <PartnersCarousel />
 
           <div className="v2-faq-background">

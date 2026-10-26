@@ -1,5 +1,34 @@
 # Design & asset notes
 
+## Pengembangan multi halaman
+
+- `/tentang`: cerita perusahaan, manifesto, nilai, dan jalur ke katalog/kontak.
+- `/produk`: pencarian dan filter 25 produk dari katalog lama, lima foto pilihan, serta indeks produk lengkap.
+- `/produk/[slug]`: detail seluruh 25 produk, kegunaan umum, produk terkait, dan konsultasi. Produk tanpa foto memakai komposisi tipografis kategori agar tidak menampilkan foto potongan yang keliru.
+- `/distribusi`: jaringan kemitraan interaktif, informasi penyimpanan, alur pengadaan, dan pertanyaan lokasi pengiriman. Visual jaringan bukan peta cakupan layanan.
+- `/kontak`: kontak sales, lokasi, dan formulir yang menyiapkan pesan WhatsApp untuk ditinjau sebelum pengunjung mengirimnya.
+- URL WordPress `/about`, `/product`, `/distribution`, dan `/elementor-134` dialihkan permanen ke halaman baru. Sitemap mencakup halaman utama dan detail produk.
+
+Referensi konten tambahan: https://tatsuobeef.co.id/about/, https://tatsuobeef.co.id/product/, https://tatsuobeef.co.id/distribution/, https://tatsuobeef.co.id/elementor-134/. Nama 25 produk mengikuti katalog lama. Deskripsi kegunaan merupakan copy editorial umum dan tidak menetapkan grade, berat, spesifikasi stok, harga, jangkauan pengiriman, atau sertifikasi baru.
+
+### Lenis
+
+Lenis aktif khusus `/`, menggunakan ticker GSAP dan `ScrollTrigger.update`. Touch scrolling tetap native, reduced motion menonaktifkan Lenis, dan modal/menu menghentikan scroll latar. Instance, observer, listener, dan ticker dibersihkan saat navigasi meninggalkan landing page.
+
+## Tambahan aset katalog
+
+### Product oxtail
+
+Aset: `public/images/product-oxtail.webp`. Mode: built-in imagegen. Foto ilustrasi, bukan dokumentasi inventaris klien.
+
+Use case: product-mockup. Asset: premium Indonesian meat distributor website product editorial photograph. Square composition, exceptionally realistic luxury food magazine photography. Product centered with generous space around it on a very dark warm charcoal slate, overhead photograph. Warm soft directional light, subtle organic texture, immaculate ingredients. No packaging, no plates, no garnish, no herbs, no logos, no text, no watermark. Rich but natural colors, not glossy or plastic. Subject: Several raw beef oxtail center-cut segments, authentic round irregular cross sections of deep red meat and a clearly visible central ivory bone with thin surrounding fat. Arranged together naturally in a tidy diagonal group. Beef oxtail only, not steak medallions.
+
+### Product salmon
+
+Aset: `public/images/product-salmon.webp`. Mode: built-in imagegen. Foto ilustrasi, bukan dokumentasi inventaris klien.
+
+Use case: product-mockup. Asset: premium Indonesian meat distributor website product editorial photograph. Square composition, exceptionally realistic luxury food magazine photography. Product centered with generous space around it on a very dark warm charcoal slate, overhead photograph. Warm soft directional light, subtle organic texture, immaculate ingredients. No packaging, no plates, no garnish, no herbs, no logos, no text, no watermark. Rich but natural colors, not glossy or plastic. Subject: One thick fresh raw salmon fillet with orange-pink flesh, delicate white fat lines, and a thin silver skin edge, alongside a single smaller fillet portion. Simple diagonal arrangement. Fresh salmon only.
+
 ## Arah visual
 
 Editorial butcher / premium food partner. Merah brand asli `#DA292A` dipadukan dengan oxblood `#AC252B`, ivory `#F4F0E7`, dan charcoal `#191B17`. Layout memakai garis tipis, fotografi besar, tipografi serif, dan jarak antarelemen yang lapang.
@@ -55,3 +84,11 @@ Use case: product-mockup. Asset: premium beef distributor website catalog produc
 **Shortplate subject**: Beautiful thinly sliced raw beef shortplate rolled into five loose curls and arranged in a tidy fan. Natural red and creamy white layers. Fresh raw beef only.
 
 **Chicken subject**: Two fresh raw boneless skinless chicken breast fillets arranged side by side slightly overlapping. Pale natural pink ivory chicken, immaculate fresh texture.
+
+## Penyesuaian section landing
+
+Section alur kemitraan “Dari percakapan pertama, ke kemitraan berikutnya” dihapus sesuai permintaan pengguna. Alur pengadaan tetap tersedia pada halaman Distribusi.
+
+Section tersendiri “Why Choose Us” ditambahkan dengan enam indikator dari konten lama/screenshot pengguna: kualitas mutu tinggi 99%, kepuasan klien 98%, pelayanan terbaik 97%, delivery on time 95%, harga bersaing 95%, komitmen dan integritas 95%. Angka mengikuti materi klien, bukan hasil pengukuran baru. Animasi meliputi angka, garis indikator, parallax foto latar, dan contour.
+
+Setelah permintaan pengguna untuk berfokus pada penulisan kode, perubahan section terakhir tidak menjalani pemeriksaan browser, build, atau tes tambahan.

@@ -719,8 +719,28 @@
   font-size: 45px;
 }
 .v2-faq-background {
-  background: #fff;
+  --muted: rgb(255 255 255 / 78%);
+  --line: rgb(255 255 255 / 24%);
+  background: var(--red);
+  color: #fff;
   display: flow-root;
+}
+.v2-faq-background .v2-small-label,
+.v2-faq-background .v2-questions-intro h2 em,
+.v2-faq-background .v2-question-index,
+.v2-faq-background .v2-question-toggle,
+.v2-faq-background .v2-underlined-link {
+  color: #fff;
+}
+.v2-faq-background .v2-underlined-link {
+  border-bottom-color: rgb(255 255 255 / 65%);
+}
+.v2-faq-background :focus-visible {
+  outline-color: #fff;
+}
+.v2-faq-background ::selection {
+  background: #fff;
+  color: var(--red);
 }
 .v2-questions {
   display: grid;
@@ -1009,7 +1029,7 @@
     clip-path: polygon(62% 0, 100% 0, 100% 100%, 0 100%);
   }
   .v2-craft-image {
-    object-position: 59% center;
+    object-position: 78% center;
   }
   .v2-craft-scrim {
     background:
@@ -1526,14 +1546,13 @@
   }
 }
 
-/* Keep the later white panels inset so the stationary hero stays visible. */
+/* Keep the later panels inset so the stationary hero stays visible. */
 .home-v2 .partners-section,
 .home-v2 .v2-faq-background {
   width: calc(100% - 112px);
   max-width: 1408px;
   margin-inline: auto;
   padding-inline: clamp(20px, 2.3vw, 36px);
-  background: #fff;
 }
 .home-v2 .partners-section > .container,
 .home-v2 .v2-faq-background > .container {

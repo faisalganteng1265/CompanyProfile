@@ -390,10 +390,10 @@ export default function LandingV2() {
               <div className="v2-craft-mask">
                 <Image
                   className="v2-craft-image"
-                  src="/images/story-selection-v2.webp"
-                  alt="Butcher memilih ribeye bermarbling dengan cermat"
-                  width={1122}
-                  height={1402}
+                  src="/images/craft-butcher-hands-v1.webp"
+                  alt="Tangan butcher memotong daging dengan teliti di atas meja kayu, tanpa wajah terlihat"
+                  width={1672}
+                  height={941}
                   sizes="100vw"
                   loading="eager"
                 />

@@ -13,6 +13,23 @@
 .why-story-visual {
   position: relative;
   width: 84%;
+  isolation: isolate;
+}
+.why-story-sketch {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  stroke: var(--red);
+  stroke-width: 1;
+  stroke-linecap: round;
+  opacity: 0.65;
+  z-index: -1;
+}
+.why-story-sketch path {
+  vector-effect: non-scaling-stroke;
 }
 .why-story-photo {
   width: 100%;

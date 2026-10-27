@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LandingHero from "./landing-hero";
 import LandingIntro from "./landing-intro";
 import WhyChooseUs from "./why-choose-us";
+import TatsuoBenefits from "./tatsuo-benefits";
 import PartnersCarousel from "./partners-carousel";
 import { Arrow } from "./icons";
 import { whatsapp } from "@/lib/company";
@@ -453,6 +454,7 @@ export default function LandingV2() {
                 aria-hidden="true"
               />
               <WhyChooseUs />
+              <TatsuoBenefits />
             </div>
           </div>
 

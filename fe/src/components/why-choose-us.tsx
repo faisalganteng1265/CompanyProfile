@@ -110,6 +110,31 @@ export default function WhyChooseUs() {
     >
       <div className="container why-story-layout">
         <div className="why-story-visual">
+          <svg
+            className="why-story-sketch"
+            viewBox="0 0 400 520"
+            fill="none"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            {Array.from({ length: 43 }, (_, index) => {
+              const angle = Math.PI - (index / 42) * Math.PI;
+              const startX = 200 + 199 * Math.cos(angle);
+              const startY = 198 - 197 * Math.sin(angle);
+              const length = 26 + (index % 5) * 4;
+              const lean = [0, 5, -3, 0, 8, -5, 2][index % 7];
+              const endX = startX + lean;
+              const endY = startY - length;
+              const bend = [0, 1.5, -1, 0, 2][index % 5];
+              return (
+                <path
+                  key={index}
+                  d={`M${startX.toFixed(2)} ${startY.toFixed(2)}q${((endX - startX) / 2 + bend).toFixed(2)} ${((endY - startY) / 2).toFixed(2)} ${(endX - startX).toFixed(2)} ${(endY - startY).toFixed(2)}`}
+                />
+              );
+            })}
+            <path d="M-2 220q-2-18-1-37M-3 244q2-16 1-31M402 220q3-19 5-40M403 245q-1-16-1-33" />
+          </svg>
           <div
             className="why-story-photo"
             style={{

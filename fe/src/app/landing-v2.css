@@ -1536,13 +1536,14 @@
   }
 }
 @media (max-width: 760px) {
-  .v2-hero-continuation > .why-story-section {
-    width: calc(100% - 40px);
+  .home-v2 .v2-page-content {
+    background: #fff;
   }
   .v2-hero-continuation > .v2-about-brief,
   .v2-hero-continuation > .v2-favourites,
   .v2-hero-continuation > .why-story-section {
-    padding-inline: 16px;
+    width: 100%;
+    padding-inline: 20px;
   }
 }
 
@@ -1567,8 +1568,8 @@
 @media (max-width: 760px) {
   .home-v2 .partners-section,
   .home-v2 .v2-faq-background {
-    width: calc(100% - 40px);
-    padding-inline: 16px;
+    width: 100%;
+    padding-inline: 20px;
   }
 }
 

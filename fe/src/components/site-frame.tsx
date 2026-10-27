@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { Arrow } from "./icons";
 import SiteFooter from "./site-footer";
 import LandingScroll from "./landing-scroll";
+import "./site-navbar.css";
 
 const navigation = [
   ["Tentang kami", "/tentang"],
@@ -58,30 +59,20 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
       <a className="skip-link" href="#main">
         Langsung ke konten
       </a>
-      <div className="announcement">
-        <span>PREMIUM MEAT. EXCELLENT SERVICE.</span>
-        <span>
-          BASED IN SOLO, SERVING YOUR VISION <span className="status-dot" />
-        </span>
-      </div>
-      <header className="site-header">
-        <Link
-          className="brand"
-          href="/"
-          aria-label="Tatsuo Beef — Beranda"
-          onClick={() => setMenuPath(null)}
+      <header className="site-header tatsuo-navbar">
+        <span
+          className="tatsuo-navbar-panel tatsuo-navbar-panel-left"
+          aria-hidden="true"
+        />
+        <span
+          className="tatsuo-navbar-panel tatsuo-navbar-panel-right"
+          aria-hidden="true"
+        />
+        <nav
+          className="tatsuo-navbar-links tatsuo-navbar-left"
+          aria-label="Navigasi utama kiri"
         >
-          <Image
-            src="/images/logo-original.jpg"
-            width={144}
-            height={63}
-            alt="Tatsuo Beef"
-            priority
-          />
-          <span className="brand-sub">INDONESIA · EST. 2023</span>
-        </Link>
-        <nav className="desktop-nav" aria-label="Navigasi utama">
-          {navigation.map(([label, href]) => (
+          {navigation.slice(0, 2).map(([label, href]) => (
             <Link
               key={href}
               href={href}
@@ -92,13 +83,37 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
           ))}
         </nav>
         <Link
-          href="/kontak"
-          className="header-contact"
-          aria-current={isActive("/kontak") ? "page" : undefined}
+          className="tatsuo-navbar-brand"
+          href="/"
+          aria-label="Tatsuo Beef — Beranda"
           onClick={() => setMenuPath(null)}
         >
-          Mari bicara <Arrow diagonal />
+          <Image
+            src="/images/logo-vertical-original.png"
+            width={300}
+            height={300}
+            sizes="(max-width: 760px) 76px, 94px"
+            alt="Tatsuo Beef"
+            priority
+          />
         </Link>
+        <nav
+          className="tatsuo-navbar-links tatsuo-navbar-right"
+          aria-label="Navigasi utama kanan"
+        >
+          <Link
+            href="/distribusi"
+            aria-current={isActive("/distribusi") ? "page" : undefined}
+          >
+            Distribusi
+          </Link>
+          <Link
+            href="/kontak"
+            aria-current={isActive("/kontak") ? "page" : undefined}
+          >
+            Hubungi kami <Arrow diagonal />
+          </Link>
+        </nav>
         <button
           ref={toggle}
           className={`menu-toggle ${menuOpen ? "is-open" : ""}`}

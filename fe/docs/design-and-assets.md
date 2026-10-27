@@ -163,3 +163,9 @@ Prompt: Use case: photorealistic-natural. Asset type: full-bleed cinematic edito
 Asset: `public/images/butcher-cleavers-v1.png`. Generated with the built-in imagegen tool, transparent background, used in the hanging experience label. Original alpha preserved.
 
 Prompt: Use case: logo-brand. Asset type: small premium butcher emblem for a red website hanging label. Create exactly two traditional butcher meat cleavers crossed diagonally in a balanced X, wide rectangular blades at upper left and upper right, slender riveted handles pointing downward left and right. Beautiful confident artisan butcher shop mark, refined silhouette, subtly rounded blade corners, small circular hanging hole in each blade and two simple handle rivet cutouts. Flat solid warm ivory #fffaf2 shapes, transparent negative-space details. Consistent elegant proportions, unmistakably actual meat cleavers, crisp clean edges readable at 64px. Centered single isolated emblem occupies 85% of square canvas. Truly transparent background. No text, no letters, no badge border, no shadows, no gradients, no mockup, no extra objects.
+
+### Floating centered-logo navigation
+
+Navigation uses a charcoal floating bar, left and right menu groups, and a central ivory circular brand mark. Composition reference: https://deltacafes.com/en, adapted to Tatsuo. Mobile uses the same centered brand with a full-screen menu.
+
+Vertical logo source: https://tatsuobeef.co.id/wp-content/uploads/2025/11/Untitled-design-2-300x300.png, saved as `public/images/logo-vertical-original.png`. Original asset preserved; CSS monochrome treatment displays the artwork in black on ivory. Footer logo remains unchanged.

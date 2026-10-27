@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Ambient from "./ambient";
 import { Arrow, Asterisk } from "./icons";
+import { whatsapp } from "@/lib/company";
 
 /** The original Tatsuo hero, retained at the user's request. */
 export default function LandingHero({
@@ -92,10 +93,7 @@ export default function LandingHero({
               <span>Good meat.</span>
             </span>
             <span className="hero-line">
-              <span>Great</span>
-            </span>
-            <span className="hero-line">
-              <span className="hero-last-line">partnership.</span>
+              <span className="hero-last-line">Great partnership.</span>
             </span>
           </h1>
           <p className="hero-description hero-reveal">
@@ -103,10 +101,21 @@ export default function LandingHero({
             <br />
             ada bahan pilihan dan mitra yang tepat.
           </p>
-          <a href="#produk" className="button button-red hero-reveal">
-            <span>Temukan pilihan Anda</span>
-            <Arrow diagonal />
-          </a>
+          <div className="hero-actions">
+            <a href="#produk" className="button button-red hero-reveal">
+              <span>Jelajahi Produk</span>
+              <Arrow diagonal />
+            </a>
+            <a
+              href={whatsapp()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button hero-button-outline hero-reveal"
+            >
+              <span>Minta Katalog &amp; Harga</span>
+              <Arrow diagonal />
+            </a>
+          </div>
         </div>
         <div className="quality-seal" aria-hidden="true">
           <svg viewBox="0 0 140 140">
@@ -128,12 +137,6 @@ export default function LandingHero({
             <br />
             2023
           </span>
-        </div>
-        <div className="hero-bottom container">
-          <a href="#tentang" className="scroll-cue">
-            <span className="scroll-stem" />
-            SCROLL TO DISCOVER
-          </a>
         </div>
         <div className="hero-edge" aria-hidden="true">
           THE BEGINNING OF SOMETHING GREAT

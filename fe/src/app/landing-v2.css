@@ -1519,7 +1519,7 @@
   background: #fff;
   padding-inline: clamp(20px, 2.3vw, 36px);
 }
-.v2-hero-continuation > .why-story-section {
+.v2-hero-continuation .why-story-section {
   width: calc(100% - 112px);
   max-width: 1408px;
   margin-inline: auto;
@@ -1532,7 +1532,7 @@
   background: #f5f1e8;
 }
 @media (min-width: 761px) and (max-width: 1150px) {
-  .v2-hero-continuation > .why-story-section {
+  .v2-hero-continuation .why-story-section {
     width: calc(100% - 72px);
   }
 }
@@ -1542,7 +1542,7 @@
   }
   .v2-hero-continuation > .v2-about-brief,
   .v2-hero-continuation > .v2-favourites,
-  .v2-hero-continuation > .why-story-section {
+  .v2-hero-continuation .why-story-section {
     width: 100%;
     padding-inline: 20px;
   }
@@ -1637,8 +1637,16 @@ html.lenis {
   position: relative;
   width: 100%;
   padding-block: 15px;
-  background: #f2c75b;
+  isolation: isolate;
+  overflow: clip;
   color: var(--ink);
+}
+.v2-closing-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #f2c75b;
+  transform-origin: left center;
 }
 .v2-closing-layout {
   display: flex;
@@ -1698,5 +1706,38 @@ html.lenis {
 @media (prefers-reduced-motion: reduce) {
   .v2-closing-button {
     transition: none;
+  }
+}
+
+.v2-why-surround {
+  position: relative;
+  isolation: isolate;
+}
+.v2-why-wing {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(max(56px, (100% - 1408px) / 2) + 1px);
+  background: #fff;
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;
+}
+.v2-why-wing-left {
+  left: 0;
+  transform-origin: right center;
+}
+.v2-why-wing-right {
+  right: 0;
+  transform-origin: left center;
+}
+@media (min-width: 761px) and (max-width: 1150px) {
+  .v2-why-wing {
+    width: 37px;
+  }
+}
+@media (max-width: 760px) {
+  .v2-why-wing {
+    display: none;
   }
 }

@@ -59,8 +59,8 @@ export default function WhyChooseUs() {
             counter,
             {
               value: target,
-              duration: 2.2,
-              ease: "power2.inOut",
+              duration: 1.2,
+              ease: "power2.out",
               onUpdate: () => {
                 number.textContent = String(Math.round(counter.value));
                 ring.style.strokeDashoffset = String(100 - counter.value);
@@ -70,7 +70,7 @@ export default function WhyChooseUs() {
                 ring.style.strokeDashoffset = String(100 - target);
               },
             },
-            index * 0.16,
+            index * 0.08,
           );
 
           restoreStats.push(() => {

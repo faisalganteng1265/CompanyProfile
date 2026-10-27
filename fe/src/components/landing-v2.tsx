@@ -150,26 +150,40 @@ export default function LandingV2() {
                 0.67,
               );
           });
-        gsap.fromTo(
-          ".v2-closing-cta .v2-closing-reveal",
-          {
-            y: 30,
-            opacity: 0,
+        const closingEntrance = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".v2-closing-cta",
+            start: "top 92%",
+            end: "bottom top",
+            toggleActions: "restart reset restart reset",
           },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            stagger: 0.12,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: ".v2-closing-cta",
-              start: "top 88%",
-              end: "bottom top",
-              toggleActions: "restart reset restart reset",
+        });
+        closingEntrance
+          .fromTo(
+            ".v2-closing-background",
+            { scaleX: 0 },
+            {
+              scaleX: 1,
+              duration: 0.95,
+              ease: "power3.inOut",
             },
-          },
-        );
+            0,
+          )
+          .fromTo(
+            ".v2-closing-cta .v2-closing-reveal",
+            {
+              x: -20,
+              opacity: 0,
+            },
+            {
+              x: 0,
+              opacity: 1,
+              duration: 0.75,
+              stagger: 0.12,
+              ease: "power3.out",
+            },
+            0.55,
+          );
         gsap.to(".v2-running-copy", {
           xPercent: -18,
           ease: "none",
@@ -187,6 +201,35 @@ export default function LandingV2() {
           scrollTrigger: { start: 0, end: "max", scrub: 0.2 },
         });
       });
+      media.add(
+        "(min-width: 761px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          const wings = gsap.fromTo(
+            ".v2-why-wing",
+            { scaleX: 0 },
+            {
+              scaleX: 1,
+              duration: 1.1,
+              ease: "power2.inOut",
+              force3D: true,
+              paused: true,
+            },
+          );
+          ScrollTrigger.create({
+            trigger: ".v2-why-surround",
+            start: "top 94%",
+            end: "bottom top",
+            onEnter: () => wings.play(),
+            onEnterBack: () => wings.reverse(),
+            onLeaveBack: () => wings.reverse(),
+            onUpdate: (self) => {
+              if (!self.isActive) return;
+              if (self.direction < 0) wings.reverse();
+              else wings.play();
+            },
+          });
+        },
+      );
       media.add("(prefers-reduced-motion: no-preference)", () => {
         const stage =
           root.current?.querySelector<HTMLElement>(".v2-craft-stage");
@@ -380,7 +423,17 @@ export default function LandingV2() {
               </div>
             </section>
 
-            <WhyChooseUs />
+            <div className="v2-why-surround">
+              <span
+                className="v2-why-wing v2-why-wing-left"
+                aria-hidden="true"
+              />
+              <span
+                className="v2-why-wing v2-why-wing-right"
+                aria-hidden="true"
+              />
+              <WhyChooseUs />
+            </div>
           </div>
 
           <div className="v2-craft-stage">
@@ -446,6 +499,7 @@ export default function LandingV2() {
             className="v2-closing-cta"
             aria-labelledby="closing-cta-heading"
           >
+            <div className="v2-closing-background" aria-hidden="true" />
             <div className="container v2-closing-layout">
               <h2 id="closing-cta-heading" className="v2-closing-reveal">
                 Pasokan terbaik untuk sajian istimewa Anda.

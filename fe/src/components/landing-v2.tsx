@@ -150,6 +150,26 @@ export default function LandingV2() {
                 0.67,
               );
           });
+        gsap.fromTo(
+          ".v2-closing-cta .v2-closing-reveal",
+          {
+            y: 30,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".v2-closing-cta",
+              start: "top 88%",
+              end: "bottom top",
+              toggleActions: "restart reset restart reset",
+            },
+          },
+        );
         gsap.to(".v2-running-copy", {
           xPercent: -18,
           ease: "none",
@@ -421,6 +441,27 @@ export default function LandingV2() {
             </section>
           </div>
           <PartnersCarousel />
+
+          <section
+            className="v2-closing-cta"
+            aria-labelledby="closing-cta-heading"
+          >
+            <div className="container v2-closing-layout">
+              <h2 id="closing-cta-heading" className="v2-closing-reveal">
+                Pasokan terbaik untuk sajian istimewa Anda.
+              </h2>
+              <div className="v2-closing-copy">
+                <a
+                  href={whatsapp()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="v2-closing-button v2-closing-reveal"
+                >
+                  Minta Katalog &amp; Harga
+                </a>
+              </div>
+            </div>
+          </section>
 
           <div className="v2-faq-background">
             <section className="v2-questions container">

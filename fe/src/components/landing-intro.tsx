@@ -39,7 +39,7 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
         gsap.from(".landing-intro-cut", {
           scaleX: 0,
           transformOrigin: "left center",
-          duration: 3.2,
+          duration: 2.5,
           ease: "power2.inOut",
           delay: 0.35,
         });
@@ -75,14 +75,14 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
         timeline
           .to(progress, {
             value: 100,
-            duration: reduced ? 0 : 0.45,
+            duration: reduced ? 0 : 0.35,
             onUpdate: update,
           })
           .to(
             ".landing-intro-content, .landing-intro-footer, .landing-intro-header",
             {
               opacity: 0,
-              duration: reduced ? 0.15 : 0.45,
+              duration: reduced ? 0.15 : 0.35,
             },
           )
           .call(() => {
@@ -93,7 +93,7 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
             ".landing-intro-panel-top",
             {
               yPercent: -105,
-              duration: reduced ? 0 : 1.3,
+              duration: reduced ? 0 : 1.1,
               ease: "power3.inOut",
             },
             "open",
@@ -102,7 +102,7 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
             ".landing-intro-panel-bottom",
             {
               yPercent: 105,
-              duration: reduced ? 0 : 1.3,
+              duration: reduced ? 0 : 1.1,
               ease: "power3.inOut",
             },
             "open",
@@ -127,7 +127,7 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
             value: (completed / tasks.length) * 94,
             duration: reduced
               ? 0
-              : Math.max(0.35, (3600 - (performance.now() - startedAt)) / 1000),
+              : Math.max(0.35, (2800 - (performance.now() - startedAt)) / 1000),
             overwrite: true,
             ease: "power1.inOut",
             onUpdate: update,
@@ -136,8 +136,8 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
       ),
     );
     void Promise.all([
-      Promise.race([assets, pause(reduced ? 1200 : 5500)]),
-      pause(reduced ? 0 : 3800),
+      Promise.race([assets, pause(reduced ? 1200 : 4500)]),
+      pause(reduced ? 0 : 3000),
     ]).then(exit);
     return () => {
       active = false;

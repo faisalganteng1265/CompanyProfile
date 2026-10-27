@@ -225,30 +225,22 @@ export default function LandingV2() {
       media.add(
         "(min-width: 761px) and (prefers-reduced-motion: no-preference)",
         () => {
-          const wings = gsap.fromTo(
+          gsap.fromTo(
             ".v2-why-wing",
             { scaleX: 0 },
             {
               scaleX: 1,
-              duration: 1.1,
-              ease: "power2.inOut",
+              ease: "none",
               force3D: true,
-              paused: true,
+              scrollTrigger: {
+                trigger: ".v2-why-surround",
+                start: "top 94%",
+                end: "top 40%",
+                scrub: 0.6,
+                invalidateOnRefresh: true,
+              },
             },
           );
-          ScrollTrigger.create({
-            trigger: ".v2-why-surround",
-            start: "top 94%",
-            end: "bottom top",
-            onEnter: () => wings.play(),
-            onEnterBack: () => wings.reverse(),
-            onLeaveBack: () => wings.reverse(),
-            onUpdate: (self) => {
-              if (!self.isActive) return;
-              if (self.direction < 0) wings.reverse();
-              else wings.play();
-            },
-          });
         },
       );
       media.add("(prefers-reduced-motion: no-preference)", () => {

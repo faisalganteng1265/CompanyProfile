@@ -1,92 +1,90 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import localFont from "next/font/local";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import promisePhoto from "@/assets/promise-butcher-table-v1.webp";
 import "./tatsuo-benefits.css";
 
-const benefits = [
+const script = localFont({
+  src: "../app/fonts/Allura-Regular.ttf",
+  variable: "--font-promise-script",
+  display: "swap",
+});
+
+const promises = [
   {
-    icon: "quality",
-    title: "Bahan Pangan Kualitas Terbaik",
+    title: "Bahan pilihan",
+    accent: "Kualitas tanpa kompromi.",
     description:
-      "Bahan pilihan untuk menjaga karakter rasa di setiap sajian Anda.",
+      "Dari daging sapi hingga ayam dan seafood, kami membantu Anda memilih bahan yang tepat. Karena sajian yang istimewa selalu dimulai dari kualitas bahan bakunya.",
   },
   {
-    icon: "guarantee",
-    title: "Garansi Produk Mutu Tinggi",
+    title: "Pasokan terjaga",
+    accent: "Untuk setiap sajian.",
     description:
-      "Perhatian pada mutu, dari pemilihan produk hingga kebutuhan dapur Anda.",
+      "Ketersediaan stok dan koordinasi pengadaan yang membantu menjaga ritme dapur Anda. Diskusikan pilihan produk, jumlah, dan jadwal kebutuhan bersama tim Tatsuo.",
   },
   {
-    icon: "service",
-    title: "Pelayanan Profesional Terbaik",
-    description: "Tim yang siap mendengar dan membantu kebutuhan usaha Anda.",
-  },
-  {
-    icon: "price",
-    title: "Harga yang Kompetitif & Bersaing",
+    title: "Lebih dari pemasok",
+    accent: "Mitra untuk tumbuh.",
     description:
-      "Pilihan produk dan penawaran yang sesuai dengan kebutuhan bisnis.",
+      "Pelayanan yang responsif, komunikasi yang terbuka, dan komitmen dalam setiap kerja sama. Kami hadir untuk mendukung langkah berikutnya dari bisnis kuliner Anda.",
   },
-  {
-    icon: "stock",
-    title: "Ketersediaan Stok yang Kontinu",
-    description:
-      "Koordinasi pasokan untuk mendukung ritme operasional dapur Anda.",
-  },
-  {
-    icon: "partnership",
-    title: "Komitmen & Keberlanjutan",
-    description: "Hubungan yang terbuka, dengan semangat untuk tumbuh bersama.",
-  },
+];
+const tiles = [
+  "product-oxtail",
+  "product-tenderloin",
+  "product-shortplate",
+  "product-chicken",
+  "product-sirloin",
+  "product-saikoro",
+  "product-salmon",
+  "product-shrimp",
 ];
 
 export default function TatsuoBenefits() {
   const root = useRef<HTMLElement>(null);
+  const [active, setActive] = useState(0);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
       media.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.utils.toArray<HTMLElement>(".tatsuo-benefit").forEach((card) => {
-          const icon = card.querySelector(".tatsuo-benefit-icon");
-          const copy = card.querySelector(".tatsuo-benefit-copy");
-          if (!icon || !copy) return;
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: card,
-                start: "top 92%",
-                end: "bottom top",
-                toggleActions: "restart reset restart reset",
-              },
-            })
-            .fromTo(
-              icon,
-              { y: 26, opacity: 0, rotate: -6, scale: 0.9 },
-              {
-                y: 0,
-                opacity: 1,
-                rotate: 0,
-                scale: 1,
-                duration: 1.05,
-                ease: "power3.out",
-              },
-            )
-            .fromTo(
-              copy,
-              { y: 18, opacity: 0 },
-              {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                ease: "power3.out",
-              },
-              0.14,
-            );
-        });
+        gsap.fromTo(
+          ".tatsuo-promise-row",
+          { y: 24, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.12,
+            duration: 0.85,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: root.current,
+              start: "top 89%",
+              end: "bottom top",
+              toggleActions: "restart reset restart reset",
+            },
+          },
+        );
+        gsap.fromTo(
+          ".tatsuo-promise-collage",
+          { clipPath: "inset(0 0 100% 0)" },
+          {
+            clipPath: "inset(0 0 0% 0)",
+            duration: 1.2,
+            ease: "power3.inOut",
+            scrollTrigger: {
+              trigger: root.current,
+              start: "top 89%",
+              end: "bottom top",
+              toggleActions: "restart reset restart reset",
+            },
+          },
+        );
       });
     }, root);
     return () => {
@@ -98,57 +96,101 @@ export default function TatsuoBenefits() {
   return (
     <section
       ref={root}
-      className="tatsuo-benefits"
+      className={`tatsuo-benefits ${script.variable}`}
       aria-labelledby="tatsuo-benefits-heading"
     >
       <div className="container tatsuo-benefits-inner">
-        <div className="tatsuo-sauce tatsuo-sauce-top" aria-hidden="true">
-          <Image
-            src="/images/benefits/sauce-splash-v1.webp"
-            alt=""
-            width={1000}
-            height={400}
-            sizes="(max-width: 760px) 260px, 460px"
-          />
+        <h2 id="tatsuo-benefits-heading" className="sr-only">
+          The Tatsuo Promise
+        </h2>
+        <div className="tatsuo-promise-layout">
+          <div className="tatsuo-promise-list">
+            {promises.map((promise, index) => (
+              <article
+                key={promise.title}
+                className={`tatsuo-promise-row ${active === index ? "is-active" : ""}`}
+              >
+                <h3>
+                  <button
+                    type="button"
+                    id={`promise-trigger-${index}`}
+                    aria-expanded={active === index}
+                    aria-controls={`promise-panel-${index}`}
+                    onClick={() => setActive(index)}
+                  >
+                    <span className="tatsuo-promise-toggle" aria-hidden="true">
+                      <i />
+                      <i />
+                    </span>
+                    <span className="tatsuo-promise-titles">
+                      <span className="tatsuo-promise-title">
+                        {promise.title}
+                      </span>
+                      <span className="tatsuo-promise-script">
+                        {promise.accent}
+                      </span>
+                    </span>
+                  </button>
+                </h3>
+                <div
+                  id={`promise-panel-${index}`}
+                  role="region"
+                  aria-labelledby={`promise-trigger-${index}`}
+                  aria-hidden={active !== index}
+                  className="tatsuo-promise-answer"
+                >
+                  <div>
+                    <p>{promise.description}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div
+            className="tatsuo-promise-collage"
+            aria-label="Pilihan bahan dan ketelitian proses Tatsuo"
+          >
+            <div className="tatsuo-promise-strip" aria-hidden="true">
+              {tiles.slice(0, 4).map((tile) => (
+                <div className="tatsuo-promise-tile" key={tile}>
+                  <Image
+                    src={`/images/${tile}.webp`}
+                    alt=""
+                    width={1000}
+                    height={1000}
+                    sizes="(max-width: 760px) 25vw, 13vw"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="tatsuo-promise-main-photo">
+              <Image
+                src={promisePhoto}
+                alt="Tangan butcher menyiapkan potongan daging dengan teliti di atas meja kerja kayu"
+                width={1254}
+                height={1254}
+                sizes="(max-width: 760px) 100vw, 50vw"
+                loading="eager"
+              />
+            </div>
+            <div className="tatsuo-promise-strip" aria-hidden="true">
+              {tiles.slice(4).map((tile) => (
+                <div className="tatsuo-promise-tile" key={tile}>
+                  <Image
+                    src={`/images/${tile}.webp`}
+                    alt=""
+                    width={1000}
+                    height={1000}
+                    sizes="(max-width: 760px) 25vw, 13vw"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="tatsuo-sauce tatsuo-sauce-bottom" aria-hidden="true">
-          <Image
-            src="/images/benefits/sauce-splash-v1.webp"
-            alt=""
-            width={1000}
-            height={400}
-            sizes="(max-width: 760px) 260px, 460px"
-          />
-        </div>
-        <header className="tatsuo-benefits-heading">
-          <span>THE TATSUO PROMISE</span>
-          <h2 id="tatsuo-benefits-heading">
-            Pilihan yang baik.
-            <br />
-            <em>Untuk langkah yang lebih jauh.</em>
-          </h2>
-        </header>
-        <div className="tatsuo-benefits-grid">
-          {benefits.map((benefit, index) => (
-            <article
-              key={benefit.icon}
-              className={`tatsuo-benefit ${index < 2 ? "tatsuo-benefit-lead" : ""}`}
-            >
-              <div className="tatsuo-benefit-icon">
-                <Image
-                  src={`/images/benefits/${benefit.icon}.webp`}
-                  alt=""
-                  width={320}
-                  height={320}
-                  sizes={index < 2 ? "(max-width: 760px) 96px, 148px" : "88px"}
-                />
-              </div>
-              <div className="tatsuo-benefit-copy">
-                <h3>{benefit.title}</h3>
-                <p>{benefit.description}</p>
-              </div>
-            </article>
-          ))}
+        <div className="tatsuo-promise-signoff" aria-hidden="true">
+          <span>Inilah janji</span>
+          <strong>TATSUO.</strong>
         </div>
       </div>
     </section>

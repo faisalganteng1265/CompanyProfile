@@ -1,185 +1,245 @@
 .tatsuo-benefits {
-  position: relative;
-  color: var(--ink);
+  color: #f4eddb;
+  background-color: #20211e;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' opacity='.035' filter='url(%23g)' d='M0 0h160v160H0z'/%3E%3C/svg%3E");
   padding-block: 0;
 }
 .tatsuo-benefits-inner {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: #fff;
-  padding: 24px clamp(20px, 2.3vw, 36px) 90px;
+  padding: 0 0 40px;
+  background: transparent;
 }
-.tatsuo-sauce {
-  position: absolute;
-  width: 460px;
-  pointer-events: none;
-  user-select: none;
-  z-index: -1;
-  opacity: 0.8;
-}
-.tatsuo-sauce img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.tatsuo-sauce-top {
-  top: 20px;
-  right: -305px;
-  transform: rotate(115deg);
-}
-.tatsuo-sauce-bottom {
-  bottom: -70px;
-  left: -290px;
-  transform: rotate(-25deg);
-  opacity: 0.65;
-}
-.tatsuo-benefits-heading {
+.tatsuo-promise-layout {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  align-items: start;
-  gap: 32px;
-  padding-block: 35px 45px;
-  border-top: 1px solid #e4dfd6;
+  grid-template-columns: 1fr 1fr;
 }
-.tatsuo-benefits-heading > span {
-  padding-top: 10px;
-  font-size: 8px;
-  letter-spacing: 1.7px;
-  color: var(--red);
+.tatsuo-promise-list {
+  display: flex;
+  flex-direction: column;
 }
-.tatsuo-benefits-heading h2 {
-  font-size: clamp(32px, 3vw, 46px);
-  line-height: 1.18;
-  letter-spacing: -0.035em;
+.tatsuo-promise-row {
+  border-bottom: 1px solid #c9ae73;
+  flex: 1 0 auto;
+  padding: 34px 34px 32px 24px;
+  transition:
+    background 0.45s ease,
+    color 0.45s ease;
 }
-.tatsuo-benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 0 36px;
+.tatsuo-promise-row.is-active {
+  background: #ed252a;
+  color: #20211e;
 }
-.tatsuo-benefit {
-  grid-column: span 3;
-  padding-block: 32px 0;
-  border-top: 1px solid #e4dfd6;
-  min-width: 0;
-}
-.tatsuo-benefit-lead {
-  grid-column: span 6;
-  display: grid;
-  grid-template-columns: 148px minmax(0, 1fr);
-  align-items: center;
-  gap: 24px;
-  padding-block: 12px 36px;
-  border-top: 0;
-}
-.tatsuo-benefit-icon {
-  width: 88px;
-  height: 88px;
-  margin-bottom: 20px;
-}
-.tatsuo-benefit-lead .tatsuo-benefit-icon {
-  width: 148px;
-  height: 148px;
+.tatsuo-promise-row h3 {
   margin: 0;
+  font-weight: 400;
 }
-.tatsuo-benefit-icon img {
+.tatsuo-promise-row button {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 28px;
+  width: 100%;
+  text-align: left;
+  align-items: start;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+.tatsuo-promise-toggle {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin-top: 6px;
+  background: #c9ae73;
+  color: #faf5e4;
+}
+.is-active .tatsuo-promise-toggle {
+  background: #20211e;
+}
+.tatsuo-promise-toggle i {
+  position: absolute;
+  top: 14px;
+  left: 5px;
+  right: 5px;
+  height: 2px;
+  background: currentColor;
+}
+.tatsuo-promise-toggle i:last-child {
+  transform: rotate(90deg);
+  transition: transform 0.4s ease;
+}
+.is-active .tatsuo-promise-toggle i:last-child {
+  transform: rotate(0);
+}
+.tatsuo-promise-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tatsuo-promise-title {
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(23px, 2.3vw, 34px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.8px;
+}
+.tatsuo-promise-script {
+  font-family: var(--font-promise-script), cursive;
+  font-weight: 400;
+  font-size: clamp(35px, 3.5vw, 54px);
+  line-height: 1.05;
+  color: #d4b777;
+}
+.is-active .tatsuo-promise-script {
+  color: #fff7e9;
+}
+.tatsuo-promise-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.5s ease,
+    opacity 0.35s ease;
+}
+.is-active .tatsuo-promise-answer {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.tatsuo-promise-answer > div {
+  overflow: hidden;
+}
+.tatsuo-promise-answer p {
+  padding-top: 19px;
+  margin-left: 58px;
+  max-width: 410px;
+  font-size: 13px;
+  line-height: 1.85;
+}
+.tatsuo-promise-collage {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+.tatsuo-promise-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  flex-shrink: 0;
+}
+.tatsuo-promise-tile {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #b92127;
+}
+.tatsuo-promise-tile:nth-child(even) {
+  background: #c9ae73;
+}
+.tatsuo-promise-tile img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
-.tatsuo-benefit h3 {
-  font-family: var(--font-editorial), serif;
-  font-size: clamp(21px, 1.8vw, 27px);
+.tatsuo-promise-main-photo {
+  flex: 1;
+  min-height: 320px;
+  position: relative;
+}
+.tatsuo-promise-main-photo img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tatsuo-promise-signoff {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 32px 20px;
+  border-bottom: 1px solid #c9ae73;
+}
+.tatsuo-promise-signoff > span {
+  font-family: var(--font-promise-script), cursive;
+  font-size: 36px;
+  color: #d4b777;
+}
+.tatsuo-promise-signoff > strong {
+  font-family: var(--font-display), serif;
+  color: #f4eddb;
+  font-size: 33px;
   font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+  letter-spacing: 1px;
 }
-.tatsuo-benefit-lead h3 {
-  font-size: clamp(26px, 2.4vw, 35px);
-}
-.tatsuo-benefit p {
-  max-width: 320px;
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.85;
+.tatsuo-promise-row button:focus-visible {
+  outline: 2px solid #f4eddb;
+  outline-offset: 8px;
 }
 @media (max-width: 1100px) {
-  .tatsuo-benefits-grid {
-    gap: 0 25px;
+  .tatsuo-promise-row {
+    padding: 28px 24px 28px 20px;
   }
-  .tatsuo-benefit-lead {
-    grid-template-columns: 112px minmax(0, 1fr);
-    gap: 16px;
+  .tatsuo-promise-row button {
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 20px;
   }
-  .tatsuo-benefit-lead .tatsuo-benefit-icon {
-    width: 112px;
-    height: 112px;
+  .tatsuo-promise-toggle {
+    width: 26px;
+    height: 26px;
+  }
+  .tatsuo-promise-toggle i {
+    top: 12px;
+  }
+  .tatsuo-promise-answer p {
+    margin-left: 46px;
+    font-size: 12px;
   }
 }
 @media (max-width: 760px) {
-  .tatsuo-sauce {
-    width: 260px;
-    opacity: 0.65;
-  }
-  .tatsuo-sauce-top {
-    right: -205px;
-    top: 50px;
-  }
-  .tatsuo-sauce-bottom {
-    left: -180px;
-    bottom: -25px;
+  .tatsuo-benefits-inner {
+    padding-bottom: 28px;
   }
   .tatsuo-benefits-inner {
     width: 100%;
-    padding-inline: 20px;
-    padding-bottom: 52px;
   }
-  .tatsuo-benefits-heading {
+  .tatsuo-promise-layout {
     grid-template-columns: 1fr;
-    gap: 16px;
-    padding-block: 26px 30px;
   }
-  .tatsuo-benefits-heading h2 {
-    font-size: clamp(30px, 7vw, 40px);
+  .tatsuo-promise-row {
+    padding: 26px 24px;
   }
-  .tatsuo-benefit {
-    grid-column: span 6;
+  .tatsuo-promise-title {
+    font-size: 26px;
+  }
+  .tatsuo-promise-script {
+    font-size: clamp(37px, 8vw, 48px);
+  }
+  .tatsuo-promise-main-photo {
+    min-height: 0;
+    aspect-ratio: 1.18;
+  }
+  .tatsuo-promise-answer p {
+    max-width: 540px;
+  }
+  .tatsuo-promise-signoff {
     padding-block: 25px;
   }
-  .tatsuo-benefit-lead {
-    grid-column: span 12;
-    grid-template-columns: 96px minmax(0, 1fr);
-    gap: 22px;
-    border-top: 1px solid #e4dfd6;
+  .tatsuo-promise-signoff > span {
+    font-size: 30px;
   }
-  .tatsuo-benefit-lead .tatsuo-benefit-icon {
-    width: 96px;
-    height: 96px;
-  }
-  .tatsuo-benefit-lead h3 {
-    font-size: 27px;
-  }
-  .tatsuo-benefit-icon {
-    width: 76px;
-    height: 76px;
+  .tatsuo-promise-signoff > strong {
+    font-size: 28px;
   }
 }
-@media (max-width: 360px) {
-  .tatsuo-benefits-grid {
-    column-gap: 18px;
-  }
-  .tatsuo-benefit-lead {
-    gap: 14px;
-    grid-template-columns: 80px minmax(0, 1fr);
-  }
-  .tatsuo-benefit-lead .tatsuo-benefit-icon {
-    width: 80px;
-    height: 80px;
-  }
-  .tatsuo-benefit-lead h3 {
-    font-size: 24px;
+@media (prefers-reduced-motion: reduce) {
+  .tatsuo-promise-row,
+  .tatsuo-promise-answer,
+  .tatsuo-promise-toggle i:last-child {
+    transition: none;
   }
 }

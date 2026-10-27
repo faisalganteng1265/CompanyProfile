@@ -1319,6 +1319,7 @@
 .v2-favourites-grid {
   margin-top: 32px;
   gap: 30px;
+  row-gap: 44px;
 }
 .v2-favourite h3 {
   margin-top: 24px;

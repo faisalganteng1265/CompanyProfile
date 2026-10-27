@@ -33,6 +33,26 @@ const cuts = [
     slug: "boneless-dada-ayam",
     image: "product-chicken",
   },
+  {
+    name: "Sirloin Meltique",
+    slug: "sirloin-meltique",
+    image: "product-sirloin",
+  },
+  {
+    name: "Saikoro",
+    slug: "saikoro",
+    image: "product-saikoro",
+  },
+  {
+    name: "Salmon Fillet",
+    slug: "salmon-fillet",
+    image: "product-salmon",
+  },
+  {
+    name: "Udang Vaname",
+    slug: "udang-vaname",
+    image: "product-shrimp",
+  },
 ];
 const questions = [
   [

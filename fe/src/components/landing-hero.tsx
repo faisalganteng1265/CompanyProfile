@@ -28,9 +28,14 @@ export default function LandingHero({
     const headerObserver = new ResizeObserver(syncStickyOffset);
     if (header) headerObserver.observe(header);
     const media = gsap.matchMedia();
+    const nextContent =
+      root.current?.parentElement?.querySelector<HTMLElement>(
+        ".v2-page-content",
+      );
     const context = gsap.context(() => {
       media.add("(prefers-reduced-motion: no-preference)", () => {
         if (!introReady) return;
+        gsap.set(".hero-copy", { autoAlpha: 1 });
         gsap.from(".hero-line > span", {
           yPercent: 110,
           rotate: 3,
@@ -51,6 +56,39 @@ export default function LandingHero({
           ".hero-image",
           { scale: 1.12 },
           { scale: 1, duration: 2.2, ease: "power2.out" },
+        );
+        gsap.fromTo(
+          ".hero-copy",
+          { autoAlpha: 1 },
+          {
+            autoAlpha: 0,
+            immediateRender: false,
+            ease: "none",
+            scrollTrigger: {
+              trigger: nextContent,
+              start: "top bottom",
+              end: "top bottom-=72",
+              scrub: true,
+            },
+          },
+        );
+      });
+      media.add("(prefers-reduced-motion: reduce)", () => {
+        if (!introReady) return;
+        gsap.set(".hero-copy", { autoAlpha: 1 });
+        gsap.fromTo(
+          ".hero-copy",
+          { autoAlpha: 1 },
+          {
+            autoAlpha: 0,
+            immediateRender: false,
+            duration: 0,
+            scrollTrigger: {
+              trigger: nextContent,
+              start: "top bottom-=1",
+              toggleActions: "play none none reverse",
+            },
+          },
         );
       });
     }, root);

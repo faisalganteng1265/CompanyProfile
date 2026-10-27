@@ -119,9 +119,6 @@ export default function LandingHero({
         <div className="hero-light" aria-hidden="true" />
         <Ambient />
         <div className="hero-copy container">
-          <p className="eyebrow hero-reveal">
-            <span className="tiny-cross">+</span> THE ART OF GOOD MEAT
-          </p>
           <h1 id="hero-heading">
             <span className="hero-line">
               <span>Good meat.</span>
@@ -130,11 +127,6 @@ export default function LandingHero({
               <span className="hero-last-line">Great partnership.</span>
             </span>
           </h1>
-          <p className="hero-description hero-reveal">
-            Di balik setiap hidangan istimewa,
-            <br />
-            ada bahan pilihan dan mitra yang tepat.
-          </p>
           <div className="hero-actions">
             <a href="#produk" className="button button-red hero-reveal">
               <span>Jelajahi Produk</span>

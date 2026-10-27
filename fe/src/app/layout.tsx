@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "lenis/dist/lenis.css";
 import "./globals.css";
@@ -21,6 +21,11 @@ const sans = localFont({
   variable: "--font-body",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  colorScheme: "only light",
+  themeColor: "#191b17",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tatsuobeef.co.id"),

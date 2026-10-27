@@ -28,10 +28,6 @@ export default function LandingHero({
     const headerObserver = new ResizeObserver(syncStickyOffset);
     if (header) headerObserver.observe(header);
     const media = gsap.matchMedia();
-    const nextContent =
-      root.current?.parentElement?.querySelector<HTMLElement>(
-        ".v2-page-content",
-      );
     const context = gsap.context(() => {
       media.add("(prefers-reduced-motion: no-preference)", () => {
         if (!introReady) return;
@@ -65,10 +61,10 @@ export default function LandingHero({
             immediateRender: false,
             ease: "none",
             scrollTrigger: {
-              trigger: nextContent,
-              start: "top bottom",
-              end: "top bottom-=72",
+              start: 0,
+              end: () => Math.min(140, window.innerHeight * 0.18),
               scrub: true,
+              invalidateOnRefresh: true,
             },
           },
         );
@@ -84,8 +80,8 @@ export default function LandingHero({
             immediateRender: false,
             duration: 0,
             scrollTrigger: {
-              trigger: nextContent,
-              start: "top bottom-=1",
+              start: 1,
+              end: 2,
               toggleActions: "play none none reverse",
             },
           },

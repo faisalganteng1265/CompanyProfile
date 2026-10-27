@@ -1742,3 +1742,17 @@ html.lenis {
     display: none;
   }
 }
+
+/* A quiet paper grain across the white landing sections. */
+.home-v2 {
+  --white-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='4' intercept='-1.5'/%3E%3CfeFuncG type='linear' slope='4' intercept='-1.5'/%3E%3CfeFuncB type='linear' slope='4' intercept='-1.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cpath fill='%23000' opacity='.16' filter='url(%23paper)' d='M0 0h160v160H0z'/%3E%3C/svg%3E");
+}
+.home-v2 .v2-about-brief,
+.home-v2 .v2-favourites,
+.home-v2 .why-story-section,
+.home-v2 .partners-section,
+.home-v2 .v2-why-wing {
+  background-image: var(--white-grain);
+  background-size: 160px 160px;
+  background-repeat: repeat;
+}

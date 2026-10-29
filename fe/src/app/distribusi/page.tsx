@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import ComingSoon from "@/components/coming-soon";
+import DistributionExperience from "@/components/distribution-experience";
+import "./distribution.css";
 
 export const metadata: Metadata = {
-  title: "Distribusi & Kemitraan — Coming Soon — Tatsuo Beef",
+  title: "Distribusi & Kemitraan — Tatsuo Beef",
   description:
-    "Halaman distribusi & kemitraan Tatsuo Beef sedang kami siapkan. Hubungi tim kami untuk informasi lebih lanjut.",
-  robots: { index: false, follow: true },
+    "Kenali fasilitas penyimpanan, penanganan gudang, dan logistik Tatsuo Beef. Diskusikan kebutuhan pengadaan serta pengiriman untuk bisnis kuliner Anda.",
   alternates: { canonical: "/distribusi" },
 };
 
-export default function Page() {
-  return <ComingSoon label="Distribusi & Kemitraan" />;
+export default function DistributionPage() {
+  return <DistributionExperience />;
 }

@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "dock",
+    "originalUrl": "https://tatsuobeef.co.id/wp-content/uploads/2025/11/IMG-20251017-WA0008.jpg",
+    "originalFile": "IMG-20251017-WA0008.jpg",
+    "editedSource": "/home/faisal/.codex/generated_images/01a1794a-0f3b-7ba1-bc35-0b2aa0b10696/exec-f8fcf894-7969-48ce-8922-a1836cf1b543.png",
+    "output": "public/images/distribution/dock-restored-v1.webp",
+    "prompt": "Use case: lighting-weather and precise-object-edit. EDIT the provided ORIGINAL documentary photograph for a company website; this is photo restoration, not a new scene. Correct exposure and white balance, recover detail in concrete and doors, reduce phone compression noise, very subtle straightening if necessary. Keep the exact loading bays, blue walls, posts, markings, all objects and the same viewpoint. Do not add or remove architecture or equipment. Preserve the identity, geometry, framing, physical condition and factual content of the original photograph. Professional but natural color grade; no cinematic redesign, no new objects, no beauty reconstruction of machinery, no added text or watermark. Preserve all original real-world lettering and logos except the explicitly specified phone watermark. Output same composition and aspect ratio as input."
+  },
+  {
+    "slug": "storage",
+    "originalUrl": "https://tatsuobeef.co.id/wp-content/uploads/2025/11/IMG-20251017-WA0009.jpg",
+    "originalFile": "IMG-20251017-WA0009.jpg",
+    "editedSource": "/home/faisal/.codex/generated_images/01a1794a-0f3b-7ba1-bc35-0b2aa0b10696/exec-52473720-57ad-415a-a8c0-f8870b34b0b2.png",
+    "output": "public/images/distribution/storage-restored-v1.webp",
+    "prompt": "Use case: lighting-weather and precise-object-edit. EDIT the provided ORIGINAL documentary photograph for a company website; this is photo restoration, not a new scene. Remove only the bottom-left Galaxy Z Fold6 and 1.46 PM camera watermark, reconstructing the underlying floor naturally. Reduce lens haze moderately, reduce glare, improve neutral white balance, recover local contrast and detail without exaggeration. Retain the real cold-room atmosphere, every existing carton stack, pallet, forklift, operator and wall layout, their exact positions, packaging designs and the same viewpoint. Preserve the identity, geometry, framing, physical condition and factual content of the original photograph. Professional but natural color grade; no cinematic redesign, no new objects, no beauty reconstruction of machinery, no added text or watermark. Preserve all original real-world lettering and logos except the explicitly specified phone watermark. Output same composition and aspect ratio as input."
+  },
+  {
+    "slug": "handling",
+    "originalUrl": "https://tatsuobeef.co.id/wp-content/uploads/2025/11/IMG-20251017-WA0010.jpg",
+    "originalFile": "IMG-20251017-WA0010.jpg",
+    "editedSource": "/home/faisal/.codex/generated_images/01a1794a-0f3b-7ba1-bc35-0b2aa0b10696/exec-9854a685-1d00-4182-b84a-b6cf1e032de6.png",
+    "output": "public/images/distribution/handling-restored-v1.webp",
+    "prompt": "Use case: lighting-weather and precise-object-edit. EDIT the provided ORIGINAL documentary photograph for a company website; this is photo restoration, not a new scene. Remove only the bottom-left Galaxy Z Fold6 and 1.46 PM camera watermark, reconstructing underlying floor naturally. Reduce lens haze and flare moderately, correct exposure and white balance, recover existing details and reduce phone noise. Retain the exact existing turquoise Sumitomo forklift, its worn surface and all real labels, the operator, cartons, pallet, warehouse layout and viewpoint. Do not repaint, replace or add equipment. Preserve the identity, geometry, framing, physical condition and factual content of the original photograph. Professional but natural color grade; no cinematic redesign, no new objects, no beauty reconstruction of machinery, no added text or watermark. Preserve all original real-world lettering and logos except the explicitly specified phone watermark. Output same composition and aspect ratio as input."
+  },
+  {
+    "slug": "fleet",
+    "originalUrl": "https://tatsuobeef.co.id/wp-content/uploads/2025/11/IMG-20251018-WA0002.jpg",
+    "originalFile": "IMG-20251018-WA0002.jpg",
+    "editedSource": "/home/faisal/.codex/generated_images/01a1794a-0f3b-7ba1-bc35-0b2aa0b10696/exec-d82b0899-3251-42c9-87da-23721f328974.png",
+    "output": "public/images/distribution/fleet-restored-v1.webp",
+    "prompt": "Use case: lighting-weather and precise-object-edit. EDIT the provided ORIGINAL documentary photograph for a company website; this is photo restoration, not a new scene. Improve neutral white balance, recover highlight and shadow detail, reduce phone noise and sharpen subtly. Keep both exact real trucks with their existing yellow and turquoise cab colors, graphics, shapes, refrigerated boxes, the real yard surface, trees and background shops, same count and same viewpoint. Do not make trucks new, do not erase physical graphics, do not replace scene or invent facilities. Preserve the identity, geometry, framing, physical condition and factual content of the original photograph. Professional but natural color grade; no cinematic redesign, no new objects, no beauty reconstruction of machinery, no added text or watermark. Preserve all original real-world lettering and logos except the explicitly specified phone watermark. Output same composition and aspect ratio as input."
+  },
+  {
+    "slug": "delivery",
+    "originalUrl": "https://tatsuobeef.co.id/wp-content/uploads/2025/11/IMG-20251018-WA0003.jpg",
+    "originalFile": "IMG-20251018-WA0003.jpg",
+    "editedSource": "/home/faisal/.codex/generated_images/01a1794a-0f3b-7ba1-bc35-0b2aa0b10696/exec-e1136f56-c254-4a2e-b9cb-2baaaf276308.png",
+    "output": "public/images/distribution/delivery-restored-v1.webp",
+    "prompt": "Use case: lighting-weather and precise-object-edit. EDIT the provided ORIGINAL documentary photograph for a company website; this is photo restoration, not a new scene. Improve exposure and natural contrast, recover dark truck detail, reduce phone noise and sharpen subtly. Keep the exact two real trucks including original turquoise and yellow cab colors, existing graphics, refrigeration units, same background shops, people, trees, yard and same viewpoint. Do not replace the scene, do not invent vehicles or equipment. Preserve the identity, geometry, framing, physical condition and factual content of the original photograph. Professional but natural color grade; no cinematic redesign, no new objects, no beauty reconstruction of machinery, no added text or watermark. Preserve all original real-world lettering and logos except the explicitly specified phone watermark. Output same composition and aspect ratio as input."
+  }
+]

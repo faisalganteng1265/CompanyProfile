@@ -13,6 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: "https://tatsuobeef.co.id/distribusi",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...products.map(({ slug }) => ({
       url: `https://tatsuobeef.co.id/produk/${slug}`,
       changeFrequency: "monthly" as const,

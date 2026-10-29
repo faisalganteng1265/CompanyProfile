@@ -24,6 +24,44 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 104px;
 }
+/* Apply both standard scrollbar colors and native WebKit styling. */
+html[data-landing-scrollbar="true"],
+html[data-landing-scrollbar="true"] body {
+  scrollbar-width: thin;
+  scrollbar-color: #ac252b #f4f0e7;
+}
+html[data-landing-scrollbar="true"]::-webkit-scrollbar,
+html[data-landing-scrollbar="true"] body::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+html[data-landing-scrollbar="true"]::-webkit-scrollbar-track,
+html[data-landing-scrollbar="true"] body::-webkit-scrollbar-track {
+  background: #f4f0e7;
+}
+html[data-landing-scrollbar="true"]::-webkit-scrollbar-thumb,
+html[data-landing-scrollbar="true"] body::-webkit-scrollbar-thumb {
+  background: #ac252b;
+  border: 2px solid #f4f0e7;
+  border-radius: 999px;
+  min-height: 56px;
+}
+html[data-landing-scrollbar="true"]::-webkit-scrollbar-thumb:hover,
+html[data-landing-scrollbar="true"] body::-webkit-scrollbar-thumb:hover {
+  background: #8f1d24;
+}
+html[data-landing-scrollbar="true"]::-webkit-scrollbar-thumb:active,
+html[data-landing-scrollbar="true"] body::-webkit-scrollbar-thumb:active {
+  background: #71171e;
+}
+html[data-landing-scrollbar="true"]::-webkit-scrollbar-button,
+html[data-landing-scrollbar="true"] body::-webkit-scrollbar-button {
+  display: none;
+}
+html[data-landing-scrollbar="true"]::-webkit-scrollbar-corner {
+  background: #f4f0e7;
+}
+
 body {
   margin: 0;
   background: var(--cream);

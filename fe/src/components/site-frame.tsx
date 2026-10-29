@@ -20,6 +20,14 @@ const navigation = [
 
 export default function SiteFrame({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  useLayoutEffect(() => {
+    const html = document.documentElement;
+    if (pathname === "/") html.dataset.landingScrollbar = "true";
+    else delete html.dataset.landingScrollbar;
+    return () => {
+      delete html.dataset.landingScrollbar;
+    };
+  }, [pathname]);
   const [menuPath, setMenuPath] = useState<string | null>(null);
   const [menuPresent, setMenuPresent] = useState(false);
   const [transitioning, setTransitioning] = useState(false);

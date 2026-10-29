@@ -23,6 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: "https://tatsuobeef.co.id/kontak",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...products.map(({ slug }) => ({
       url: `https://tatsuobeef.co.id/produk/${slug}`,
       changeFrequency: "monthly" as const,

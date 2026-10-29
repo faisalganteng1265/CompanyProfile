@@ -34,7 +34,7 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
     const links = element.querySelectorAll("a");
     const signature = element.querySelector("p");
     const context = gsap.context(() => {
-      gsap.set(element, { clipPath: "inset(0 0 100% 0)" });
+      gsap.set(element, { yPercent: -100 });
       gsap.set(links, { y: 28, opacity: 0 });
       if (signature) gsap.set(signature, { y: 12, opacity: 0 });
       const timeline = gsap.timeline({
@@ -49,7 +49,7 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
       });
       timeline
         .to(element, {
-          clipPath: "inset(0 0 0% 0)",
+          yPercent: 0,
           duration: reduced ? 0.01 : 0.65,
           ease: "power3.inOut",
         })

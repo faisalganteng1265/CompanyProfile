@@ -52,40 +52,50 @@ export default function TatsuoBenefits() {
     gsap.registerPlugin(ScrollTrigger);
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
-      media.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.fromTo(
-          ".tatsuo-promise-row",
-          { y: 24, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            stagger: 0.12,
-            duration: 0.85,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: root.current,
-              start: "top 89%",
-              end: "bottom top",
-              toggleActions: "restart reset restart reset",
+      media.add(
+        {
+          mobile: "(max-width: 760px)",
+          motion: "(prefers-reduced-motion: no-preference)",
+        },
+        (match) => {
+          if (!match.conditions?.motion) return;
+          const mobile = Boolean(match.conditions.mobile);
+          gsap.fromTo(
+            ".tatsuo-promise-row",
+            { y: 24, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              stagger: 0.12,
+              duration: 0.85,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: root.current,
+                start: "top 89%",
+                end: "bottom top",
+                toggleActions: "restart reset restart reset",
+              },
             },
-          },
-        );
-        gsap.fromTo(
-          ".tatsuo-promise-collage",
-          { clipPath: "inset(0 0 100% 0)" },
-          {
-            clipPath: "inset(0 0 0% 0)",
-            duration: 1.2,
-            ease: "power3.inOut",
-            scrollTrigger: {
-              trigger: root.current,
-              start: "top 89%",
-              end: "bottom top",
-              toggleActions: "restart reset restart reset",
+          );
+          gsap.fromTo(
+            ".tatsuo-promise-collage",
+            mobile ? { y: 20, opacity: 0 } : { clipPath: "inset(0 0 100% 0)" },
+            {
+              ...(mobile
+                ? { y: 0, opacity: 1 }
+                : { clipPath: "inset(0 0 0% 0)" }),
+              duration: mobile ? 0.65 : 1.2,
+              ease: "power3.inOut",
+              scrollTrigger: {
+                trigger: root.current,
+                start: "top 89%",
+                end: "bottom top",
+                toggleActions: "restart reset restart reset",
+              },
             },
-          },
-        );
-      });
+          );
+        },
+      );
     }, root);
     return () => {
       media.revert();

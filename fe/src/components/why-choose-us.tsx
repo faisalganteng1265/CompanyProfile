@@ -52,6 +52,7 @@ export default function WhyChooseUs() {
           const target = Number(number.dataset.value);
           const counter = { value: 0 };
           number.textContent = "0";
+          let displayed = "0";
           ring.style.strokeDashoffset = "100";
 
           // One animated value drives both the number and its circular progress.
@@ -62,7 +63,11 @@ export default function WhyChooseUs() {
               duration: 1.2,
               ease: "power2.out",
               onUpdate: () => {
-                number.textContent = String(Math.round(counter.value));
+                const next = String(Math.round(counter.value));
+                if (displayed !== next) {
+                  number.textContent = next;
+                  displayed = next;
+                }
                 ring.style.strokeDashoffset = String(100 - counter.value);
               },
               onComplete: () => {
@@ -78,21 +83,23 @@ export default function WhyChooseUs() {
             ring.style.strokeDashoffset = String(100 - target);
           });
         });
-        gsap.fromTo(
-          ".why-story-photo img",
-          { yPercent: -3, scale: 1.07 },
-          {
-            yPercent: 3,
-            scale: 1.07,
-            ease: "none",
-            scrollTrigger: {
-              trigger: root.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
+        if (!window.matchMedia("(max-width: 760px)").matches) {
+          gsap.fromTo(
+            ".why-story-photo img",
+            { yPercent: -3, scale: 1.07 },
+            {
+              yPercent: 3,
+              scale: 1.07,
+              ease: "none",
+              scrollTrigger: {
+                trigger: root.current,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.2,
+              },
             },
-          },
-        );
+          );
+        }
         return () => restoreStats.forEach((restore) => restore());
       });
     }, root);

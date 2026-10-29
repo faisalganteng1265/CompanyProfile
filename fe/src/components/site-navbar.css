@@ -332,7 +332,7 @@
 /* The overlay stays mounted while its reversible entrance timeline closes. */
 .tatsuo-navbar .mobile-menu {
   animation: none;
-  will-change: clip-path;
+  will-change: transform;
 }
 .tatsuo-navbar .mobile-menu[hidden] {
   display: none !important;

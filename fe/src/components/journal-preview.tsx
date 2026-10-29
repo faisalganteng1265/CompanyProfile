@@ -17,42 +17,69 @@ export default function JournalPreview() {
     gsap.registerPlugin(ScrollTrigger);
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
-      media.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.utils.toArray<HTMLElement>(".journal-card").forEach((card) => {
-          const image = card.querySelector(".journal-image");
-          const copy = card.querySelector(".journal-copy");
-          if (!image || !copy) return;
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: card,
-                start: "top 91%",
-                end: "bottom top",
-                toggleActions: "restart reset restart reset",
-              },
-            })
-            .fromTo(
-              image,
-              { clipPath: "inset(0 0 100% 0)" },
-              {
-                clipPath: "inset(0 0 0% 0)",
-                duration: 1.1,
-                ease: "power3.inOut",
-              },
-            )
-            .fromTo(
-              copy,
-              { y: 22, opacity: 0 },
-              {
-                y: 0,
-                opacity: 1,
-                duration: 0.85,
-                ease: "power3.out",
-              },
-              0.3,
-            );
-        });
-      });
+      media.add(
+        {
+          mobile: "(max-width: 760px)",
+          motion: "(prefers-reduced-motion: no-preference)",
+        },
+        (match) => {
+          if (!match.conditions?.motion) return;
+          const mobile = Boolean(match.conditions.mobile);
+          gsap.utils.toArray<HTMLElement>(".journal-card").forEach((card) => {
+            if (mobile) {
+              gsap.fromTo(
+                card,
+                { y: 20, opacity: 0 },
+                {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.65,
+                  ease: "power2.out",
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 93%",
+                    end: "bottom top",
+                    toggleActions: "restart reset restart reset",
+                  },
+                },
+              );
+              return;
+            }
+            const image = card.querySelector(".journal-image");
+            const copy = card.querySelector(".journal-copy");
+            if (!image || !copy) return;
+            gsap
+              .timeline({
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top 91%",
+                  end: "bottom top",
+                  toggleActions: "restart reset restart reset",
+                },
+              })
+              .fromTo(
+                image,
+                { clipPath: "inset(0 0 100% 0)" },
+                {
+                  clipPath: "inset(0 0 0% 0)",
+                  duration: 1.1,
+                  ease: "power3.inOut",
+                },
+              )
+              .fromTo(
+                copy,
+                { y: 22, opacity: 0 },
+                {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.85,
+                  ease: "power3.out",
+                },
+                0.3,
+              );
+          });
+        },
+      );
     }, element);
     return () => {
       media.revert();

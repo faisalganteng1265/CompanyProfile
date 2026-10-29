@@ -621,3 +621,44 @@
     font-size: clamp(42px, 12svh, 64px);
   }
 }
+
+/* Cheaper phone animation layers: keep the stack, animate only its copy. */
+@media (max-width: 760px) {
+  .site-content.is-landing .home-v2 {
+    --white-grain: url("/images/paper-grain-mobile.png");
+  }
+  .site-content.is-landing .home-v2 .ambient-canvas,
+  .site-content.is-landing .home-v2 .hero-light,
+  .site-content.is-landing .home-v2 .v2-progress,
+  .site-content.is-landing .home-v2 .v2-craft-slash {
+    display: none;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-mask {
+    clip-path: none;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-image {
+    transform: none;
+  }
+  .site-content.is-landing .home-v2 .why-story-tag,
+  .site-content.is-landing .home-v2 .quality-seal > svg {
+    animation: none;
+  }
+  .site-content.is-landing .home-v2 .v2-product-photo-motion > img {
+    filter: none;
+    transition: none;
+  }
+  .site-content.is-landing .home-v2 .v2-favourite-image-link:hover img,
+  .site-content.is-landing
+    .home-v2
+    .journal-card-link:hover
+    .journal-image
+    > img {
+    transform: none;
+  }
+  .site-content.is-landing .home-v2 .journal-image > img {
+    transition: none;
+  }
+  header.tatsuo-navbar .tatsuo-navbar-panel {
+    will-change: auto;
+  }
+}

@@ -29,6 +29,7 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
     const progress = { value: 0 };
     const count = element.querySelector(".landing-intro-count");
     const line = element.querySelector(".landing-intro-progress");
+    const setProgress = line ? gsap.quickSetter(line, "scaleX") : null;
     const context = gsap.context(() => {
       if (!reduced) {
         gsap.from(".landing-intro-logo", { opacity: 0, y: 12, duration: 0.7 });
@@ -59,9 +60,9 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
       });
     const update = () => {
       if (!active) return;
-      if (count)
-        count.textContent = String(Math.round(progress.value)).padStart(3, "0");
-      if (line) gsap.set(line, { scaleX: progress.value / 100 });
+      const label = String(Math.round(progress.value)).padStart(3, "0");
+      if (count && count.textContent !== label) count.textContent = label;
+      setProgress?.(progress.value / 100);
     };
     const exit = () => {
       if (!active || exiting || !element.isConnected) return;

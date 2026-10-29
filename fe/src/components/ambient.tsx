@@ -7,7 +7,7 @@ export default function Ambient() {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const canvas = ref.current;
-    if (!canvas) return;
+    if (!canvas || window.matchMedia("(max-width: 760px)").matches) return;
     const context = canvas.getContext("2d");
     if (!context) return;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");

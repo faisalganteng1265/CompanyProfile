@@ -12,12 +12,14 @@ export default function LandingScroll() {
   useEffect(() => {
     if (pathname !== "/") return;
     gsap.registerPlugin(ScrollTrigger);
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const media = window.matchMedia(
+      "(min-width: 761px) and (prefers-reduced-motion: no-preference)",
+    );
     let dispose: (() => void) | undefined;
     const configure = () => {
       dispose?.();
       dispose = undefined;
-      if (media.matches) return;
+      if (!media.matches) return;
       const headerHeight =
         document.querySelector(".site-header")?.getBoundingClientRect()
           .height || 96;

@@ -76,134 +76,166 @@ export default function LandingV2() {
     gsap.registerPlugin(ScrollTrigger);
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
-      media.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.utils.toArray<HTMLElement>(".v2-reveal").forEach((el) => {
-          gsap.from(el, {
-            y: 42,
-            opacity: 0,
-            duration: 1.1,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 92%", once: true },
-            clearProps: "transform,opacity",
+      media.add(
+        {
+          mobile: "(max-width: 760px)",
+          motion: "(prefers-reduced-motion: no-preference)",
+        },
+        (match) => {
+          if (!match.conditions?.motion) return;
+          const mobile = Boolean(match.conditions.mobile);
+          gsap.utils.toArray<HTMLElement>(".v2-reveal").forEach((el) => {
+            gsap.from(el, {
+              y: 42,
+              opacity: 0,
+              duration: 1.1,
+              ease: "power3.out",
+              scrollTrigger: { trigger: el, start: "top 92%", once: true },
+              clearProps: "transform,opacity",
+            });
           });
-        });
-        gsap.utils
-          .toArray<HTMLElement>(".v2-favourite")
-          .forEach((card, index) => {
-            const frame = card.querySelector(".v2-favourite-image-link");
-            const photo = card.querySelector(".v2-product-photo-motion");
-            const title = card.querySelector("h3");
-            const details = card.querySelector(".v2-cut-bottom");
-            if (!frame || !photo || !title || !details) return;
-            const entrance = gsap.timeline({
-              delay: (index % 4) * 0.09,
+          gsap.utils
+            .toArray<HTMLElement>(".v2-favourite")
+            .forEach((card, index) => {
+              if (mobile) {
+                gsap.fromTo(
+                  card,
+                  { y: 22, opacity: 0 },
+                  {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.65,
+                    delay: (index % 2) * 0.06,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                      trigger: card,
+                      start: "top 93%",
+                      end: "bottom top",
+                      toggleActions: "restart reset restart reset",
+                    },
+                  },
+                );
+                return;
+              }
+              const frame = card.querySelector(".v2-favourite-image-link");
+              const photo = card.querySelector(".v2-product-photo-motion");
+              const title = card.querySelector("h3");
+              const details = card.querySelector(".v2-cut-bottom");
+              if (!frame || !photo || !title || !details) return;
+              const entrance = gsap.timeline({
+                delay: (index % 4) * 0.09,
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top 91%",
+                  end: "bottom top",
+                  toggleActions: "restart reset restart reset",
+                },
+              });
+              entrance
+                .fromTo(
+                  frame,
+                  {
+                    clipPath: "inset(0% 0% 100% 0%)",
+                    y: 32,
+                  },
+                  {
+                    clipPath: "inset(0% 0% 0% 0%)",
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power3.inOut",
+                  },
+                  0,
+                )
+                .fromTo(
+                  photo,
+                  { scale: 1.2, yPercent: -7 },
+                  {
+                    scale: 1,
+                    yPercent: 0,
+                    duration: 1.65,
+                    ease: "power3.out",
+                  },
+                  0.08,
+                )
+                .fromTo(
+                  title,
+                  { y: 22, opacity: 0 },
+                  {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power3.out",
+                  },
+                  0.5,
+                )
+                .fromTo(
+                  details,
+                  { y: 14, opacity: 0 },
+                  {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.7,
+                    ease: "power3.out",
+                  },
+                  0.67,
+                );
+            });
+          const closingEntrance = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".v2-closing-cta",
+              start: "top 92%",
+              end: "bottom top",
+              toggleActions: "restart reset restart reset",
+            },
+          });
+          closingEntrance
+            .fromTo(
+              ".v2-closing-background",
+              { scaleX: 0 },
+              {
+                scaleX: 1,
+                duration: 0.95,
+                ease: "power3.inOut",
+              },
+              0,
+            )
+            .fromTo(
+              ".v2-closing-cta .v2-closing-reveal",
+              {
+                x: -20,
+                opacity: 0,
+              },
+              {
+                x: 0,
+                opacity: 1,
+                duration: 0.75,
+                stagger: 0.12,
+                ease: "power3.out",
+              },
+              0.55,
+            );
+          if (!mobile) {
+            gsap.to(".v2-running-copy", {
+              xPercent: -18,
+              ease: "none",
               scrollTrigger: {
-                trigger: card,
-                start: "top 91%",
+                trigger: ".v2-running-line",
+                start: "top bottom",
                 end: "bottom top",
-                toggleActions: "restart reset restart reset",
+                scrub: 1.4,
               },
             });
-            entrance
-              .fromTo(
-                frame,
-                {
-                  clipPath: "inset(0% 0% 100% 0%)",
-                  y: 32,
-                },
-                {
-                  clipPath: "inset(0% 0% 0% 0%)",
-                  y: 0,
-                  duration: 1.2,
-                  ease: "power3.inOut",
-                },
-                0,
-              )
-              .fromTo(
-                photo,
-                { scale: 1.2, yPercent: -7 },
-                {
-                  scale: 1,
-                  yPercent: 0,
-                  duration: 1.65,
-                  ease: "power3.out",
-                },
-                0.08,
-              )
-              .fromTo(
-                title,
-                { y: 22, opacity: 0 },
-                {
-                  y: 0,
-                  opacity: 1,
-                  duration: 0.8,
-                  ease: "power3.out",
-                },
-                0.5,
-              )
-              .fromTo(
-                details,
-                { y: 14, opacity: 0 },
-                {
-                  y: 0,
-                  opacity: 1,
-                  duration: 0.7,
-                  ease: "power3.out",
-                },
-                0.67,
-              );
-          });
-        const closingEntrance = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".v2-closing-cta",
-            start: "top 92%",
-            end: "bottom top",
-            toggleActions: "restart reset restart reset",
-          },
-        });
-        closingEntrance
-          .fromTo(
-            ".v2-closing-background",
-            { scaleX: 0 },
-            {
+          }
+          if (!mobile) {
+            gsap.to(".v2-progress", {
               scaleX: 1,
-              duration: 0.95,
-              ease: "power3.inOut",
-            },
-            0,
-          )
-          .fromTo(
-            ".v2-closing-cta .v2-closing-reveal",
-            {
-              x: -20,
-              opacity: 0,
-            },
-            {
-              x: 0,
-              opacity: 1,
-              duration: 0.75,
-              stagger: 0.12,
-              ease: "power3.out",
-            },
-            0.55,
-          );
-        gsap.to(".v2-running-copy", {
-          xPercent: -18,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".v2-running-line",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.4,
-          },
-        });
-        gsap.to(".v2-progress", {
-          scaleX: 1,
-          transformOrigin: "left",
-          ease: "none",
-          scrollTrigger: { start: 0, end: "max", scrub: 0.2 },
-        });
-      });
+              transformOrigin: "left",
+              ease: "none",
+              scrollTrigger: { start: 0, end: "max", scrub: 0.2 },
+            });
+          }
+        },
+      );
       media.add(
         "(min-width: 761px) and (prefers-reduced-motion: no-preference)",
         () => {
@@ -225,58 +257,72 @@ export default function LandingV2() {
           );
         },
       );
-      media.add("(prefers-reduced-motion: no-preference)", () => {
-        const stage =
-          root.current?.querySelector<HTMLElement>(".v2-craft-stage");
-        const header = document.querySelector<HTMLElement>(".site-header");
-        const syncOffset = () =>
-          stage?.style.setProperty(
-            "--craft-top",
-            `${header?.getBoundingClientRect().height ?? 96}px`,
-          );
-        syncOffset();
-        const observer = new ResizeObserver(syncOffset);
-        if (header) observer.observe(header);
-        const timeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".v2-craft-stage",
-            start: () =>
-              `top ${header?.getBoundingClientRect().height ?? 96}px`,
-            end: () =>
-              `+=${Math.max(1, (stage?.offsetHeight ?? 0) - (stage?.querySelector<HTMLElement>(".v2-craft")?.offsetHeight ?? 0))}`,
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-        });
-        timeline
-          .to(
-            ".v2-craft-mask",
-            {
-              clipPath: "polygon(0% 0%,100% 0%,100% 100%,0% 100%)",
-              ease: "none",
-              duration: 1,
+      media.add(
+        {
+          mobile: "(max-width: 760px)",
+          motion: "(prefers-reduced-motion: no-preference)",
+        },
+        (match) => {
+          if (!match.conditions?.motion) return;
+          const mobile = Boolean(match.conditions.mobile);
+          const stage =
+            root.current?.querySelector<HTMLElement>(".v2-craft-stage");
+          const header = document.querySelector<HTMLElement>(".site-header");
+          const syncOffset = () =>
+            stage?.style.setProperty(
+              "--craft-top",
+              `${header?.getBoundingClientRect().height ?? 96}px`,
+            );
+          syncOffset();
+          const observer = new ResizeObserver(syncOffset);
+          if (header) observer.observe(header);
+          const timeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".v2-craft-stage",
+              start: () =>
+                `top ${header?.getBoundingClientRect().height ?? 96}px`,
+              end: () =>
+                `+=${Math.max(1, (stage?.offsetHeight ?? 0) - (stage?.querySelector<HTMLElement>(".v2-craft")?.offsetHeight ?? 0))}`,
+              scrub: true,
+              invalidateOnRefresh: true,
             },
-            0,
-          )
-          .to(
-            ".v2-craft-image",
-            { scale: 1.03, xPercent: -3, ease: "none", duration: 1 },
-            0,
-          )
-          .to(
-            ".v2-craft-slash",
-            { xPercent: -100, opacity: 0, duration: 0.7 },
-            0,
-          )
-          .to(".v2-craft-first", { y: -45, opacity: 0, duration: 0.35 }, 0.4)
-          .fromTo(
-            ".v2-craft-last",
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.4 },
-            0.65,
-          );
-        return () => observer.disconnect();
-      });
+          });
+          if (!mobile)
+            timeline
+              .to(
+                ".v2-craft-mask",
+                {
+                  clipPath: "polygon(0% 0%,100% 0%,100% 100%,0% 100%)",
+                  ease: "none",
+                  duration: 1,
+                },
+                0,
+              )
+              .to(
+                ".v2-craft-image",
+                { scale: 1.03, xPercent: -3, ease: "none", duration: 1 },
+                0,
+              )
+              .to(
+                ".v2-craft-slash",
+                { xPercent: -100, opacity: 0, duration: 0.7 },
+                0,
+              );
+          timeline
+            .to(
+              ".v2-craft-first",
+              { y: mobile ? -16 : -45, opacity: 0, duration: 0.35 },
+              0.4,
+            )
+            .fromTo(
+              ".v2-craft-last",
+              { y: mobile ? 20 : 50, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.4 },
+              0.65,
+            );
+          return () => observer.disconnect();
+        },
+      );
     }, root);
     let active = true;
     document.fonts.ready.then(() => {

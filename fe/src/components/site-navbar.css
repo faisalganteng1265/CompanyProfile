@@ -116,7 +116,8 @@
 .tatsuo-navbar .menu-toggle {
   display: none;
 }
-.tatsuo-mobile-contact {
+.tatsuo-mobile-contact,
+.tatsuo-mobile-actions {
   display: none;
 }
 .site-content .home-v2 .v2-original-hero {

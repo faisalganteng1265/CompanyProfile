@@ -994,3 +994,63 @@
     border-top: 1px solid #d8cebe;
   }
 }
+
+/* Scroll choreography shares the same lightweight motion on touch screens. */
+.about-filmstrip figure {
+  overflow: clip;
+}
+.about-film-side img {
+  scale: 1.12;
+}
+.tatsuo-about-mission,
+.tatsuo-about-principle {
+  position: relative;
+  --about-rule: 1;
+}
+.tatsuo-about-mission {
+  border-bottom-color: transparent;
+}
+.tatsuo-about-principle {
+  border-top-color: transparent;
+}
+.tatsuo-about-mission::after,
+.tatsuo-about-principle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: scaleX(var(--about-rule));
+  transform-origin: left;
+  pointer-events: none;
+}
+.tatsuo-about-mission::after {
+  bottom: 0;
+  background: #fff3e04a;
+}
+.tatsuo-about-principle::before {
+  top: 0;
+  background: #c9bca9;
+}
+.tatsuo-about-outro {
+  position: relative;
+  isolation: isolate;
+  --about-curtain: 1;
+  background: var(--about-paper) var(--about-grain);
+  background-size: 160px;
+}
+.tatsuo-about-outro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #f0cb73 var(--about-grain);
+  background-size: 160px;
+  transform: scaleX(var(--about-curtain));
+  transform-origin: left;
+}
+@media (max-width: 760px) {
+  .tatsuo-about-halal-document {
+    transform-origin: center bottom;
+  }
+}

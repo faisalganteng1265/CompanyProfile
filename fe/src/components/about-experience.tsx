@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Arrow, Asterisk } from "./icons";
+import MobileOptimizedImage from "./mobile-optimized-image";
 import { whatsapp } from "@/lib/company";
 
 const missions = [
@@ -44,79 +45,224 @@ export default function AboutExperience() {
     gsap.registerPlugin(ScrollTrigger);
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
-      media.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from(".about-manifesto-title b", {
-          yPercent: 110,
-          rotation: 3,
-          duration: 1.15,
-          stagger: 0.12,
-          ease: "power4.out",
-          clearProps: "transform",
-        });
-        gsap.from(".about-filmstrip figure", {
-          y: 45,
-          opacity: 0,
-          duration: 0.9,
-          stagger: 0.12,
-          delay: 0.3,
-          ease: "power3.out",
-          clearProps: "transform,opacity",
-        });
-        gsap.utils.toArray<HTMLElement>(".about-read-word").forEach((word) => {
-          gsap.fromTo(
-            word,
-            { opacity: 0.22 },
-            {
-              opacity: 1,
-              ease: "none",
-              scrollTrigger: {
-                trigger: word,
-                start: "top 85%",
-                end: "top 55%",
-                scrub: 0.35,
-              },
-            },
-          );
-        });
-        gsap.from(".about-film-main", {
-          scale: 0.92,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".about-filmstrip",
-            start: "top bottom",
-            end: "center center",
-            scrub: 0.5,
-          },
-        });
-        gsap.from(".tatsuo-about-enter", {
-          y: 28,
-          opacity: 0,
-          duration: 0.85,
-          stagger: 0.1,
-          ease: "power3.out",
-          clearProps: "transform,opacity",
-        });
-        gsap.utils
-          .toArray<HTMLElement>(".tatsuo-about-reveal")
-          .forEach((item) => {
+      media.add(
+        {
+          motion: "(prefers-reduced-motion: no-preference)",
+          mobile: "(max-width: 760px)",
+          desktop: "(min-width: 761px)",
+        },
+        (match) => {
+          if (!match.conditions?.motion) return;
+          const mobile = Boolean(match.conditions.mobile);
+          const reveal = (
+            targets: gsap.TweenTarget,
+            trigger: Element,
+            vars = {},
+          ) =>
             gsap.fromTo(
-              item,
-              { y: 26, opacity: 0 },
+              targets,
+              { y: mobile ? 22 : 38, opacity: 0 },
               {
                 y: 0,
                 opacity: 1,
-                duration: 0.8,
+                duration: mobile ? 0.7 : 0.9,
+                stagger: 0.09,
                 ease: "power3.out",
+                ...vars,
                 scrollTrigger: {
-                  trigger: item,
-                  start: "top 92%",
-                  end: "bottom top",
-                  toggleActions: "restart reset restart reset",
+                  trigger,
+                  start: "top 90%",
+                  toggleActions: "play none none reverse",
                 },
               },
             );
+
+          const opening = gsap.timeline();
+          opening
+            .from(".about-manifesto-title b", {
+              yPercent: 110,
+              rotation: mobile ? 0 : 3,
+              duration: 1.1,
+              stagger: 0.14,
+              ease: "power4.out",
+            })
+            .from(
+              ".tatsuo-about-enter",
+              {
+                y: 18,
+                opacity: 0,
+                duration: 0.7,
+                stagger: 0.1,
+              },
+              0.35,
+            );
+
+          // Animate the photograph inside each frame, keeping scroll transforms separate.
+          const film = element.querySelector(".about-filmstrip")!;
+          reveal(".about-filmstrip figure", film);
+          gsap.fromTo(
+            ".about-film-main img",
+            { scale: 1.14 },
+            {
+              scale: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: film,
+                start: "top 95%",
+                end: "center 40%",
+                scrub: true,
+              },
+            },
+          );
+          gsap.fromTo(
+            ".about-film-side:first-child img",
+            { yPercent: -5 },
+            {
+              yPercent: 5,
+              ease: "none",
+              scrollTrigger: {
+                trigger: film,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            },
+          );
+          gsap.fromTo(
+            ".about-film-side:last-child img",
+            { yPercent: 5 },
+            {
+              yPercent: -5,
+              ease: "none",
+              scrollTrigger: {
+                trigger: film,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            },
+          );
+          gsap.fromTo(
+            ".about-film-seal",
+            { rotation: -12, scale: 0.85 },
+            {
+              rotation: 3,
+              scale: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: film,
+                start: "top 85%",
+                end: "bottom 30%",
+                scrub: true,
+              },
+            },
+          );
+
+          // A single staggered reading timeline replaces one trigger per word.
+          gsap.fromTo(
+            ".about-read-word",
+            { opacity: 0.25 },
+            {
+              opacity: 1,
+              stagger: 0.15,
+              ease: "none",
+              scrollTrigger: {
+                trigger: "#about-vision-heading",
+                start: "top 80%",
+                end: "bottom 55%",
+                scrub: true,
+              },
+            },
+          );
+          gsap.to(".tatsuo-about-vision > svg", {
+            rotation: 150,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".tatsuo-about-purpose",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
           });
-      });
+
+          // General reveals exclude sections that have their own choreography.
+          gsap.utils
+            .toArray<HTMLElement>(".tatsuo-about-reveal")
+            .forEach((item) => {
+              if (
+                item.matches(
+                  ".tatsuo-about-story-copy, .tatsuo-about-vision, .tatsuo-about-mission, .tatsuo-about-principle, .tatsuo-about-halal-document, .tatsuo-about-partners, .tatsuo-about-outro-inner",
+                )
+              )
+                return;
+              reveal(item, item);
+            });
+          const story = element.querySelector(".tatsuo-about-story-copy")!;
+          reveal(story.children, story);
+          const vision = element.querySelector(".tatsuo-about-vision")!;
+          reveal(vision.querySelectorAll(".tatsuo-about-label, p"), vision);
+          gsap.utils
+            .toArray<HTMLElement>(
+              ".tatsuo-about-mission, .tatsuo-about-principle",
+            )
+            .forEach((row) => {
+              reveal(row.children, row);
+              gsap.fromTo(
+                row,
+                { "--about-rule": 0 },
+                {
+                  "--about-rule": 1,
+                  duration: 0.9,
+                  ease: "power3.inOut",
+                  scrollTrigger: {
+                    trigger: row,
+                    start: "top 90%",
+                    toggleActions: "play none none reverse",
+                  },
+                },
+              );
+            });
+          const documentCard = element.querySelector(
+            ".tatsuo-about-halal-document",
+          )!;
+          gsap.fromTo(
+            documentCard,
+            { y: mobile ? 28 : 50, rotation: mobile ? -2 : -5, opacity: 0 },
+            {
+              y: 0,
+              rotation: 0,
+              opacity: 1,
+              duration: 0.95,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: documentCard,
+                start: "top 88%",
+                toggleActions: "play none none reverse",
+              },
+            },
+          );
+          const partnerGrid = element.querySelector(".tatsuo-about-partners")!;
+          reveal(partnerGrid.children, partnerGrid, {
+            stagger: mobile ? 0.08 : 0.12,
+          });
+          const outro = element.querySelector(".tatsuo-about-outro-inner")!;
+          reveal(outro.children, outro, { stagger: 0.16 });
+          gsap.fromTo(
+            ".tatsuo-about-outro",
+            { "--about-curtain": 0 },
+            {
+              "--about-curtain": 1,
+              duration: 1.1,
+              ease: "power3.inOut",
+              scrollTrigger: {
+                trigger: ".tatsuo-about-outro",
+                start: "top 92%",
+                toggleActions: "play none none reverse",
+              },
+            },
+          );
+        },
+      );
     }, element);
     return () => {
       media.revert();
@@ -167,7 +313,7 @@ export default function AboutExperience() {
             <figcaption>01 / DARI TEMPAT KAMI</figcaption>
           </figure>
           <figure className="about-film-main">
-            <Image
+            <MobileOptimizedImage
               src="/images/craft-butcher-hands-v1.webp"
               alt="Ilustrasi ketelitian dalam menyiapkan bahan pilihan"
               width={1672}

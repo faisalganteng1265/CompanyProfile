@@ -786,3 +786,220 @@
     transform: none;
   }
 }
+
+/* Compact service index and portrait, with an open reading column. */
+@media (min-width: 1000px) {
+  .dist-services {
+    width: 96%;
+    max-width: 1920px;
+    grid-template-columns: 18% 18% 1fr;
+    column-gap: 7.5%;
+  }
+  .dist-service-nav {
+    padding-top: 0;
+    top: 145px;
+  }
+  .dist-service-nav > .dist-kicker {
+    margin: 0;
+    padding: 8px 6px;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    background: #27282108;
+  }
+  .dist-service-nav > a {
+    padding: 10px 6px;
+    gap: 10px;
+    font-size: 13px;
+    line-height: 1.3;
+    text-transform: uppercase;
+    transition:
+      background 0.25s ease,
+      color 0.25s ease;
+  }
+  .dist-service-nav > a.is-active {
+    background: var(--red);
+    color: #fff3db;
+  }
+  .dist-service-nav > a.is-active small {
+    opacity: 1;
+  }
+  .dist-service-nav > a.dist-catalog-link {
+    margin-top: 25px;
+    font-size: 11px;
+  }
+  .dist-photo-slot .dist-sticky-photo {
+    height: auto;
+    aspect-ratio: 1 / 1.32;
+    min-height: 0;
+    max-height: calc(100svh - 190px);
+  }
+  .dist-photo-count {
+    bottom: 12px;
+    left: 12px;
+    padding: 7px 10px;
+    font-size: 10px;
+  }
+  .dist-chapters {
+    padding-left: 10%;
+  }
+  .dist-chapter {
+    position: relative;
+    min-height: 68svh;
+    padding: 28px 0 65px;
+    align-items: flex-start;
+    border-top: 1px solid #27282138;
+  }
+  .dist-chapter-copy {
+    width: 100%;
+  }
+  .dist-chapter-number {
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .dist-chapter-number small {
+    font-size: 12px;
+  }
+  .dist-chapter h2 {
+    font-family: var(--font-body);
+    font-size: clamp(27px, 2.05vw, 38px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    max-width: 620px;
+    margin-bottom: clamp(45px, 6vw, 105px);
+  }
+  .dist-chapter p {
+    max-width: 430px;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+  }
+  .dist-chapter ul {
+    max-width: 430px;
+    margin: 22px 0 30px;
+  }
+  .dist-chapter li {
+    font-size: 13px;
+    padding: 10px 0;
+  }
+  .dist-chapter .dist-text-link {
+    width: fit-content;
+    margin-left: auto;
+    padding: 13px 20px;
+    border: 1px solid #27282145;
+    border-radius: 40px;
+    font-size: 12px;
+  }
+}
+
+/* Service introduction follows the same columns as the sticky service index. */
+.dist-intro {
+  width: 96%;
+  max-width: 1920px;
+  margin: auto;
+  padding: 95px 0 120px;
+  display: grid;
+  grid-template-columns: 18% 1fr;
+  column-gap: 7.5%;
+  row-gap: 55px;
+  overflow: visible;
+}
+.dist-intro-label {
+  grid-column: 1;
+  grid-row: 1;
+  padding-top: 8px;
+  font-size: 11px;
+}
+.dist-intro h2 {
+  grid-column: 2;
+  grid-row: 1;
+  max-width: 1150px;
+  font-family: var(--font-body);
+  font-size: clamp(44px, 4.65vw, 86px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+  margin: 0;
+}
+.dist-intro h2 > span {
+  color: #96958f;
+}
+.dist-intro-description {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: end;
+  font-size: 16px;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 320px;
+}
+.dist-intro .dist-gallery {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  height: auto;
+  margin: 0;
+  align-items: stretch;
+}
+.dist-intro .dist-gallery > div {
+  display: block;
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1.25;
+  overflow: hidden;
+}
+.dist-intro .dist-gallery-center::after {
+  display: none;
+}
+@media (max-width: 999px) {
+  .dist-intro {
+    width: 89%;
+    grid-template-columns: 1fr;
+    padding: 65px 0 75px;
+    gap: 28px;
+  }
+  .dist-intro-label {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .dist-intro h2 {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: clamp(38px, 6.5vw, 64px);
+  }
+  .dist-intro-description {
+    grid-column: 1;
+    grid-row: 3;
+    max-width: 500px;
+  }
+  .dist-intro .dist-gallery {
+    grid-column: 1;
+    grid-row: 4;
+    gap: 12px;
+  }
+}
+@media (max-width: 760px) {
+  .dist-intro {
+    width: calc(100% - 40px);
+    padding: 50px 0;
+    gap: 24px;
+  }
+  .dist-intro h2 {
+    font-size: clamp(33px, 8.7vw, 58px);
+  }
+  .dist-intro-description {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .dist-intro .dist-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}

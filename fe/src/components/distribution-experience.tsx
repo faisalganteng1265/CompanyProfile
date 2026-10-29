@@ -215,7 +215,7 @@ export default function DistributionExperience() {
               y: 0,
               width: () => slot.clientWidth,
               height: () =>
-                Math.max(420, Math.min(850, window.innerHeight - 190)),
+                Math.min(slot.clientWidth * 1.32, window.innerHeight - 190),
               ease: "none",
               scrollTrigger: {
                 trigger: ".dist-gallery",
@@ -242,7 +242,7 @@ export default function DistributionExperience() {
               0,
             )
             .to(
-              ".dist-gallery-right",
+              ".dist-gallery-right, .dist-gallery-last",
               { xPercent: -100, opacity: 0, ease: "none" },
               0,
             );
@@ -401,28 +401,30 @@ export default function DistributionExperience() {
         </div>
       </section>
 
-      <section id="perjalanan" className="dist-intro">
-        <div className="dist-intro-heading dist-reveal">
-          <span className="dist-kicker">
-            SATU PERJALANAN. SETIAP TAHAP BERARTI.
-          </span>
-          <h2>
-            Di balik sajian Anda,
-            <br />
-            <em>kami ikut bergerak.</em>
-          </h2>
-          <p>
-            Dari ruang penyimpanan hingga persiapan pengiriman. Ada orang,
-            fasilitas, dan perhatian di setiap langkahnya.
-          </p>
-        </div>
+      <section
+        id="perjalanan"
+        className="dist-intro"
+        aria-labelledby="dist-intro-title"
+      >
+        <span className="dist-kicker dist-intro-label">
+          SATU PERJALANAN.
+          <br />
+          SETIAP TAHAP BERARTI.
+        </span>
+        <h2 id="dist-intro-title" className="dist-reveal">
+          <span>Di balik sajian Anda,</span> kami ikut bergerak.
+        </h2>
+        <p className="dist-intro-description dist-reveal">
+          Dari ruang penyimpanan hingga persiapan pengiriman. Ada orang,
+          fasilitas, dan perhatian di setiap langkahnya.
+        </p>
         <div className="dist-gallery">
           <div className="dist-gallery-side dist-gallery-left">
             <Image
-              src="/images/distribution/storage-restored-v1.webp"
-              alt="Penyimpanan barang di gudang"
+              src="/images/distribution/fleet-restored-v1.webp"
+              alt="Armada pengiriman Tatsuo Beef"
               fill
-              sizes="25vw"
+              sizes="(max-width:760px) 42vw, 18vw"
             />
           </div>
           <div className="dist-gallery-center">
@@ -430,16 +432,23 @@ export default function DistributionExperience() {
               src="/images/distribution/storage-restored-v1.webp"
               alt="Ruang penyimpanan dalam dokumentasi Tatsuo Beef"
               fill
-              sizes="(max-width:999px) 100vw, 65vw"
+              sizes="(max-width:760px) 42vw, 18vw"
             />
-            <span>DARI TATSUO, MENUJU DAPUR ANDA.</span>
           </div>
           <div className="dist-gallery-side dist-gallery-right">
             <Image
               src="/images/distribution/handling-restored-v1.webp"
               alt="Proses penanganan dengan forklift"
               fill
-              sizes="25vw"
+              sizes="(max-width:760px) 42vw, 18vw"
+            />
+          </div>
+          <div className="dist-gallery-side dist-gallery-last">
+            <Image
+              src="/images/distribution/dock-restored-v1.webp"
+              alt="Area pemuatan gudang distribusi"
+              fill
+              sizes="(max-width:760px) 42vw, 18vw"
             />
           </div>
         </div>
@@ -479,7 +488,7 @@ export default function DistributionExperience() {
                   src={`/images/distribution/${item.image}-restored-v1.webp`}
                   alt=""
                   fill
-                  sizes="44vw"
+                  sizes="18vw"
                 />
               </div>
             ))}

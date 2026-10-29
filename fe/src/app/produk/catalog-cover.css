@@ -297,3 +297,105 @@
     rotate: 0deg;
   }
 }
+
+/* Fit the complete composition into the current visible viewport. */
+.catalog-cover {
+  box-sizing: border-box;
+  height: 100vh;
+  height: 100dvh;
+  padding-block: clamp(125px, 17dvh, 164px) 24px;
+}
+.catalog-cover-inner {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: clamp(8px, 1.5dvh, 18px);
+}
+.catalog-cover h1 {
+  font-size: min(8.5vw, 13dvh, 132px);
+  margin: 0;
+}
+.catalog-cover-gallery {
+  container-type: size;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0 auto;
+  padding: 0;
+}
+.catalog-cover-tile {
+  width: min(29%, 69cqh);
+  margin-top: 0;
+}
+.catalog-cover-beef {
+  width: min(34%, 80cqh);
+}
+.catalog-cover-stamp {
+  width: min(12vw, 30cqh, 120px);
+  right: 4%;
+  top: 4%;
+}
+.catalog-cover-stamp strong {
+  font-size: min(2.3vw, 7cqh, 26px);
+}
+.catalog-cover-bottom {
+  margin-top: 0;
+}
+@media (max-width: 600px) {
+  .catalog-cover {
+    padding-block: 125px max(20px, env(safe-area-inset-bottom));
+  }
+  .catalog-cover h1 {
+    font-size: min(12vw, 8.5dvh, 72px);
+  }
+  .catalog-cover-gallery {
+    width: calc(100% + 40px);
+    margin-inline: -20px;
+  }
+  .catalog-cover-tile {
+    width: min(34%, 56cqh);
+  }
+  .catalog-cover-beef {
+    width: min(48%, 70cqh);
+  }
+  .catalog-cover-stamp {
+    width: min(20vw, 26cqh, 78px);
+    right: 5%;
+  }
+  .catalog-cover-stamp strong {
+    font-size: min(4.6vw, 6cqh, 18px);
+  }
+  .catalog-cover-bottom {
+    gap: 10px;
+  }
+}
+@media (max-height: 600px) {
+  .catalog-cover {
+    padding-block: 115px 12px;
+  }
+  .catalog-cover-inner {
+    gap: 6px;
+  }
+  .catalog-cover h1 {
+    font-size: min(9vw, 10dvh);
+  }
+  .catalog-cover-kicker,
+  .catalog-cover-bottom p,
+  .catalog-cover-tile-label small,
+  .catalog-cover-stamp {
+    display: none;
+  }
+  .catalog-cover-inner {
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+  .catalog-cover-bottom {
+    justify-content: center;
+  }
+  .catalog-cover-tile-label {
+    padding: 20px 10px 10px;
+  }
+  .catalog-cover-tile-label > span {
+    font-size: 20px;
+  }
+}

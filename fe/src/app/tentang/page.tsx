@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import ComingSoon from "@/components/coming-soon";
+import AboutExperience from "@/components/about-experience";
+import "./about.css";
 
 export const metadata: Metadata = {
-  title: "Tentang Kami — Coming Soon — Tatsuo Beef",
+  title: "Tentang Kami — Tatsuo Beef",
   description:
-    "Halaman tentang kami Tatsuo Beef sedang kami siapkan. Hubungi tim kami untuk informasi lebih lanjut.",
-  robots: { index: false, follow: true },
+    "Kenali PT. Tatsuo Beef Indonesia, mitra pengadaan bahan pangan sejak 2023. Cerita kami, visi, misi, nilai, dan informasi sertifikasi halal.",
   alternates: { canonical: "/tentang" },
 };
 
-export default function Page() {
-  return <ComingSoon label="Tentang Kami" />;
+export default function AboutPage() {
+  return <AboutExperience />;
 }

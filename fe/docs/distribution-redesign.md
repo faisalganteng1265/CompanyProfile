@@ -1,11 +1,13 @@
 # Distribution page
 
-`/distribusi` now presents the distribution operation through an editorial opening panorama, interactive facility chapters, a partnership process, and direct WhatsApp contact. Warm paper texture, large typography and restrained red/yellow details provide the visual direction. Responsive navigation tabs have keyboard support. Entrance animations reset on scroll and respect reduced motion; no continuous canvas, blur, parallax or video is used.
+`/distribusi` uses a full-viewport photographic hero with three manually selectable/automatically cycling photos, a scroll-converging gallery, and three long-form distribution chapters. On desktop, chapter navigation and layered photographs remain sticky while copy scrolls; successive photos reveal vertically with reversible scrubbed animation. Tablet/mobile present each photograph alongside or above its description with lightweight entrance animations. Warm paper texture continues throughout the light sections.
+
+The hero pauses automatically out of view and when the document is hidden, has an explicit pause control, and does not autoplay for reduced-motion users. Reduced-motion layout retains all content and changes the desktop photograph without a wipe. GSAP contexts and observers are cleaned up on route exit. No animation uses JavaScript pinning or continuous canvas/video rendering.
 
 ## Content and references
 
 - Original content and all five input photographs: https://tatsuobeef.co.id/distribution/
-- Logistics reference researched: United Carriers by Bearplus. Studio reference: https://www.linkedin.com/posts/bear-plus_webdesign-awwwards-fwa-activity-7502232876311187456-uJNV
+- Primary layout and motion reference: https://unitedcarriers.com/services (United Carriers by Bearplus). Public markup, styles and animation module were inspected; live browser playback was unavailable. The implementation follows its fullscreen hero, converging gallery and sticky service chapters using Tatsuo content and independently written code.
 - Photo-led editorial layout and logistics journey are an original implementation; no external design code or imagery is copied.
 
 Original content identifies frozen, chilled and dry storage, warehouse handling equipment, and refrigerated logistics. No new service regions, delivery promises, temperatures, fleet counts or certification identifiers are invented. Service area and timing are confirmed through WhatsApp.

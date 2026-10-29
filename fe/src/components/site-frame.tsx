@@ -7,7 +7,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Arrow } from "./icons";
 import SiteFooter from "./site-footer";
-import LandingScroll from "./landing-scroll";
+import SiteScroll from "./site-scroll";
 import PageCurtain from "./page-curtain";
 import { company, whatsapp } from "@/lib/company";
 import "./site-navbar.css";
@@ -144,7 +144,7 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
     pathname === href || pathname.startsWith(href + "/");
   return (
     <>
-      <LandingScroll />
+      <SiteScroll />
       <PageCurtain
         pathname={pathname}
         busy={transitioning}

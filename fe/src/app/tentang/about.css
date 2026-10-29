@@ -1,0 +1,996 @@
+.tatsuo-about {
+  --about-paper: #f5f1e8;
+  --about-grain: url("/images/paper-grain-mobile.png");
+  color: #28251f;
+  background: var(--about-paper);
+  background-image: var(--about-grain);
+  background-size: 160px 160px;
+}
+.tatsuo-about-label {
+  display: block;
+  font-size: 13px;
+  line-height: 1.7;
+  letter-spacing: 1.2px;
+  color: var(--red);
+}
+.tatsuo-about-hero {
+  padding-block: 155px 70px;
+}
+.tatsuo-about-masthead {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: #746b5e;
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #d4ccbf;
+}
+.tatsuo-about-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 7%;
+  align-items: center;
+  padding-top: 40px;
+}
+.tatsuo-about-hero-copy h1 {
+  font-family: var(--font-editorial), serif;
+  font-size: clamp(72px, 8vw, 120px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  margin-top: 24px;
+}
+.tatsuo-about-hero-copy h1 em {
+  font-style: normal;
+  color: var(--red);
+}
+.tatsuo-about-hero-copy > p {
+  max-width: 420px;
+  font-size: 17px;
+  line-height: 1.85;
+  margin-top: 30px;
+  color: #6b6052;
+}
+.tatsuo-about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 48px;
+  color: var(--red);
+}
+.tatsuo-about-hero-copy > a {
+  margin-top: 20px;
+}
+.tatsuo-about-hero-visual {
+  position: relative;
+  min-width: 0;
+  padding-top: 25px;
+}
+.tatsuo-about-hero-photo {
+  overflow: hidden;
+  border-radius: 46% 46% 0 0;
+  background: #302c27;
+}
+.tatsuo-about-hero-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 0.94;
+  object-fit: cover;
+}
+.tatsuo-about-photo-mark {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 95px;
+  height: 95px;
+  background: #f1cc77;
+  color: var(--red);
+  border-radius: 50%;
+  transform: rotate(15deg);
+}
+.tatsuo-about-photo-mark svg {
+  width: 55px;
+  height: 55px;
+}
+.tatsuo-about-year {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 15px;
+  color: var(--red);
+  padding-top: 18px;
+}
+.tatsuo-about-year > span {
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding-top: 12px;
+  max-width: 110px;
+  line-height: 1.7;
+}
+.tatsuo-about-year strong {
+  font-family: var(--font-editorial), serif;
+  font-size: clamp(70px, 8vw, 120px);
+  font-weight: 400;
+  letter-spacing: -6px;
+  line-height: 0.85;
+}
+.tatsuo-about-year strong > span {
+  display: inline-block;
+  font-family: var(--font-body), sans-serif;
+  font-size: 18px;
+  vertical-align: top;
+  padding-top: 12px;
+  letter-spacing: 0;
+  margin-left: 5px;
+}
+.tatsuo-about h2 {
+  font-size: clamp(42px, 4.3vw, 65px);
+  line-height: 1.09;
+  letter-spacing: -0.045em;
+}
+.tatsuo-about-story {
+  display: grid;
+  grid-template-columns: 0.65fr 1.5fr;
+  gap: 10%;
+  padding-block: 65px 100px;
+  scroll-margin-top: 130px;
+}
+.tatsuo-about-identity {
+  margin-top: 40px;
+  display: grid;
+  justify-items: start;
+  gap: 22px;
+}
+.tatsuo-about-identity img {
+  display: block;
+  width: 140px;
+  height: 115px;
+  object-fit: contain;
+}
+.tatsuo-about-identity > span {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #746b5e;
+}
+.tatsuo-about-story-copy > p {
+  max-width: 740px;
+  font-size: 18px;
+  line-height: 1.9;
+  color: #645a4d;
+  margin-top: 28px;
+}
+.tatsuo-about-story-copy > p + p {
+  margin-top: 20px;
+}
+.tatsuo-about-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 30px;
+}
+.tatsuo-about-selection span {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--red);
+}
+.tatsuo-about-selection span::before {
+  content: "+";
+  margin-right: 10px;
+}
+.tatsuo-about-purpose {
+  background: #9d2029;
+  background-image: var(--about-grain);
+  background-size: 160px 160px;
+  color: #fff3e0;
+  padding-block: 85px;
+}
+.tatsuo-about-purpose .tatsuo-about-label {
+  color: #f2cd78;
+}
+.tatsuo-about-vision {
+  position: relative;
+  text-align: center;
+  padding-bottom: 65px;
+}
+.tatsuo-about-vision > svg {
+  width: 42px;
+  height: 42px;
+  color: #f2cd78;
+  margin-top: 30px;
+}
+.tatsuo-about-vision h2 {
+  font-size: clamp(43px, 5vw, 76px);
+  margin-top: 30px;
+}
+.tatsuo-about-vision h2 em {
+  color: #f2cd78;
+}
+.tatsuo-about-vision > p {
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 28px auto 0;
+  max-width: 500px;
+  color: #f2d7c7;
+}
+.tatsuo-about-missions {
+  display: grid;
+  grid-template-columns: 0.8fr 1.3fr;
+  gap: 10%;
+  padding-top: 50px;
+  border-top: 1px solid #fff3e04a;
+}
+.tatsuo-about-missions h3 {
+  font-family: var(--font-editorial), serif;
+  font-weight: 400;
+  font-size: clamp(33px, 3.2vw, 48px);
+  line-height: 1.13;
+  letter-spacing: -1px;
+  margin-top: 24px;
+}
+.tatsuo-about-missions h3 em {
+  font-style: normal;
+  color: #f2cd78;
+}
+.tatsuo-about-mission {
+  display: grid;
+  grid-template-columns: 30px 1fr 22px;
+  gap: 20px;
+  padding-block: 26px;
+  border-bottom: 1px solid #fff3e04a;
+}
+.tatsuo-about-mission:first-child {
+  padding-top: 0;
+}
+.tatsuo-about-mission > span {
+  font-size: 14px;
+  color: #f2cd78;
+  padding-top: 5px;
+}
+.tatsuo-about-mission h4 {
+  font-family: var(--font-editorial), serif;
+  font-size: 29px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  margin: 0;
+}
+.tatsuo-about-mission p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: #f2d7c7;
+  margin-top: 14px;
+  max-width: 490px;
+}
+.tatsuo-about-mission > svg {
+  color: #f2cd78;
+  margin-top: 6px;
+}
+.tatsuo-about-principles {
+  padding-block: 90px;
+}
+.tatsuo-about-principles header {
+  display: grid;
+  grid-template-columns: 0.8fr 1.3fr;
+  gap: 10%;
+}
+.tatsuo-about-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6%;
+  margin-top: 50px;
+}
+.tatsuo-about-principle {
+  border-top: 1px solid #c9bca9;
+  padding-top: 20px;
+}
+.tatsuo-about-principle > span {
+  font-size: 13px;
+  color: #8c7963;
+}
+.tatsuo-about-principle h3 {
+  font-family: var(--font-editorial), serif;
+  font-weight: 400;
+  font-size: clamp(36px, 3.7vw, 55px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin-top: 25px;
+}
+.tatsuo-about-principle h3 em {
+  font-style: normal;
+  color: var(--red);
+}
+.tatsuo-about-principle p {
+  max-width: 320px;
+  font-size: 16px;
+  line-height: 1.85;
+  color: #746859;
+  margin-top: 20px;
+}
+.tatsuo-about-halal {
+  background: #fff;
+  background-image: var(--about-grain);
+  background-size: 160px 160px;
+  padding-block: 80px;
+  scroll-margin-top: 125px;
+}
+.tatsuo-about-halal-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  align-items: center;
+  gap: 10%;
+}
+.tatsuo-about-halal h2 {
+  margin-top: 24px;
+}
+.tatsuo-about-halal-copy p {
+  font-size: 17px;
+  line-height: 1.85;
+  color: #746859;
+  margin-top: 25px;
+  max-width: 530px;
+}
+.tatsuo-about-halal-copy > a {
+  margin-top: 20px;
+}
+.tatsuo-about-halal-document {
+  margin: 0;
+  background: #fff;
+  border: 1px solid #ded8ce;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 8px 8px 0 #f1ede5;
+}
+.tatsuo-about-document-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ded8ce;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #746859;
+}
+.tatsuo-about-halal-document > img {
+  display: block;
+  width: 196px;
+  height: 196px;
+  max-width: 100%;
+  object-fit: contain;
+  margin: 28px auto 20px;
+}
+.tatsuo-about-halal-document figcaption {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #746859;
+}
+.tatsuo-about-halal-document > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  min-height: 48px;
+  margin-top: 10px;
+  color: var(--red);
+}
+.tatsuo-about-company {
+  padding-block: 85px;
+}
+.tatsuo-about-company-heading {
+  text-align: center;
+}
+.tatsuo-about-company-heading h2 {
+  margin-top: 22px;
+}
+.tatsuo-about-partners {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 30px;
+  align-items: center;
+  margin-top: 40px;
+}
+.tatsuo-about-partners > div {
+  min-width: 0;
+}
+.tatsuo-about-partners img {
+  display: block;
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+}
+.tatsuo-about-outro {
+  background: #f0cb73;
+  background-image: var(--about-grain);
+  background-size: 160px 160px;
+  padding-block: 65px;
+}
+.tatsuo-about-outro-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: end;
+  gap: 25px 8%;
+}
+.tatsuo-about-outro-inner > .tatsuo-about-label {
+  grid-column: 1/-1;
+}
+.tatsuo-about-outro h2 {
+  font-size: clamp(48px, 6vw, 86px);
+  line-height: 1;
+}
+.tatsuo-about-outro-inner > div {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+.tatsuo-about-button {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 35px;
+  background: var(--red);
+  color: #fff;
+  min-height: 56px;
+  padding: 17px 25px;
+  border-radius: 999px;
+  font-size: 15px;
+}
+.tatsuo-about :focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 5px;
+}
+.tatsuo-about-purpose :focus-visible {
+  outline-color: #f2cd78;
+}
+@media (max-width: 1000px) {
+  .tatsuo-about-hero {
+    padding-top: 145px;
+  }
+  .tatsuo-about-hero-grid {
+    gap: 5%;
+  }
+  .tatsuo-about-hero-copy h1 {
+    font-size: 78px;
+  }
+  .tatsuo-about-missions,
+  .tatsuo-about-story {
+    gap: 6%;
+  }
+  .tatsuo-about-halal-inner {
+    gap: 6%;
+  }
+  .tatsuo-about-partners {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 40px;
+  }
+}
+@media (max-width: 760px) {
+  .tatsuo-about-hero {
+    padding-block: 135px 35px;
+  }
+  .tatsuo-about-masthead {
+    font-size: 12px;
+    padding-bottom: 20px;
+  }
+  .tatsuo-about-masthead > span:last-child {
+    display: none;
+  }
+  .tatsuo-about-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 25px;
+  }
+  .tatsuo-about-hero-copy h1 {
+    font-size: clamp(60px, 14vw, 92px);
+    margin-top: 20px;
+  }
+  .tatsuo-about-hero-copy > p {
+    font-size: 16px;
+    margin-top: 24px;
+  }
+  .tatsuo-about-hero-copy > a {
+    margin-top: 14px;
+  }
+  .tatsuo-about-hero-visual {
+    max-width: 510px;
+    width: 100%;
+    margin-inline: auto;
+    padding-top: 10px;
+  }
+  .tatsuo-about-hero-photo img {
+    aspect-ratio: 1.2;
+  }
+  .tatsuo-about-photo-mark {
+    width: 75px;
+    height: 75px;
+  }
+  .tatsuo-about-photo-mark svg {
+    width: 42px;
+    height: 42px;
+  }
+  .tatsuo-about-year strong {
+    font-size: 88px;
+    letter-spacing: -4px;
+  }
+  .tatsuo-about-year > span {
+    font-size: 12px;
+  }
+  .tatsuo-about h2 {
+    font-size: clamp(36px, 8.5vw, 55px);
+  }
+  .tatsuo-about-story {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding-block: 40px 55px;
+  }
+  .tatsuo-about-identity {
+    display: none;
+  }
+  .tatsuo-about-story-copy > p {
+    font-size: 16px;
+    line-height: 1.9;
+    margin-top: 23px;
+  }
+  .tatsuo-about-selection {
+    gap: 10px 20px;
+  }
+  .tatsuo-about-selection span {
+    font-size: 14px;
+  }
+  .tatsuo-about-purpose {
+    padding-block: 50px;
+  }
+  .tatsuo-about-vision {
+    padding-bottom: 35px;
+  }
+  .tatsuo-about-vision h2 {
+    font-size: clamp(34px, 7.8vw, 52px);
+    margin-top: 22px;
+  }
+  .tatsuo-about-vision > svg {
+    width: 35px;
+    height: 35px;
+    margin-top: 24px;
+  }
+  .tatsuo-about-vision > p {
+    font-size: 16px;
+    margin-top: 23px;
+  }
+  .tatsuo-about-missions {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 35px;
+  }
+  .tatsuo-about-missions h3 {
+    font-size: 35px;
+    margin-top: 18px;
+  }
+  .tatsuo-about-mission {
+    grid-template-columns: 23px 1fr;
+    gap: 15px;
+    padding-block: 23px;
+  }
+  .tatsuo-about-mission > svg {
+    display: none;
+  }
+  .tatsuo-about-mission h4 {
+    font-size: 27px;
+  }
+  .tatsuo-about-mission p {
+    font-size: 16px;
+  }
+  .tatsuo-about-principles {
+    padding-block: 50px;
+  }
+  .tatsuo-about-principles header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .tatsuo-about-principles-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 30px;
+  }
+  .tatsuo-about-principle {
+    display: grid;
+    grid-template-columns: 25px 1fr;
+    gap: 14px;
+  }
+  .tatsuo-about-principle > span {
+    padding-top: 9px;
+  }
+  .tatsuo-about-principle h3 {
+    font-size: 39px;
+    margin: 0;
+  }
+  .tatsuo-about-principle p {
+    grid-column: 2;
+    max-width: none;
+    margin: 0;
+  }
+  .tatsuo-about-halal {
+    padding-block: 50px;
+  }
+  .tatsuo-about-halal-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .tatsuo-about-halal-copy p {
+    font-size: 16px;
+  }
+  .tatsuo-about-halal-document {
+    max-width: 450px;
+    width: 100%;
+    margin-inline: auto;
+    padding: 20px;
+  }
+  .tatsuo-about-company {
+    padding-block: 50px;
+  }
+  .tatsuo-about-partners {
+    gap: 15px 25px;
+    margin-top: 30px;
+  }
+  .tatsuo-about-partners img {
+    height: 100px;
+  }
+  .tatsuo-about-outro {
+    padding-block: 45px;
+  }
+  .tatsuo-about-outro-inner {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .tatsuo-about-outro h2 {
+    font-size: clamp(43px, 10vw, 65px);
+  }
+  .tatsuo-about-outro-inner > div {
+    margin-top: 5px;
+  }
+}
+@media (max-width: 450px) {
+  .tatsuo-about-partners {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tatsuo-about * {
+    transition: none !important;
+  }
+}
+
+/* Manifesto edition: typography, documentary fragments and generous rhythm. */
+.about-manifesto-hero {
+  padding-top: 155px;
+  overflow: clip;
+}
+.about-manifesto-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 13px;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  color: #756a5e;
+}
+.about-manifesto-title {
+  font-family: var(--font-editorial), serif;
+  font-size: clamp(85px, 11.8vw, 182px);
+  line-height: 0.98;
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  margin-block: 40px 30px;
+}
+.about-manifesto-title > span {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.1em;
+}
+.about-manifesto-title > span:last-child {
+  text-align: right;
+  color: var(--red);
+}
+.about-manifesto-title b {
+  display: inline-block;
+  font-weight: 400;
+}
+.about-manifesto-title em {
+  font-style: italic;
+}
+.about-manifesto-intro {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr auto;
+  gap: 25px;
+  align-items: center;
+  padding-block: 25px 40px;
+}
+.about-manifesto-intro > span {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 13px;
+  color: var(--red);
+}
+.about-manifesto-intro p {
+  font-size: 17px;
+  line-height: 1.8;
+}
+.about-manifesto-intro > a {
+  display: grid;
+  place-items: center;
+  width: 65px;
+  height: 65px;
+  border: 1px solid #b9ad9b;
+  border-radius: 50%;
+  color: var(--red);
+}
+.about-manifesto-intro > a svg {
+  transform: rotate(90deg);
+}
+.about-filmstrip {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  width: 118%;
+  margin-left: -9%;
+  padding: 10px 0 35px;
+}
+.about-filmstrip figure {
+  position: relative;
+  margin: 0;
+  min-width: 0;
+}
+.about-film-side {
+  flex: 1;
+}
+.about-film-main {
+  flex: 2.25;
+}
+.about-filmstrip img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+.about-film-main img {
+  aspect-ratio: 1.75;
+}
+.about-film-side img {
+  aspect-ratio: 1.05;
+}
+.about-filmstrip figcaption {
+  font-size: 12px;
+  color: #746859;
+  line-height: 1.7;
+  letter-spacing: 1px;
+  margin-top: 13px;
+}
+.about-film-side:first-child figcaption {
+  text-align: right;
+}
+.about-film-seal {
+  position: absolute;
+  right: 20px;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px 20px;
+  color: #f4cd77;
+  background: #99232a;
+  transform: rotate(-4deg);
+}
+.about-film-seal > span {
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+.tatsuo-about-story {
+  padding-block: 100px 115px;
+}
+.tatsuo-about-story h2 {
+  font-size: clamp(45px, 5vw, 76px);
+}
+.tatsuo-about-identity {
+  border-left: 2px solid var(--red);
+  padding-left: 25px;
+}
+.tatsuo-about-purpose {
+  background-color: #262923;
+  padding-block: 90px;
+}
+.tatsuo-about-vision {
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.tatsuo-about-vision > svg {
+  margin: 0;
+}
+.tatsuo-about-vision h2 {
+  grid-column: 1/-1;
+  font-size: clamp(48px, 6.8vw, 104px);
+  max-width: 1200px;
+  margin-top: 55px;
+  line-height: 1.12;
+}
+.about-read-word {
+  display: inline;
+}
+.tatsuo-about-vision > p {
+  grid-column: 1/-1;
+  margin: 35px 0 0 auto;
+}
+.tatsuo-about-missions {
+  grid-template-columns: 1fr 1.4fr;
+  padding-top: 65px;
+}
+.tatsuo-about-mission {
+  grid-template-columns: 65px 1fr 22px;
+  padding-block: 32px;
+}
+.tatsuo-about-mission > span {
+  font-family: var(--font-editorial), serif;
+  font-size: 43px;
+  padding: 0;
+  line-height: 1;
+}
+.tatsuo-about-mission h4 {
+  font-size: 34px;
+}
+.tatsuo-about-principles {
+  padding-block: 100px;
+}
+.tatsuo-about-principles-grid {
+  display: block;
+  margin-top: 50px;
+}
+.tatsuo-about-principle {
+  display: grid;
+  grid-template-columns: 60px 1fr 0.7fr;
+  align-items: center;
+  gap: 30px;
+  padding-block: 30px;
+}
+.tatsuo-about-principle h3 {
+  font-size: clamp(50px, 6.6vw, 100px);
+  margin: 0;
+}
+.tatsuo-about-principle p {
+  margin: 0;
+}
+.tatsuo-about-halal-document {
+  box-shadow: none;
+  border: 0;
+  border-left: 1px solid #d8cebe;
+}
+.tatsuo-about-halal {
+  padding-block: 95px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tatsuo-about-principle h3 {
+    transition:
+      translate 0.4s ease,
+      color 0.4s ease;
+  }
+  .tatsuo-about-principle:hover h3 {
+    translate: 12px 0;
+    color: var(--red);
+  }
+}
+@media (max-width: 760px) {
+  .about-manifesto-hero {
+    padding-top: 130px;
+  }
+  .about-manifesto-meta > span:last-child {
+    display: none;
+  }
+  .about-manifesto-title {
+    font-size: clamp(50px, 12vw, 88px);
+    margin-block: 30px 20px;
+  }
+  .about-manifesto-intro {
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    padding-block: 20px 25px;
+  }
+  .about-manifesto-intro > span {
+    grid-column: 1/-1;
+  }
+  .about-manifesto-intro p {
+    font-size: 15px;
+  }
+  .about-manifesto-intro > a {
+    width: 48px;
+    height: 48px;
+  }
+  .about-filmstrip {
+    width: 160%;
+    margin-left: -30%;
+    gap: 12px;
+  }
+  .about-film-main {
+    flex: 3;
+  }
+  .about-film-main img {
+    aspect-ratio: 1.1;
+  }
+  .about-film-side img {
+    aspect-ratio: 0.55;
+  }
+  .about-film-side figcaption {
+    visibility: hidden;
+  }
+  .about-film-seal {
+    right: 12px;
+    bottom: 48px;
+    padding: 10px 13px;
+    gap: 10px;
+  }
+  .about-film-seal svg {
+    width: 26px;
+    height: 26px;
+  }
+  .tatsuo-about-story {
+    padding-block: 35px 55px;
+  }
+  .tatsuo-about-story h2 {
+    font-size: 39px;
+  }
+  .tatsuo-about-purpose {
+    padding-block: 50px;
+  }
+  .tatsuo-about-vision h2 {
+    font-size: clamp(38px, 9.5vw, 64px);
+    margin-top: 30px;
+  }
+  .tatsuo-about-vision > p {
+    margin-top: 25px;
+  }
+  .tatsuo-about-missions {
+    grid-template-columns: 1fr;
+    padding-top: 35px;
+  }
+  .tatsuo-about-mission {
+    grid-template-columns: 40px 1fr;
+    gap: 15px;
+    padding-block: 25px;
+  }
+  .tatsuo-about-mission > span {
+    font-size: 31px;
+  }
+  .tatsuo-about-mission h4 {
+    font-size: 28px;
+  }
+  .tatsuo-about-principles {
+    padding-block: 55px;
+  }
+  .tatsuo-about-principle {
+    grid-template-columns: 25px 1fr;
+    gap: 14px;
+    padding-block: 25px;
+  }
+  .tatsuo-about-principle h3 {
+    font-size: clamp(36px, 10vw, 58px);
+  }
+  .tatsuo-about-principle p {
+    grid-column: 2;
+  }
+  .tatsuo-about-halal {
+    padding-block: 55px;
+  }
+  .tatsuo-about-halal-document {
+    border-left: 0;
+    border-top: 1px solid #d8cebe;
+  }
+}

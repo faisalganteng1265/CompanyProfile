@@ -39,309 +39,532 @@ const facilities = [
     items: ["Kendaraan jarak jauh", "Truk beku", "Truk berpendingin"],
   },
 ];
-const steps = [
-  [
-    "Ceritakan kebutuhan.",
-    "Sampaikan pilihan produk, jumlah, dan lokasi usaha Anda.",
-  ],
-  [
-    "Kita susun bersama.",
-    "Tim kami mengonfirmasi ketersediaan, penawaran, dan rencana pengiriman.",
-  ],
-  [
-    "Siap melangkah.",
-    "Detail pesanan dan jadwal disepakati sebelum proses pengadaan dilanjutkan.",
-  ],
+const heroSlides = [
+  {
+    image: "dock",
+    title: "Bahan baik.",
+    ending: "Perjalanan yang berarti.",
+    alt: "Area pemuatan gudang dalam dokumentasi Tatsuo Beef",
+  },
+  {
+    image: "storage",
+    title: "Terjaga di gudang.",
+    ending: "Siap untuk langkah berikutnya.",
+    alt: facilities[0].alt,
+  },
+  {
+    image: "fleet",
+    title: "Dari kami.",
+    ending: "Untuk dapur Anda.",
+    alt: facilities[2].alt,
+  },
 ];
 
 export default function DistributionExperience() {
   const root = useRef<HTMLElement>(null);
+  const [slide, setSlide] = useState(0);
   const [active, setActive] = useState(0);
-  const facility = facilities[active];
+  const [paused, setPaused] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const inquiry = whatsapp(
+    "Halo Tatsuo Beef, saya ingin berdiskusi tentang pengadaan dan pengiriman untuk usaha saya. Lokasi usaha saya: ",
+  );
+
+  useEffect(() => {
+    const hero = root.current?.querySelector(".dist-hero");
+    if (!hero) return;
+    const observer = new IntersectionObserver(([entry]) =>
+      setVisible(entry.isIntersecting),
+    );
+    const onVisibility = () =>
+      setVisible(
+        document.visibilityState === "visible" &&
+          hero.getBoundingClientRect().bottom > 0,
+      );
+    observer.observe(hero);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (
+      paused ||
+      !visible ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
+    const timer = window.setTimeout(
+      () => setSlide((value) => (value + 1) % heroSlides.length),
+      5000,
+    );
+    return () => window.clearTimeout(timer);
+  }, [slide, paused, visible]);
+
   useEffect(() => {
     const element = root.current;
     if (!element) return;
     gsap.registerPlugin(ScrollTrigger);
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
-      media.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from(".distribution-hero-enter", {
-          y: 25,
-          opacity: 0,
-          duration: 0.85,
-          stagger: 0.1,
-          ease: "power3.out",
-          clearProps: "transform,opacity",
+      const chapters = gsap.utils.toArray<HTMLElement>(".dist-chapter");
+      chapters.forEach((chapter, index) => {
+        ScrollTrigger.create({
+          trigger: chapter,
+          start: "top 55%",
+          end: "bottom 55%",
+          onEnter: () => setActive(index),
+          onEnterBack: () => setActive(index),
         });
-        gsap.utils
-          .toArray<HTMLElement>(".distribution-reveal")
-          .forEach((item) => {
+      });
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from(".dist-hero-heading", {
+          y: 45,
+          opacity: 0,
+          duration: 1.1,
+          ease: "power3.out",
+        });
+        gsap.to(".dist-hero-content", {
+          y: -100,
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".dist-hero",
+            start: "top top",
+            end: "bottom 25%",
+            scrub: true,
+          },
+        });
+        gsap.utils.toArray<HTMLElement>(".dist-reveal").forEach((item) => {
+          gsap.fromTo(
+            item,
+            { y: 30, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.85,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: item,
+                start: "top 92%",
+                toggleActions: "play none none reverse",
+              },
+            },
+          );
+        });
+      });
+      media.add(
+        "(max-width: 999px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          chapters.forEach((chapter) => {
             gsap.fromTo(
-              item,
-              { y: 26, opacity: 0 },
+              chapter.querySelectorAll(
+                ".dist-mobile-photo, .dist-chapter-copy",
+              ),
+              { y: 20, opacity: 0 },
               {
                 y: 0,
                 opacity: 1,
-                duration: 0.75,
+                duration: 0.7,
+                stagger: 0.12,
                 ease: "power3.out",
                 scrollTrigger: {
-                  trigger: item,
-                  start: "top 92%",
-                  end: "bottom top",
-                  toggleActions: "restart reset restart reset",
+                  trigger: chapter,
+                  start: "top 90%",
+                  toggleActions: "play none none reverse",
                 },
               },
             );
           });
-      });
+        },
+      );
+      media.add(
+        "(min-width: 1000px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          // One persistent image frame travels from the gallery into its sticky slot.
+          // Measure the static slot, not the sticky frame, so refresh works mid-scroll.
+          const gallery = element.querySelector<HTMLElement>(
+            ".dist-gallery-center",
+          )!;
+          const slot = element.querySelector<HTMLElement>(".dist-photo-slot")!;
+          const frame =
+            element.querySelector<HTMLElement>(".dist-sticky-photo")!;
+          const geometry = () => {
+            const source = gallery.getBoundingClientRect();
+            const target = slot.getBoundingClientRect();
+            return {
+              x: source.left - target.left,
+              y: source.top - target.top,
+              width: source.width,
+              height: source.height,
+            };
+          };
+          gsap.set(gallery, { visibility: "hidden" });
+          gsap.fromTo(
+            frame,
+            {
+              x: () => geometry().x,
+              y: () => geometry().y,
+              width: () => geometry().width,
+              height: () => geometry().height,
+            },
+            {
+              x: 0,
+              y: 0,
+              width: () => slot.clientWidth,
+              height: () =>
+                Math.max(420, Math.min(850, window.innerHeight - 190)),
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".dist-gallery",
+                start: "top 45%",
+                endTrigger: ".dist-services",
+                end: "top 145px",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+          const timeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".dist-gallery",
+              start: "top 70%",
+              end: "top 20%",
+              scrub: true,
+            },
+          });
+          timeline
+            .to(
+              ".dist-gallery-left",
+              { xPercent: 100, opacity: 0, ease: "none" },
+              0,
+            )
+            .to(
+              ".dist-gallery-right",
+              { xPercent: -100, opacity: 0, ease: "none" },
+              0,
+            );
+          gsap.fromTo(
+            ".dist-photo-count",
+            { opacity: 0 },
+            {
+              opacity: 1,
+              scrollTrigger: {
+                trigger: ".dist-services",
+                start: "top 60%",
+                end: "top 145px",
+                scrub: true,
+              },
+            },
+          );
+          chapters.forEach((chapter, index) => {
+            const copy = chapter.querySelector(".dist-chapter-copy");
+            gsap.fromTo(
+              copy,
+              { opacity: 0.22, y: 24 },
+              {
+                opacity: 1,
+                y: 0,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: chapter,
+                  start: "top 85%",
+                  end: "top 38%",
+                  scrub: true,
+                },
+              },
+            );
+            if (index > 0) {
+              const photo = element.querySelectorAll(".dist-service-photo")[
+                index
+              ];
+              gsap.fromTo(
+                photo,
+                { clipPath: "inset(100% 0 0 0)" },
+                {
+                  clipPath: "inset(0% 0 0 0)",
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: chapter,
+                    start: "top 75%",
+                    end: "top 35%",
+                    scrub: 0.4,
+                  },
+                },
+              );
+              gsap.fromTo(
+                photo.querySelector("img"),
+                { scale: 1.12 },
+                {
+                  scale: 1,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: chapter,
+                    start: "top 75%",
+                    end: "top 35%",
+                    scrub: 0.4,
+                  },
+                },
+              );
+            }
+          });
+        },
+      );
     }, element);
     return () => {
       media.revert();
       context.revert();
     };
   }, []);
-  const inquiry = whatsapp(
-    "Halo Tatsuo Beef, saya ingin berdiskusi tentang pengadaan dan pengiriman untuk usaha saya. Lokasi usaha saya: ",
-  );
+
   return (
     <main id="main" className="distribution-page" ref={root}>
       <section
-        className="distribution-hero"
+        className="dist-hero"
         aria-labelledby="distribution-title"
+        aria-roledescription="carousel"
+        aria-label="Distribusi Tatsuo Beef"
       >
-        <div className="container distribution-hero-top distribution-hero-enter">
-          <span className="distribution-eyebrow">
-            TATSUO / DISTRIBUSI &amp; KEMITRAAN
-          </span>
-          <span className="distribution-hero-index">
-            DARI GUDANG. UNTUK DAPUR.
-          </span>
+        <div className="dist-hero-images" aria-hidden="true">
+          {heroSlides.map((item, index) => (
+            <div
+              key={item.image}
+              className={`dist-hero-image ${slide === index ? "is-active" : ""}`}
+            >
+              <MobileOptimizedImage
+                src={`/images/distribution/${item.image}-restored-v1.webp`}
+                alt=""
+                fill
+                priority={index === 0}
+                sizes="100vw"
+              />
+            </div>
+          ))}
         </div>
-        <div className="container distribution-headline distribution-hero-enter">
-          <h1 id="distribution-title">
-            Bahan baik.
+        <div className="dist-hero-shade" />
+        <div className="dist-hero-content">
+          <span className="dist-kicker">TATSUO BEEF / DISTRIBUSI</span>
+          <h1 id="distribution-title" className="dist-hero-heading">
+            Bahan pilihan.
             <br />
-            <em>Perjalanan baik.</em>
+            <em>Terus bergerak.</em>
           </h1>
-          <div>
-            <p>
-              Ada banyak hal di balik sajian istimewa. Salah satunya, perjalanan
-              bahan sebelum tiba di dapur Anda.
+          <div className="dist-hero-bottom">
+            <p key={slide} className="dist-slide-copy">
+              {heroSlides[slide].title}
+              <br />
+              {heroSlides[slide].ending}
             </p>
-            <a href="#fasilitas" className="distribution-text-link">
-              Ikuti perjalanannya <Arrow diagonal />
+            <a className="dist-round-link" href="#perjalanan">
+              <span>Jelajahi perjalanan kami</span>
+              <Arrow />
             </a>
           </div>
         </div>
-        <div className="distribution-hero-panorama distribution-hero-enter">
-          <MobileOptimizedImage
-            src="/images/distribution/dock-restored-v1.webp"
-            alt="Area bongkar muat dari dokumentasi pusat distribusi Tatsuo Beef"
-            width={1600}
-            height={736}
-            priority
-            sizes="100vw"
-          />
-          <div className="distribution-photo-shade" />
-          <div className="distribution-dispatch-note">
-            <span>TATSUO BEEF INDONESIA</span>
-            <strong>
-              Handled
-              <br />
-              <em>with care.</em>
-            </strong>
-            <span className="distribution-note-rule" />
-            <span>PENYIMPANAN → PENANGANAN → PENGIRIMAN</span>
-          </div>
-          <div className="container distribution-panorama-caption">
-            <span>PUSAT DISTRIBUSI</span>
-            <span>01 — AWAL PERJALANAN</span>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="fasilitas"
-        className="container distribution-facilities"
-        aria-labelledby="facilities-heading"
-      >
-        <header className="distribution-section-heading distribution-reveal">
-          <span className="distribution-eyebrow">01 / DI BALIK DISTRIBUSI</span>
-          <h2 id="facilities-heading">
-            Bukan sekadar berpindah.
-            <br />
-            <em>Setiap tahap berarti.</em>
-          </h2>
-        </header>
-        <div className="distribution-facility-layout distribution-reveal">
-          <div className="distribution-facility-menu">
-            <div
-              role="tablist"
-              aria-label="Fasilitas distribusi"
-              className="distribution-tabs"
-            >
-              {facilities.map((item, index) => (
-                <button
-                  type="button"
-                  role="tab"
-                  id={`facility-tab-${index}`}
-                  aria-controls="facility-panel"
-                  aria-selected={active === index}
-                  tabIndex={active === index ? 0 : -1}
-                  key={item.label}
-                  onClick={() => setActive(index)}
-                  onKeyDown={(event) => {
-                    const next =
-                      event.key === "ArrowDown" || event.key === "ArrowRight"
-                        ? (index + 1) % facilities.length
-                        : event.key === "ArrowUp" || event.key === "ArrowLeft"
-                          ? (index + facilities.length - 1) % facilities.length
-                          : event.key === "Home"
-                            ? 0
-                            : event.key === "End"
-                              ? facilities.length - 1
-                              : null;
-                    if (next !== null) {
-                      event.preventDefault();
-                      setActive(next);
-                      document.getElementById(`facility-tab-${next}`)?.focus();
-                    }
-                  }}
-                >
-                  <span>0{index + 1}</span>
-                  <strong>{item.label}</strong>
-                  <Arrow diagonal />
-                </button>
-              ))}
-            </div>
-            <p className="distribution-menu-note">
-              Dari penyimpanan hingga pengiriman, setiap bagian punya perannya.
-            </p>
-            <Link href="/produk" className="distribution-text-link">
-              Kenali pilihan produknya <Arrow diagonal />
-            </Link>
-          </div>
-          <div
-            id="facility-panel"
-            role="tabpanel"
-            aria-labelledby={`facility-tab-${active}`}
-            tabIndex={0}
-          >
-            <div className="distribution-facility-panel" key={facility.image}>
-              <figure>
-                <Image
-                  src={`/images/distribution/${facility.image}-restored-v1.webp`}
-                  alt={facility.alt}
-                  width={1200}
-                  height={1200}
-                  sizes="(max-width: 760px) calc(100vw - 40px), 58vw"
-                />
-                <figcaption>
-                  DOKUMENTASI DISTRIBUSI TATSUO · 0{active + 1} / 03
-                </figcaption>
-              </figure>
-              <div className="distribution-facility-copy">
-                <h3>{facility.title}</h3>
-                <p>{facility.text}</p>
-                <ul>
-                  {facility.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="distribution-road"
-        aria-labelledby="distribution-road-heading"
-      >
-        <div className="container">
-          <div className="distribution-road-top distribution-reveal">
-            <span className="distribution-eyebrow">02 / MULAI BERMITRA</span>
-            <h2 id="distribution-road-heading">
-              Jarak boleh jauh.
-              <br />
-              <em>Komunikasi tetap dekat.</em>
-            </h2>
-            <p>
-              Mulai dari percakapan sederhana.
-              <br />
-              Kita temukan rencana yang tepat untuk usaha Anda.
-            </p>
-          </div>
-          <div className="distribution-steps">
-            {steps.map(([title, text], index) => (
-              <article
-                key={title}
-                className="distribution-step distribution-reveal"
+        <div className="dist-hero-controls">
+          <div className="dist-slide-buttons">
+            {heroSlides.map((item, index) => (
+              <button
+                type="button"
+                key={item.image}
+                aria-label={`Tampilkan foto ${index + 1}: ${item.alt}`}
+                aria-pressed={slide === index}
+                onClick={() => setSlide(index)}
+                className={slide === index ? "is-active" : ""}
               >
-                <span className="distribution-step-number">0{index + 1}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
+                <span>0{index + 1}</span>
+                <span>{["Fasilitas", "Penyimpanan", "Pengiriman"][index]}</span>
+                <i>
+                  <b
+                    key={`${slide}-${index}`}
+                    style={{
+                      animationPlayState:
+                        paused || !visible ? "paused" : "running",
+                    }}
+                  />
+                </i>
+              </button>
             ))}
           </div>
+          <button
+            type="button"
+            className="dist-pause"
+            aria-label={
+              paused ? "Putar pergantian foto" : "Jeda pergantian foto"
+            }
+            onClick={() => setPaused(!paused)}
+          >
+            {paused ? "Putar" : "Jeda"}
+          </button>
         </div>
       </section>
 
-      <section
-        className="container distribution-onward"
-        aria-labelledby="distribution-onward-heading"
-      >
-        <div className="distribution-onward-photo distribution-reveal">
-          <Image
-            src="/images/distribution/delivery-restored-v1.webp"
-            alt="Armada truk pada dokumentasi distribusi Tatsuo Beef"
-            width={1440}
-            height={1080}
-            sizes="(max-width: 760px) calc(100vw - 40px), 48vw"
-          />
-          <span>UNTUK PERJALANAN BERIKUTNYA.</span>
-        </div>
-        <div className="distribution-onward-copy distribution-reveal">
-          <span className="distribution-eyebrow">
-            DARI KARTASURA, MARI BICARA.
+      <section id="perjalanan" className="dist-intro">
+        <div className="dist-intro-heading dist-reveal">
+          <span className="dist-kicker">
+            SATU PERJALANAN. SETIAP TAHAP BERARTI.
           </span>
-          <h2 id="distribution-onward-heading">
+          <h2>
+            Di balik sajian Anda,
+            <br />
+            <em>kami ikut bergerak.</em>
+          </h2>
+          <p>
+            Dari ruang penyimpanan hingga persiapan pengiriman. Ada orang,
+            fasilitas, dan perhatian di setiap langkahnya.
+          </p>
+        </div>
+        <div className="dist-gallery">
+          <div className="dist-gallery-side dist-gallery-left">
+            <Image
+              src="/images/distribution/storage-restored-v1.webp"
+              alt="Penyimpanan barang di gudang"
+              fill
+              sizes="25vw"
+            />
+          </div>
+          <div className="dist-gallery-center">
+            <MobileOptimizedImage
+              src="/images/distribution/storage-restored-v1.webp"
+              alt="Ruang penyimpanan dalam dokumentasi Tatsuo Beef"
+              fill
+              sizes="(max-width:999px) 100vw, 65vw"
+            />
+            <span>DARI TATSUO, MENUJU DAPUR ANDA.</span>
+          </div>
+          <div className="dist-gallery-side dist-gallery-right">
+            <Image
+              src="/images/distribution/handling-restored-v1.webp"
+              alt="Proses penanganan dengan forklift"
+              fill
+              sizes="25vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="dist-services" aria-label="Tahapan distribusi">
+        <nav
+          className="dist-service-nav"
+          aria-label="Jelajahi tahapan distribusi"
+        >
+          <span className="dist-kicker">DI BALIK DISTRIBUSI</span>
+          {facilities.map((item, index) => (
+            <a
+              href={`#distribusi-${item.image}`}
+              key={item.image}
+              className={active === index ? "is-active" : ""}
+              aria-current={active === index ? "step" : undefined}
+            >
+              <small>0{index + 1}</small>
+              {item.label}
+              <Arrow diagonal />
+            </a>
+          ))}
+          <Link href="/produk" className="dist-catalog-link">
+            Lihat pilihan produk <Arrow diagonal />
+          </Link>
+        </nav>
+        <div className="dist-photo-slot">
+          <div className="dist-sticky-photo" aria-hidden="true">
+            {facilities.map((item, index) => (
+              <div
+                key={item.image}
+                className={`dist-service-photo ${active === index ? "is-active" : ""}`}
+                style={{ zIndex: index }}
+              >
+                <MobileOptimizedImage
+                  src={`/images/distribution/${item.image}-restored-v1.webp`}
+                  alt=""
+                  fill
+                  sizes="44vw"
+                />
+              </div>
+            ))}
+            <span className="dist-photo-count">0{active + 1} / 03</span>
+          </div>
+        </div>
+        <div className="dist-chapters">
+          {facilities.map((item, index) => (
+            <article
+              id={`distribusi-${item.image}`}
+              className="dist-chapter"
+              key={item.image}
+            >
+              <div className="dist-mobile-photo">
+                <MobileOptimizedImage
+                  src={`/images/distribution/${item.image}-restored-v1.webp`}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width:760px) calc(100vw - 40px), 80vw"
+                />
+              </div>
+              <div className="dist-chapter-copy">
+                <span className="dist-chapter-number">
+                  0{index + 1}
+                  <small> / {item.label}</small>
+                </span>
+                <h2>{item.title}</h2>
+                <p>{item.text}</p>
+                <ul>
+                  {item.items.map((feature) => (
+                    <li key={feature}>
+                      <span />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={inquiry}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="dist-text-link"
+                >
+                  Bicarakan kebutuhan Anda <Arrow diagonal />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="dist-closing" aria-labelledby="dist-contact-title">
+        <div className="dist-closing-heading dist-reveal">
+          <span className="dist-kicker">LANGKAH BERIKUTNYA, BERSAMA.</span>
+          <h2 id="dist-contact-title">
             Dapur Anda.
             <br />
             <em>Tujuan kami berikutnya?</em>
           </h2>
+        </div>
+        <div className="dist-closing-bottom dist-reveal">
           <p>
-            Ceritakan lokasi dan kebutuhan usaha Anda. Tim Tatsuo siap membantu
-            mengecek area layanan serta rencana pengadaan.
+            Ceritakan kebutuhan dan lokasi usaha Anda. Kita susun rencana
+            pengadaan yang tepat, bersama.
           </p>
           <a
-            className="distribution-button"
             href={inquiry}
             target="_blank"
             rel="noopener noreferrer"
+            className="dist-cta"
           >
-            Diskusikan pengiriman <Arrow diagonal />
+            Diskusikan pengiriman{" "}
+            <span>
+              <Arrow diagonal />
+            </span>
           </a>
           <a
-            className="distribution-location"
             href={company.maps}
             target="_blank"
             rel="noopener noreferrer"
+            className="dist-address"
           >
-            <span>Temui kami</span>
-            <strong>
-              Kartasura, Sukoharjo
-              <br />
-              Jawa Tengah
-            </strong>
-            <Arrow diagonal />
+            Kartasura, Sukoharjo · Jawa Tengah <Arrow diagonal />
           </a>
         </div>
       </section>
-      <div className="container distribution-documentation-note">
-        Foto bersumber dari dokumentasi di situs Tatsuo Beef sebelumnya, dengan
-        penyuntingan pencahayaan, warna, dan penghapusan watermark kamera.
-      </div>
     </main>
   );
 }

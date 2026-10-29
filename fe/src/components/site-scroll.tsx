@@ -6,11 +6,10 @@ import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-/** One scroll controller, scoped to the landing route and GSAP's existing ticker. */
-export default function LandingScroll() {
+/** One site-wide scroll controller using GSAP's existing ticker. */
+export default function SiteScroll() {
   const pathname = usePathname();
   useEffect(() => {
-    if (pathname !== "/") return;
     gsap.registerPlugin(ScrollTrigger);
     const media = window.matchMedia(
       "(min-width: 761px) and (prefers-reduced-motion: no-preference)",
@@ -38,11 +37,16 @@ export default function LandingScroll() {
       const syncLock = () => {
         const locked =
           document.body.style.overflow === "hidden" ||
+          document.documentElement.dataset.pageTransition === "active" ||
           Boolean(document.querySelector("dialog[open]"));
         if (locked) lenis.stop();
         else lenis.start();
       };
       const observer = new MutationObserver(syncLock);
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["data-page-transition"],
+      });
       observer.observe(document.body, {
         attributes: true,
         attributeFilter: ["style"],

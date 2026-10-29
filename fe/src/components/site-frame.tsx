@@ -89,7 +89,7 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
           onClick={() => setMenuPath(null)}
         >
           <Image
-            src="/images/logo-vertical-original.png"
+            src="/images/logo-navbar.svg"
             width={300}
             height={300}
             sizes="(max-width: 760px) 76px, 94px"

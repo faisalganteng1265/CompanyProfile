@@ -30,6 +30,19 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://tatsuobeef.co.id"),
   title: "Tatsuo Beef — Good Meat. Great Partnership.",
+  icons: {
+    icon: {
+      url: "/images/logo-navbar.svg",
+      type: "image/svg+xml",
+      sizes: "any",
+    },
+    shortcut: "/favicon.ico",
+    apple: {
+      url: "/images/apple-touch-icon.png",
+      sizes: "180x180",
+      type: "image/png",
+    },
+  },
   description:
     "Mitra pengadaan daging sapi dan ayam untuk bisnis kuliner Anda. Temukan pilihan daging premium bersama PT. Tatsuo Beef Indonesia, Sukoharjo.",
   openGraph: {
@@ -56,6 +69,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
+      data-scroll-behavior="smooth"
       className={`${display.variable} ${editorial.variable} ${sans.variable}`}
     >
       <body>

@@ -10,6 +10,9 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    // Cached routes can resume effects after the completed intro rendered null.
+    const element = root.current;
+    if (!visible || !element) return;
     let active = true;
     let exiting = false;
     let exitTimeline: gsap.core.Timeline | undefined;
@@ -24,8 +27,8 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
     ).matches;
     const startedAt = performance.now();
     const progress = { value: 0 };
-    const count = root.current?.querySelector(".landing-intro-count");
-    const line = root.current?.querySelector(".landing-intro-progress");
+    const count = element.querySelector(".landing-intro-count");
+    const line = element.querySelector(".landing-intro-progress");
     const context = gsap.context(() => {
       if (!reduced) {
         gsap.from(".landing-intro-logo", { opacity: 0, y: 12, duration: 0.7 });
@@ -49,18 +52,19 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
           delay: 0.5,
         });
       }
-    }, root);
+    }, element);
     const pause = (ms: number) =>
       new Promise<void>((resolve) => {
         timers.push(setTimeout(resolve, ms));
       });
     const update = () => {
+      if (!active) return;
       if (count)
         count.textContent = String(Math.round(progress.value)).padStart(3, "0");
       if (line) gsap.set(line, { scaleX: progress.value / 100 });
     };
     const exit = () => {
-      if (!active || exiting) return;
+      if (!active || exiting || !element.isConnected) return;
       exiting = true;
       gsap.killTweensOf(progress);
       const timeline = gsap.timeline({
@@ -113,9 +117,7 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
     const hero = document.querySelector<HTMLImageElement>(
       ".v2-original-hero .hero-image",
     );
-    const logo = root.current?.querySelector<HTMLImageElement>(
-      ".landing-intro-logo",
-    );
+    const logo = element.querySelector<HTMLImageElement>(".landing-intro-logo");
     const tasks = [document.fonts.ready, hero?.decode(), logo?.decode()];
     let completed = 0;
     const assets = Promise.allSettled(
@@ -148,7 +150,7 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
       document.body.style.overflow = previousOverflow;
       if (main) main.inert = previousInert;
     };
-  }, [onReveal]);
+  }, [onReveal, visible]);
 
   if (!visible) return null;
   return (

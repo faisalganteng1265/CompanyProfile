@@ -1,7 +1,8 @@
 .tatsuo-benefits {
-  color: #f4eddb;
-  background-color: #20211e;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' opacity='.035' filter='url(%23g)' d='M0 0h160v160H0z'/%3E%3C/svg%3E");
+  color: var(--ink);
+  background-color: #fff;
+  background-image: var(--white-grain, none);
+  background-size: 160px 160px;
   padding-block: 0;
 }
 .tatsuo-benefits-inner {
@@ -20,7 +21,7 @@
   flex-direction: column;
 }
 .tatsuo-promise-row {
-  border-bottom: 1px solid #c9ae73;
+  border-bottom: 1px solid #d9cdb9;
   flex: 1 0 auto;
   padding: 34px 34px 32px 24px;
   transition:
@@ -28,8 +29,8 @@
     color 0.45s ease;
 }
 .tatsuo-promise-row.is-active {
-  background: #ed252a;
-  color: #20211e;
+  background: var(--red);
+  color: #fff7e9;
 }
 .tatsuo-promise-row h3 {
   margin: 0;
@@ -52,8 +53,8 @@
   width: 30px;
   height: 30px;
   margin-top: 6px;
-  background: #c9ae73;
-  color: #faf5e4;
+  background: var(--red);
+  color: #fff7e9;
 }
 .is-active .tatsuo-promise-toggle {
   background: #20211e;
@@ -90,7 +91,7 @@
   font-weight: 400;
   font-size: clamp(35px, 3.5vw, 54px);
   line-height: 1.05;
-  color: #d4b777;
+  color: var(--red);
 }
 .is-active .tatsuo-promise-script {
   color: #fff7e9;
@@ -162,22 +163,22 @@
   flex-wrap: wrap;
   gap: 18px;
   padding: 32px 20px;
-  border-bottom: 1px solid #c9ae73;
+  border-bottom: 1px solid #d9cdb9;
 }
 .tatsuo-promise-signoff > span {
   font-family: var(--font-promise-script), cursive;
   font-size: 36px;
-  color: #d4b777;
+  color: var(--red);
 }
 .tatsuo-promise-signoff > strong {
   font-family: var(--font-display), serif;
-  color: #f4eddb;
+  color: var(--ink);
   font-size: 33px;
   font-weight: 400;
   letter-spacing: 1px;
 }
 .tatsuo-promise-row button:focus-visible {
-  outline: 2px solid #f4eddb;
+  outline: 2px solid currentColor;
   outline-offset: 8px;
 }
 @media (max-width: 1100px) {

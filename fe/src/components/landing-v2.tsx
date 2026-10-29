@@ -10,6 +10,7 @@ import LandingIntro from "./landing-intro";
 import WhyChooseUs from "./why-choose-us";
 import TatsuoBenefits from "./tatsuo-benefits";
 import PartnersCarousel from "./partners-carousel";
+import JournalPreview from "./journal-preview";
 import { Arrow } from "./icons";
 import { whatsapp } from "@/lib/company";
 
@@ -55,24 +56,6 @@ const cuts = [
     image: "product-shrimp",
   },
 ];
-const questions = [
-  [
-    "Apakah Tatsuo melayani kebutuhan bisnis?",
-    "Ya. Tatsuo menyediakan daging sapi impor, daging sapi lokal, ayam, dan pilihan seafood untuk kebutuhan usaha kuliner. Ceritakan menu dan pola kebutuhan Anda kepada tim kami.",
-  ],
-  [
-    "Bagaimana mendapatkan katalog dan harga?",
-    "Pilih produk untuk mengenal potongannya, atau hubungi tim sales melalui WhatsApp. Kami bantu memberikan informasi spesifikasi, harga terbaru, dan ketersediaan produk.",
-  ],
-  [
-    "Apakah ada minimum pemesanan?",
-    "Minimum pemesanan dapat berbeda untuk setiap produk. Sampaikan pilihan produk, perkiraan jumlah, dan lokasi usaha agar tim dapat menyiapkan penawaran yang sesuai.",
-  ],
-  [
-    "Apakah pengiriman bisa ke lokasi usaha saya?",
-    "Tatsuo berlokasi di Kartasura, Sukoharjo. Diskusikan tujuan pengiriman dengan tim kami untuk mengonfirmasi jangkauan, jadwal, dan biayanya.",
-  ],
-];
 function CutMark({ light = false }: { light?: boolean }) {
   return (
     <span
@@ -89,7 +72,6 @@ export default function LandingV2() {
   const root = useRef<HTMLDivElement>(null);
   const [introReady, setIntroReady] = useState(false);
   const revealLanding = useCallback(() => setIntroReady(true), []);
-  const [question, setQuestion] = useState<number | null>(0);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const media = gsap.matchMedia();
@@ -507,7 +489,7 @@ export default function LandingV2() {
               </div>
             </section>
           </div>
-          <PartnersCarousel />
+          <JournalPreview />
 
           <section
             className="v2-closing-cta"
@@ -530,65 +512,7 @@ export default function LandingV2() {
               </div>
             </div>
           </section>
-
-          <div className="v2-faq-background">
-            <section className="v2-questions container">
-              <div className="v2-questions-intro">
-                <span className="v2-small-label">A FEW THINGS TO KNOW</span>
-                <h2>
-                  Good
-                  <br />
-                  <em>questions.</em>
-                </h2>
-                <p>
-                  Hal-hal yang mungkin ingin Anda tahu
-                  <br />
-                  sebelum kita mulai bekerja sama.
-                </p>
-                <a
-                  href={whatsapp()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="v2-underlined-link"
-                >
-                  Tanya langsung <Arrow diagonal />
-                </a>
-              </div>
-              <div className="v2-question-list">
-                {questions.map(([title, answer], index) => (
-                  <div
-                    className={`v2-question ${question === index ? "is-open" : ""}`}
-                    key={title}
-                  >
-                    <h3>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setQuestion(question === index ? null : index)
-                        }
-                        aria-expanded={question === index}
-                        aria-controls={`v2-answer-${index}`}
-                      >
-                        <span className="v2-question-index">0{index + 1}</span>
-                        <span>{title}</span>
-                        <span
-                          className="v2-question-toggle"
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </h3>
-                    <div
-                      id={`v2-answer-${index}`}
-                      className="v2-answer"
-                      hidden={question !== index}
-                    >
-                      <p>{answer}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          </div>
+          <PartnersCarousel />
         </div>
       </main>
       <div className="scroll-progress v2-progress" aria-hidden="true" />

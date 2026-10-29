@@ -1,0 +1,299 @@
+.catalog-cover {
+  background: #8f1923;
+  color: #fff4e6;
+  padding: 164px 0 45px;
+  overflow: clip;
+}
+.catalog-cover-inner {
+  max-width: 1408px;
+}
+.catalog-cover-kicker {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  line-height: 1.6;
+}
+.catalog-cover h1 {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-editorial), serif;
+  font-weight: 400;
+  font-size: clamp(76px, 8.5vw, 132px);
+  letter-spacing: -0.065em;
+  line-height: 0.97;
+  text-align: center;
+  margin: 28px 0 0;
+}
+.catalog-cover h1 em {
+  font-style: normal;
+  color: #f3cc78;
+}
+.catalog-cover-gallery {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  max-width: 1120px;
+  margin: -12px auto 0;
+  padding: 30px 20px;
+}
+.catalog-cover-tile {
+  display: block;
+  position: relative;
+  width: 29%;
+  flex-shrink: 0;
+  aspect-ratio: 0.94;
+  color: #fff4e6;
+  background: #24231f;
+  box-shadow: 0 18px 40px #33040930;
+  transform: rotate(var(--tilt));
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.catalog-cover-poultry {
+  --tilt: -10deg;
+  margin-top: 40px;
+}
+.catalog-cover-beef {
+  --tilt: 3deg;
+  width: 34%;
+  aspect-ratio: 1;
+  z-index: 1;
+}
+.catalog-cover-seafood {
+  --tilt: 10deg;
+  margin-top: 35px;
+}
+.catalog-cover-tile > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.catalog-cover-tile-label {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 46px 22px 20px;
+  background: linear-gradient(transparent, #131310e8);
+}
+.catalog-cover-tile-label > span {
+  font-family: var(--font-editorial), serif;
+  font-size: clamp(24px, 2.3vw, 35px);
+  line-height: 1.1;
+}
+.catalog-cover-tile-label small {
+  display: block;
+  margin-top: 9px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.catalog-cover-tile-label svg {
+  width: 23px;
+  height: 23px;
+}
+.catalog-cover-stamp {
+  position: absolute;
+  right: -1%;
+  top: 8px;
+  z-index: 3;
+  width: 138px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: #f3cc78;
+  color: #80151e;
+  border-radius: 50%;
+  transform: rotate(13deg);
+  text-align: center;
+}
+.catalog-cover-stamp strong {
+  font-family: var(--font-editorial), serif;
+  font-size: 26px;
+  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+}
+.catalog-cover-stamp em {
+  font-style: italic;
+}
+.catalog-cover-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 20px;
+}
+.catalog-cover-bottom p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.catalog-cover-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 16px;
+  min-height: 54px;
+}
+.catalog-cover-explore > span {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #f3cc78;
+  color: #80151e;
+}
+.catalog-cover-explore svg {
+  transform: rotate(90deg);
+}
+.catalog-cover :focus-visible {
+  outline-color: #f3cc78;
+}
+@media (hover: hover) and (pointer: fine) {
+  .catalog-cover-tile:hover {
+    transform: translateY(-10px) rotate(0deg);
+    z-index: 4;
+  }
+}
+@media (max-width: 1000px) {
+  .catalog-cover {
+    padding-top: 150px;
+  }
+  .catalog-cover-gallery {
+    gap: 18px;
+    padding-inline: 0;
+  }
+  .catalog-cover-stamp {
+    width: 108px;
+    right: -2%;
+  }
+  .catalog-cover-stamp strong {
+    font-size: 22px;
+  }
+  .catalog-cover-tile-label {
+    padding: 35px 15px 15px;
+  }
+}
+@media (max-width: 600px) {
+  .catalog-cover {
+    padding: 135px 0 30px;
+  }
+  .catalog-cover-kicker {
+    justify-content: center;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .catalog-cover-kicker > span:last-child {
+    display: none;
+  }
+  .catalog-cover h1 {
+    font-size: clamp(48px, 12vw, 72px);
+    line-height: 1;
+    margin-top: 24px;
+  }
+  .catalog-cover-gallery {
+    width: calc(100% + 40px);
+    margin: 5px -20px 0;
+    gap: 0;
+    padding: 24px 0 30px;
+  }
+  .catalog-cover-tile {
+    width: 34%;
+    aspect-ratio: 0.72;
+  }
+  .catalog-cover-poultry {
+    margin-right: -6%;
+    margin-top: 40px;
+  }
+  .catalog-cover-beef {
+    width: 48%;
+    aspect-ratio: 0.88;
+  }
+  .catalog-cover-seafood {
+    margin-left: -6%;
+    margin-top: 40px;
+  }
+  .catalog-cover-tile-label {
+    padding: 30px 10px 13px;
+  }
+  .catalog-cover-tile-label > span {
+    font-size: 23px;
+  }
+  .catalog-cover-tile-label small,
+  .catalog-cover-tile-label svg {
+    display: none;
+  }
+  .catalog-cover-stamp {
+    top: 4px;
+    right: 3%;
+    width: 78px;
+  }
+  .catalog-cover-stamp strong {
+    font-size: 18px;
+  }
+  .catalog-cover-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .catalog-cover-bottom p {
+    font-size: 15px;
+  }
+  .catalog-cover-explore {
+    font-size: 15px;
+    gap: 20px;
+  }
+  .catalog-cover-explore > span {
+    width: 45px;
+    height: 45px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .catalog-cover h1 {
+    animation: catalog-title-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .catalog-cover-tile {
+    animation: catalog-photo-in 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .catalog-cover-poultry {
+    animation-delay: 0.15s;
+  }
+  .catalog-cover-beef {
+    animation-delay: 0.25s;
+  }
+  .catalog-cover-seafood {
+    animation-delay: 0.35s;
+  }
+}
+@keyframes catalog-title-in {
+  from {
+    opacity: 0;
+    translate: 0 22px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes catalog-photo-in {
+  from {
+    opacity: 0;
+    translate: 0 35px;
+    rotate: -5deg;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+  }
+}

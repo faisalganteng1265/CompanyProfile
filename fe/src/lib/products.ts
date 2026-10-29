@@ -6,9 +6,17 @@ export type Product = {
   kind: string;
   description: string;
   use: string[];
-  image?: string;
+  image: string;
   featured?: boolean;
 };
+const photoOverrides: Record<string, string> = {
+  "sirloin-meltique": "/images/product-sirloin.webp",
+  saikoro: "/images/product-saikoro.webp",
+  "udang-vaname": "/images/product-shrimp.webp",
+};
+const productPhoto = (slug: string, image?: string) =>
+  image ?? photoOverrides[slug] ?? `/images/catalog/${slug}.webp`;
+
 const beef = (
   slug: string,
   name: string,
@@ -22,7 +30,7 @@ const beef = (
   kind,
   description,
   use,
-  image,
+  image: productPhoto(slug, image),
   category: "Daging sapi",
 });
 const chicken = (
@@ -36,7 +44,7 @@ const chicken = (
   name,
   description,
   use,
-  image,
+  image: productPhoto(slug, image),
   kind: "Poultry selection",
   category: "Daging ayam",
 });
@@ -51,7 +59,7 @@ const seafood = (
   name,
   description,
   use,
-  image,
+  image: productPhoto(slug, image),
   kind: "Seafood selection",
   category: "Seafood",
 });

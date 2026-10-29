@@ -273,34 +273,23 @@
   flex-wrap: wrap;
   gap: 9px;
 }
-.contact-interests label {
+.contact-interests button {
   cursor: pointer;
-  position: relative;
-}
-.contact-interests input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-}
-.contact-interests span {
   display: block;
   border: 1px solid #d8cebf;
   border-radius: 25px;
   padding: 11px 16px;
   font-size: 13px;
+  background: transparent;
+  color: var(--contact-ink);
   transition:
     background 0.2s,
     color 0.2s;
 }
-.contact-interests input:checked + span {
+.contact-interests button[aria-pressed="true"] {
   background: var(--red);
   border-color: var(--red);
   color: #fff;
-}
-.contact-interests input:focus-visible + span {
-  outline: 2px solid var(--red);
-  outline-offset: 3px;
 }
 .contact-fields {
   display: grid;
@@ -680,7 +669,7 @@
   .contact-fields select {
     font-size: 16px;
   }
-  .contact-interests span {
+  .contact-interests button {
     font-size: 12px;
     padding: 10px 13px;
   }
@@ -759,5 +748,20 @@
   }
   .contact-person-main:hover .contact-person-arrow {
     transform: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .contact-title-layout {
+    padding-bottom: 90px;
+  }
+  .contact-hello {
+    bottom: 0;
+  }
+  .contact-person-arrow {
+    display: none;
+  }
+  .contact-person-main div > span {
+    font-size: 14px;
   }
 }

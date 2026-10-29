@@ -229,14 +229,14 @@ export default function ContactExperience() {
               <legend>Saya ingin membahas</legend>
               <div>
                 {interests.map((item) => (
-                  <label key={item}>
-                    <input
-                      type="radio"
-                      checked={interest === item}
-                      onChange={() => setInterest(item)}
-                    />
-                    <span>{item}</span>
-                  </label>
+                  <button
+                    type="button"
+                    key={item}
+                    aria-pressed={interest === item}
+                    onClick={() => setInterest(item)}
+                  >
+                    {item}
+                  </button>
                 ))}
               </div>
             </fieldset>

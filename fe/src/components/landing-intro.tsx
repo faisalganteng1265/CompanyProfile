@@ -13,6 +13,11 @@ export default function LandingIntro({ onReveal }: { onReveal: () => void }) {
     // Cached routes can resume effects after the completed intro rendered null.
     const element = root.current;
     if (!visible || !element) return;
+    if (document.documentElement.dataset.pageTransition === "active") {
+      setVisible(false);
+      onReveal();
+      return;
+    }
     let active = true;
     let exiting = false;
     let exitTimeline: gsap.core.Timeline | undefined;

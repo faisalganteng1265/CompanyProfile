@@ -8,6 +8,7 @@ import { gsap } from "gsap";
 import { Arrow } from "./icons";
 import SiteFooter from "./site-footer";
 import LandingScroll from "./landing-scroll";
+import PageCurtain from "./page-curtain";
 import { company, whatsapp } from "@/lib/company";
 import "./site-navbar.css";
 
@@ -21,6 +22,7 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [menuPath, setMenuPath] = useState<string | null>(null);
   const [menuPresent, setMenuPresent] = useState(false);
+  const [transitioning, setTransitioning] = useState(false);
   const menuOpen = menuPath === pathname;
   const toggle = useRef<HTMLButtonElement>(null);
   const menu = useRef<HTMLElement>(null);
@@ -135,10 +137,15 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
   return (
     <>
       <LandingScroll />
+      <PageCurtain
+        pathname={pathname}
+        busy={transitioning}
+        onBusyChange={setTransitioning}
+      />
       <a className="skip-link" href="#main">
         Langsung ke konten
       </a>
-      <header className="site-header tatsuo-navbar">
+      <header className="site-header tatsuo-navbar" inert={transitioning}>
         <span
           className="tatsuo-navbar-panel tatsuo-navbar-panel-left"
           aria-hidden="true"
@@ -267,7 +274,7 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
         </nav>
       </header>
       <div
-        inert={menuPresent}
+        inert={menuPresent || transitioning}
         className={`site-content ${pathname === "/" ? "is-landing" : ""}`}
       >
         {children}

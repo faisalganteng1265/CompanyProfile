@@ -64,6 +64,7 @@ export default function DistributionExperience() {
   const root = useRef<HTMLElement>(null);
   const [slide, setSlide] = useState(0);
   const [active, setActive] = useState(0);
+  const [openService, setOpenService] = useState<number | null>(0);
   const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(true);
   const inquiry = whatsapp(
@@ -156,12 +157,12 @@ export default function DistributionExperience() {
         });
       });
       media.add(
-        "(max-width: 999px) and (prefers-reduced-motion: no-preference)",
+        "(min-width: 761px) and (max-width: 999px) and (prefers-reduced-motion: no-preference)",
         () => {
           chapters.forEach((chapter) => {
             gsap.fromTo(
               chapter.querySelectorAll(
-                ".dist-mobile-photo, .dist-chapter-copy",
+                ".dist-mobile-photo, .dist-chapter-copy > *",
               ),
               { y: 20, opacity: 0 },
               {
@@ -507,7 +508,7 @@ export default function DistributionExperience() {
                   src={`/images/distribution/${item.image}-restored-v1.webp`}
                   alt={item.alt}
                   fill
-                  sizes="(max-width:760px) calc(100vw - 40px), 80vw"
+                  sizes="(max-width:760px) calc(100vw - 40px), 24vw"
                 />
               </div>
               <div className="dist-chapter-copy">
@@ -537,6 +538,98 @@ export default function DistributionExperience() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="dist-mobile-services" aria-label="Tahapan distribusi">
+        <span className="dist-kicker">DI BALIK DISTRIBUSI</span>
+        {facilities.map((item, index) => {
+          const expanded = openService === index;
+          return (
+            <article
+              className={`dist-accordion ${expanded ? "is-open" : ""}`}
+              key={item.image}
+            >
+              <h2>
+                <button
+                  type="button"
+                  id={`service-toggle-${item.image}`}
+                  aria-expanded={expanded}
+                  aria-controls={`service-details-${item.image}`}
+                  onClick={() => setOpenService(expanded ? null : index)}
+                >
+                  <svg
+                    className="dist-service-icon"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    {index === 0 ? (
+                      <>
+                        <path d="M4 28V12L16 5l12 7v16M3 28h26M10 28V15h12v13M10 20h12M10 24h12" />
+                        <path d="M14 10h4" />
+                      </>
+                    ) : index === 1 ? (
+                      <>
+                        <path d="M5 24V14h10v10M15 20h6V5M21 25h8M25 5v17M7 14V8h6l3 6" />
+                        <circle cx="7" cy="26" r="3" />
+                        <circle cx="17" cy="26" r="2" />
+                      </>
+                    ) : (
+                      <>
+                        <path d="M3 7h17v17H3zM20 13h5l5 6v5H20M24 13v7h6" />
+                        <circle cx="9" cy="25" r="3" />
+                        <circle cx="25" cy="25" r="3" />
+                      </>
+                    )}
+                  </svg>
+                  <span>
+                    <strong>{item.label}</strong>
+                    <small>{item.title}</small>
+                  </span>
+                  <i aria-hidden="true" />
+                </button>
+              </h2>
+              <div
+                id={`service-details-${item.image}`}
+                className="dist-accordion-panel"
+                role="region"
+                aria-labelledby={`service-toggle-${item.image}`}
+                aria-hidden={!expanded}
+                inert={!expanded}
+                onTransitionEnd={(event) => {
+                  if (event.target === event.currentTarget)
+                    ScrollTrigger.refresh();
+                }}
+              >
+                <div className="dist-accordion-clip">
+                  <div className="dist-accordion-content">
+                    <p>{item.text}</p>
+                    <ul>
+                      {item.items.map((feature) => (
+                        <li key={feature}>{feature}</li>
+                      ))}
+                    </ul>
+                    <a href={inquiry} target="_blank" rel="noopener noreferrer">
+                      Diskusikan pengiriman <Arrow diagonal />
+                    </a>
+                    <div className="dist-accordion-photo">
+                      <MobileOptimizedImage
+                        src={`/images/distribution/${item.image}-restored-v1.webp`}
+                        alt={item.alt}
+                        fill
+                        sizes="calc(100vw - 94px)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })}
       </section>
 
       <section className="dist-closing" aria-labelledby="dist-contact-title">

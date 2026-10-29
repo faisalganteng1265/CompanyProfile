@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import MobileOptimizedImage from "./mobile-optimized-image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -105,7 +105,7 @@ export default function LandingHero({
           className="hero-image-wrap"
           style={{ position: "absolute", inset: 0 }}
         >
-          <Image
+          <MobileOptimizedImage
             className="hero-image"
             src="/images/hero.webp"
             alt="Potongan ribeye dengan marbling di atas papan kayu gelap"

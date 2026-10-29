@@ -27,22 +27,30 @@ export default function JournalPreview() {
           const mobile = Boolean(match.conditions.mobile);
           gsap.utils.toArray<HTMLElement>(".journal-card").forEach((card) => {
             if (mobile) {
-              gsap.fromTo(
-                card,
-                { y: 20, opacity: 0 },
-                {
-                  y: 0,
-                  opacity: 1,
-                  duration: 0.65,
-                  ease: "power2.out",
-                  scrollTrigger: {
-                    trigger: card,
-                    start: "top 93%",
-                    end: "bottom top",
-                    toggleActions: "restart reset restart reset",
-                  },
+              const image = card.querySelector(".journal-image");
+              const copy = card.querySelector(".journal-copy");
+              const entrance = gsap.timeline({
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top 93%",
+                  end: "bottom top",
+                  toggleActions: "restart reset restart reset",
                 },
-              );
+              });
+              if (image)
+                entrance.fromTo(
+                  image,
+                  { y: 24, opacity: 0 },
+                  { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+                  0,
+                );
+              if (copy)
+                entrance.fromTo(
+                  copy,
+                  { y: 18, opacity: 0 },
+                  { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+                  0.16,
+                );
               return;
             }
             const image = card.querySelector(".journal-image");

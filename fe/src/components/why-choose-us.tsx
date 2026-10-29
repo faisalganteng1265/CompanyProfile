@@ -83,6 +83,29 @@ export default function WhyChooseUs() {
             ring.style.strokeDashoffset = String(100 - target);
           });
         });
+        if (window.matchMedia("(max-width: 760px)").matches) {
+          const entrance = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".why-story-photo",
+              start: "top 90%",
+              end: "bottom top",
+              toggleActions: "restart reset restart reset",
+            },
+          });
+          entrance
+            .fromTo(
+              ".why-story-photo",
+              { y: 25, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.75, ease: "power3.out" },
+              0,
+            )
+            .fromTo(
+              ".why-story-tag",
+              { rotation: -9, y: -12 },
+              { rotation: 0, y: 0, duration: 0.9, ease: "power2.out" },
+              0.15,
+            );
+        }
         if (!window.matchMedia("(max-width: 760px)").matches) {
           gsap.fromTo(
             ".why-story-photo img",

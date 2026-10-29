@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import MobileOptimizedImage from "./mobile-optimized-image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -98,22 +99,41 @@ export default function LandingV2() {
             .toArray<HTMLElement>(".v2-favourite")
             .forEach((card, index) => {
               if (mobile) {
-                gsap.fromTo(
-                  card,
-                  { y: 22, opacity: 0 },
+                const photo = card.querySelector(".v2-product-photo-motion");
+                const copy = card.querySelectorAll("h3, .v2-cut-bottom");
+                const entrance = gsap.timeline({
+                  delay: (index % 2) * 0.07,
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 93%",
+                    end: "bottom top",
+                    toggleActions: "restart reset restart reset",
+                  },
+                });
+                if (photo)
+                  entrance.fromTo(
+                    photo,
+                    { y: 24, scale: 1.06, opacity: 0 },
+                    {
+                      y: 0,
+                      scale: 1,
+                      opacity: 1,
+                      duration: 0.8,
+                      ease: "power3.out",
+                    },
+                    0,
+                  );
+                entrance.fromTo(
+                  copy,
+                  { y: 16, opacity: 0 },
                   {
                     y: 0,
                     opacity: 1,
-                    duration: 0.65,
-                    delay: (index % 2) * 0.06,
+                    duration: 0.55,
+                    stagger: 0.08,
                     ease: "power2.out",
-                    scrollTrigger: {
-                      trigger: card,
-                      start: "top 93%",
-                      end: "bottom top",
-                      toggleActions: "restart reset restart reset",
-                    },
                   },
+                  0.16,
                 );
                 return;
               }
@@ -214,18 +234,16 @@ export default function LandingV2() {
               },
               0.55,
             );
-          if (!mobile) {
-            gsap.to(".v2-running-copy", {
-              xPercent: -18,
-              ease: "none",
-              scrollTrigger: {
-                trigger: ".v2-running-line",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1.4,
-              },
-            });
-          }
+          gsap.to(".v2-running-copy", {
+            xPercent: mobile ? -10 : -18,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".v2-running-line",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: mobile ? 0.5 : 1.4,
+            },
+          });
           if (!mobile) {
             gsap.to(".v2-progress", {
               scaleX: 1,
@@ -287,6 +305,14 @@ export default function LandingV2() {
               invalidateOnRefresh: true,
             },
           });
+          if (mobile) {
+            timeline.fromTo(
+              ".v2-craft-image",
+              { scale: 1.045 },
+              { scale: 1, duration: 1, ease: "none" },
+              0,
+            );
+          }
           if (!mobile)
             timeline
               .to(
@@ -481,14 +507,14 @@ export default function LandingV2() {
           <div className="v2-craft-stage">
             <section className="v2-craft" aria-labelledby="v2-craft-heading">
               <div className="v2-craft-mask">
-                <Image
+                <MobileOptimizedImage
                   className="v2-craft-image"
                   src="/images/craft-butcher-hands-v1.webp"
                   alt="Tangan butcher memotong daging dengan teliti di atas meja kayu, tanpa wajah terlihat"
                   width={1672}
                   height={941}
                   sizes="100vw"
-                  loading="eager"
+                  loading="lazy"
                 />
               </div>
               <div className="v2-craft-scrim" />

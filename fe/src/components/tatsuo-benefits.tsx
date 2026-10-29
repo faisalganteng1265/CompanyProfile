@@ -179,8 +179,8 @@ export default function TatsuoBenefits() {
                 alt="Tangan butcher menyiapkan potongan daging dengan teliti di atas meja kerja kayu"
                 width={1254}
                 height={1254}
-                sizes="(max-width: 760px) 100vw, 50vw"
-                loading="eager"
+                sizes="(max-width: 760px) calc(100vw - 40px), 50vw"
+                loading="lazy"
               />
             </div>
             <div className="tatsuo-promise-strip" aria-hidden="true">

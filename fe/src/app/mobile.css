@@ -1,0 +1,614 @@
+/* Phone-specific composition. Desktop and tablet layouts retain their rules. */
+@media (max-width: 760px) {
+  header.site-header.tatsuo-navbar {
+    width: calc(100% - 32px);
+    top: max(10px, env(safe-area-inset-top));
+    height: 88px;
+    padding-inline: 16px;
+  }
+  header.tatsuo-navbar .tatsuo-mobile-contact {
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    justify-self: start;
+    pointer-events: auto;
+    z-index: 52;
+    color: #f4f0e7;
+  }
+  .tatsuo-mobile-contact svg {
+    width: 21px;
+    height: 21px;
+  }
+  header.tatsuo-navbar .tatsuo-navbar-brand {
+    grid-row: 1;
+  }
+  header.tatsuo-navbar .menu-toggle {
+    grid-row: 1;
+  }
+  header.tatsuo-navbar .mobile-menu {
+    padding-inline: 24px;
+    padding-top: 132px;
+    gap: 0;
+  }
+  header.tatsuo-navbar .mobile-menu > a {
+    font-size: clamp(29px, 7.5vw, 42px);
+    line-height: 1.15;
+    padding-block: 22px;
+    min-height: 72px;
+  }
+  header.tatsuo-navbar .mobile-menu small {
+    font-size: 10px;
+  }
+  header.tatsuo-navbar .mobile-menu > p {
+    font-size: 9px;
+    line-height: 1.8;
+  }
+
+  .site-content.is-landing .home-v2 .v2-original-hero .hero {
+    height: 100svh;
+    min-height: 560px;
+  }
+  .site-content.is-landing .home-v2 .hero-image {
+    object-position: 63% center;
+    opacity: 1;
+  }
+  .site-content.is-landing .home-v2 .hero-shade {
+    background: linear-gradient(
+      180deg,
+      #10110d35 0%,
+      transparent 30%,
+      #10110d35 53%,
+      #10110de8 100%
+    );
+  }
+  .site-content.is-landing .home-v2 .hero-copy {
+    width: calc(100% - 32px);
+    bottom: max(36px, calc(env(safe-area-inset-bottom) + 24px));
+    padding: 0;
+  }
+  .site-content.is-landing .home-v2 .hero h1 {
+    font-size: clamp(35px, 9.4vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+    margin: 0;
+    max-width: 580px;
+  }
+  .site-content.is-landing .home-v2 .hero-line {
+    padding-bottom: 0.1em;
+    margin-bottom: -0.1em;
+  }
+  .site-content.is-landing .home-v2 .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1.18fr;
+    gap: 10px;
+    margin-top: 26px;
+    max-width: 440px;
+  }
+  .site-content.is-landing .home-v2 .hero-actions .button {
+    padding: 13px 14px;
+    min-height: 52px;
+    gap: 10px;
+    font-size: 10px;
+    line-height: 1.5;
+    border-radius: 999px;
+  }
+  .site-content.is-landing .home-v2 .hero-actions .button svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  .site-content.is-landing .home-v2 .quality-seal {
+    top: 132px;
+    right: 20px;
+    width: 76px;
+    height: 76px;
+  }
+  .site-content.is-landing .home-v2 .quality-seal > svg:nth-child(2) {
+    width: 23px;
+    height: 23px;
+    left: 27px;
+    top: 19px;
+  }
+  .site-content.is-landing .home-v2 .quality-seal > span {
+    left: 31px;
+    top: 44px;
+    font-size: 5.5px;
+  }
+
+  .site-content.is-landing .home-v2 .v2-about-brief {
+    grid-template-columns: 110px minmax(0, 1fr);
+    gap: 25px 20px;
+    padding-block: 48px;
+    align-items: center;
+  }
+  .site-content.is-landing .home-v2 .v2-about-halal {
+    width: 110px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .site-content.is-landing .home-v2 .v2-about-brief h2 {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: clamp(27px, 6.8vw, 40px);
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+  }
+  .site-content.is-landing .home-v2 .v2-about-brief-copy {
+    grid-column: 1 / -1;
+  }
+  .site-content.is-landing .home-v2 .v2-about-brief-copy > p {
+    font-size: 14px;
+    line-height: 1.9;
+    max-width: 580px;
+  }
+  .site-content.is-landing .home-v2 .v2-about-brief-copy > .v2-underlined-link {
+    min-height: 44px;
+    margin-top: 17px;
+    font-size: 11px;
+    align-items: center;
+    padding-bottom: 0;
+  }
+  .site-content.is-landing .home-v2 .v2-running-line {
+    padding-block: 14px;
+  }
+  .site-content.is-landing .home-v2 .v2-running-copy > span {
+    font-size: 18px;
+  }
+
+  .site-content.is-landing .home-v2 .v2-favourites {
+    padding-block: 45px 32px;
+  }
+  .site-content.is-landing .home-v2 .v2-favourites-title {
+    font-size: clamp(34px, 8vw, 46px);
+    letter-spacing: -0.04em;
+  }
+  .site-content.is-landing .home-v2 .v2-favourites-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 14px;
+    margin-top: 27px;
+  }
+  .site-content.is-landing .home-v2 .v2-favourite-image {
+    aspect-ratio: 1 !important;
+  }
+  .site-content.is-landing .home-v2 .v2-favourite h3 {
+    margin-top: 14px;
+    font-size: clamp(20px, 5.2vw, 29px);
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    min-height: 2.3em;
+  }
+  .site-content.is-landing .home-v2 .v2-cut-bottom {
+    gap: 6px;
+    padding-top: 5px;
+    flex-wrap: wrap;
+  }
+  .site-content.is-landing .home-v2 .v2-product-rating {
+    gap: 1px;
+  }
+  .site-content.is-landing .home-v2 .v2-product-rating > svg {
+    width: 11px;
+    height: 11px;
+  }
+  .site-content.is-landing .home-v2 .v2-cut-bottom > a {
+    font-size: 7px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .site-content.is-landing .home-v2 .v2-cut-bottom > a > span {
+    width: 17px;
+    height: 17px;
+  }
+
+  .site-content.is-landing .home-v2 .why-story-section {
+    padding-block: 48px 50px;
+  }
+  .site-content.is-landing .home-v2 .why-story-layout {
+    gap: 38px;
+  }
+  .site-content.is-landing .home-v2 .why-story-visual {
+    width: 80%;
+    max-width: 330px;
+    margin-inline: auto;
+  }
+  .site-content.is-landing .home-v2 .why-story-photo {
+    --why-photo-ratio: 0.94;
+  }
+  .site-content.is-landing .home-v2 .why-story-tag-anchor {
+    width: 35%;
+  }
+  .site-content.is-landing .home-v2 .why-story-tag {
+    padding: 24px 7px 16px;
+  }
+  .site-content.is-landing .home-v2 .why-story-tag > .why-story-butcher-icon {
+    width: 44px;
+    height: 42px;
+  }
+  .site-content.is-landing .home-v2 .why-story-tag > strong {
+    font-size: 34px;
+  }
+  .site-content.is-landing .home-v2 .why-story-tag-caption {
+    font-size: 8px;
+  }
+  .site-content.is-landing .home-v2 .why-story-eyebrow {
+    font-size: 10px;
+  }
+  .site-content.is-landing .home-v2 .why-story-copy h2 {
+    font-size: clamp(33px, 8vw, 45px);
+    line-height: 1.13;
+    letter-spacing: -0.04em;
+    margin-top: 16px;
+  }
+  .site-content.is-landing .home-v2 .why-story-copy > p {
+    font-size: 13px;
+    line-height: 1.85;
+    margin-top: 19px;
+  }
+  .site-content.is-landing .home-v2 .why-story-stats {
+    gap: 26px 12px;
+    max-width: none;
+    margin-top: 32px;
+  }
+  .site-content.is-landing .home-v2 .why-story-stat {
+    gap: 10px;
+  }
+  .site-content.is-landing .home-v2 .why-story-stat > dd {
+    width: 96px;
+    height: 96px;
+  }
+  .site-content.is-landing .home-v2 .why-story-stat > dt {
+    font-size: 10px;
+    line-height: 1.5;
+    max-width: 112px;
+  }
+  .site-content.is-landing .home-v2 .why-ring-value {
+    font-size: 33px;
+  }
+  .site-content.is-landing .home-v2 .why-ring-value > span:last-child {
+    font-size: 10px;
+  }
+
+  .site-content.is-landing .home-v2 .tatsuo-promise-row {
+    padding: 25px 20px;
+  }
+  .site-content.is-landing .home-v2 .tatsuo-promise-row button {
+    gap: 17px;
+    grid-template-columns: 26px minmax(0, 1fr);
+    min-height: 74px;
+  }
+  .site-content.is-landing .home-v2 .tatsuo-promise-title {
+    font-size: clamp(24px, 6vw, 33px);
+    letter-spacing: -0.04em;
+  }
+  .site-content.is-landing .home-v2 .tatsuo-promise-script {
+    font-size: clamp(36px, 8.5vw, 47px);
+    line-height: 1.05;
+  }
+  .site-content.is-landing .home-v2 .tatsuo-promise-answer p {
+    margin-left: 43px;
+    padding-top: 15px;
+    font-size: 13px;
+    line-height: 1.85;
+  }
+  .site-content.is-landing .home-v2 .tatsuo-promise-main-photo {
+    aspect-ratio: 1.35;
+  }
+  .site-content.is-landing .home-v2 .tatsuo-promise-signoff {
+    gap: 10px;
+    padding-block: 26px;
+  }
+  .site-content.is-landing .home-v2 .tatsuo-promise-signoff > span {
+    font-size: 31px;
+  }
+  .site-content.is-landing .home-v2 .tatsuo-promise-signoff > strong {
+    font-size: 27px;
+  }
+
+  .site-content.is-landing .home-v2 .v2-craft-content {
+    padding-block: 26px;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-top {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-top > span:last-child {
+    font-size: 7px;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-first h2 {
+    font-size: clamp(45px, 11.5vw, 76px);
+    line-height: 1.06;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-first > p {
+    font-size: 12px;
+    line-height: 1.85;
+    margin-top: 22px;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-bottom > span {
+    font-size: 7px;
+    line-height: 1.7;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-bottom > a {
+    font-size: 10px;
+    min-height: 44px;
+    align-items: center;
+    padding-bottom: 0;
+    gap: 12px;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-stage .v2-craft-last > span {
+    font-size: 9px;
+    letter-spacing: 1.4px;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-stage .v2-craft-last > p {
+    font-size: clamp(58px, 14vw, 96px);
+  }
+
+  .site-content.is-landing .home-v2 .journal-section {
+    padding-block: 50px;
+  }
+  .site-content.is-landing .home-v2 .journal-heading {
+    display: block;
+    margin-bottom: 28px;
+  }
+  .site-content.is-landing .home-v2 .journal-kicker {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+  .site-content.is-landing .home-v2 .journal-heading h2 {
+    font-size: clamp(44px, 11vw, 64px);
+  }
+  .site-content.is-landing .home-v2 .journal-heading > p {
+    max-width: 310px;
+    padding-top: 0;
+    margin-top: 18px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .site-content.is-landing .home-v2 .journal-feature .journal-image {
+    aspect-ratio: 1.12;
+  }
+  .site-content.is-landing .home-v2 .journal-feature .journal-image img {
+    object-position: 66% center;
+  }
+  .site-content.is-landing .home-v2 .journal-number {
+    width: 30px;
+    height: 30px;
+    left: 12px;
+    top: 12px;
+  }
+  .site-content.is-landing .home-v2 .journal-meta {
+    font-size: 9px;
+    gap: 6px 14px;
+  }
+  .site-content.is-landing .home-v2 .journal-copy {
+    padding-top: 20px;
+  }
+  .site-content.is-landing .home-v2 .journal-feature .journal-copy h3 {
+    font-size: clamp(31px, 8vw, 42px);
+  }
+  .site-content.is-landing .home-v2 .journal-copy > p {
+    font-size: 13px;
+    line-height: 1.8;
+    margin-top: 14px;
+  }
+  .site-content.is-landing .home-v2 .journal-read {
+    font-size: 11px;
+    min-height: 44px;
+    margin-top: 18px;
+  }
+  .site-content.is-landing .home-v2 .journal-read > span {
+    width: 38px;
+    height: 38px;
+  }
+  .site-content.is-landing .home-v2 .journal-side .journal-card-link {
+    grid-template-columns: 0.78fr 1.22fr;
+    gap: 18px;
+    padding-top: 24px;
+  }
+  .site-content.is-landing .home-v2 .journal-side .journal-image {
+    min-height: 185px;
+  }
+  .site-content.is-landing .home-v2 .journal-side .journal-copy {
+    padding-top: 0;
+  }
+  .site-content.is-landing .home-v2 .journal-side h3 {
+    font-size: clamp(23px, 5.8vw, 32px);
+    margin-top: 12px;
+  }
+  .site-content.is-landing .home-v2 .journal-side .journal-meta {
+    display: block;
+    font-size: 8px;
+  }
+  .site-content.is-landing .home-v2 .journal-side .journal-meta > span {
+    display: block;
+  }
+  .site-content.is-landing
+    .home-v2
+    .journal-side
+    .journal-meta
+    > span:last-child {
+    margin-top: 4px;
+  }
+
+  .site-content.is-landing .home-v2 .v2-closing-cta {
+    padding-block: 25px;
+  }
+  .site-content.is-landing .home-v2 .v2-closing-layout {
+    gap: 16px;
+  }
+  .site-content.is-landing .home-v2 .v2-closing-cta h2 {
+    font-size: 25px;
+    line-height: 1.2;
+    max-width: 350px;
+  }
+  .site-content.is-landing .home-v2 .v2-closing-button {
+    font-size: 10px;
+    min-height: 48px;
+    padding-inline: 24px;
+  }
+  .site-content.is-landing .home-v2 .partners-section {
+    padding-block: 46px 30px;
+  }
+  .site-content.is-landing .home-v2 .partners-heading-row h2 {
+    font-size: clamp(35px, 8.4vw, 48px);
+    line-height: 1.12;
+  }
+  .site-content.is-landing .home-v2 .partners-heading-row .eyebrow {
+    font-size: 9px;
+  }
+  .site-content.is-landing .home-v2 .partner-logo-item {
+    width: 136px;
+    height: 140px;
+  }
+  .site-content.is-landing .home-v2 .partner-logo-frame {
+    width: 136px;
+    height: 116px;
+  }
+  .site-content.is-landing .home-v2 .partners-viewport {
+    padding-block: 8px;
+  }
+  .site-content.is-landing .home-v2 .partners-footnote {
+    font-size: 7px;
+    letter-spacing: 0.5px;
+  }
+
+  .site-content.is-landing .site-footer {
+    padding-top: 38px;
+  }
+  .site-content.is-landing .footer-brand-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+  }
+  .site-content.is-landing .footer-brand-logo {
+    width: 156px;
+    grid-column: 1;
+  }
+  .site-content.is-landing .footer-social {
+    margin-top: 0;
+    max-width: 126px;
+  }
+  .site-content.is-landing .footer-social > p {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  .site-content.is-landing .footer-social-links {
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 10px;
+  }
+  .site-content.is-landing .footer-top {
+    gap: 32px;
+  }
+  .site-content.is-landing .footer-contact-details {
+    gap: 25px;
+  }
+  .site-content.is-landing .footer-contact-item {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .site-content.is-landing .footer-contact-item h3 {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  .site-content.is-landing .footer-contact-item a {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .site-content.is-landing .footer-connect {
+    gap: 6px 24px;
+  }
+  .site-content.is-landing .footer-connect > .eyebrow {
+    font-size: 9px;
+    margin-bottom: 8px;
+  }
+  .site-content.is-landing .footer-connect > a {
+    min-height: 44px;
+    font-size: 12px;
+  }
+  .site-content.is-landing .footer-wordmark {
+    font-size: 12vw;
+    letter-spacing: -0.05em;
+    margin-block: 35px 16px;
+    justify-content: center;
+  }
+  .site-content.is-landing .footer-wordmark > span {
+    font-size: 9px;
+    margin-left: 5px;
+  }
+  .site-content.is-landing .footer-bottom {
+    gap: 14px;
+    font-size: 9px;
+    letter-spacing: 0;
+    padding-block: 19px max(22px, env(safe-area-inset-bottom));
+  }
+  .site-content.is-landing .footer-bottom > a {
+    font-size: 9px;
+    min-height: 44px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-content.is-landing .home-v2 .v2-about-brief {
+    grid-template-columns: 92px minmax(0, 1fr);
+    column-gap: 16px;
+  }
+  .site-content.is-landing .home-v2 .v2-about-halal {
+    width: 92px;
+  }
+  .site-content.is-landing .home-v2 .v2-about-brief h2 {
+    font-size: 27px;
+  }
+  .site-content.is-landing .home-v2 .why-story-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .site-content.is-landing .home-v2 .why-story-stat > dt {
+    font-size: 11px;
+  }
+  .site-content.is-landing .home-v2 .v2-favourite h3 {
+    font-size: 20px;
+  }
+  .site-content.is-landing .footer-brand-logo {
+    width: 140px;
+  }
+  .site-content.is-landing .footer-social {
+    max-width: 116px;
+  }
+}
+
+@media (max-width: 760px) and (max-height: 620px) {
+  .site-content.is-landing .home-v2 .v2-original-hero .hero {
+    min-height: 460px;
+  }
+  .site-content.is-landing .home-v2 .hero-copy {
+    bottom: 24px;
+  }
+  .site-content.is-landing .home-v2 .hero h1 {
+    font-size: clamp(30px, 7.5svh, 44px);
+  }
+  .site-content.is-landing .home-v2 .hero-actions {
+    margin-top: 18px;
+  }
+  .site-content.is-landing .home-v2 .quality-seal {
+    display: none;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-content {
+    padding-block: 18px;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-first h2 {
+    font-size: clamp(31px, 8svh, 48px);
+  }
+  .site-content.is-landing .home-v2 .v2-craft-first > p {
+    font-size: 10px;
+    margin-top: 12px;
+  }
+  .site-content.is-landing .home-v2 .v2-craft-stage .v2-craft-last > p {
+    font-size: clamp(42px, 12svh, 64px);
+  }
+}

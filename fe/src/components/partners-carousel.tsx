@@ -109,7 +109,7 @@ export default function PartnersCarousel() {
                         }
                         width={partner.width}
                         height={partner.height}
-                        sizes="(max-width: 760px) 184px, 232px"
+                        sizes="(max-width: 760px) 136px, 232px"
                         draggable={false}
                       />
                     </div>

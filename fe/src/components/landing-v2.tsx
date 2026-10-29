@@ -365,7 +365,7 @@ export default function LandingV2() {
                             alt={cut.name}
                             width={1000}
                             height={1000}
-                            sizes="(max-width: 600px) 90vw, (max-width: 1000px) 44vw, 23vw"
+                            sizes="(max-width: 760px) calc((100vw - 54px) / 2), (max-width: 1000px) 44vw, 23vw"
                           />
                         </div>
                       </div>

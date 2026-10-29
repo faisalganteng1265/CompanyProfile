@@ -116,6 +116,9 @@
 .tatsuo-navbar .menu-toggle {
   display: none;
 }
+.tatsuo-mobile-contact {
+  display: none;
+}
 .site-content .home-v2 .v2-original-hero {
   top: 0;
 }
@@ -321,6 +324,20 @@
     margin-top: 14px;
   }
   .site-content .home-v2 .quality-seal {
+    display: none;
+  }
+}
+
+/* The overlay stays mounted while its reversible entrance timeline closes. */
+.tatsuo-navbar .mobile-menu {
+  animation: none;
+  will-change: clip-path;
+}
+.tatsuo-navbar .mobile-menu[hidden] {
+  display: none !important;
+}
+@media (min-width: 761px) {
+  .tatsuo-navbar .mobile-menu {
     display: none;
   }
 }

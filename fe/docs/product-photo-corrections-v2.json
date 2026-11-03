@@ -1,0 +1,23 @@
+{
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "id": "sirloin",
+      "prompt": "Use case: product-mockup. Generate a square photorealistic ingredient catalog photo for Tatsuo Beef. Matte dark charcoal textured slate, soft warm directional studio light from upper left, tiny scattered salt crystals. Product entirely within central 78%, clean generous margins. High-end but honest food photography, natural surface texture. No text, labels, logos, watermarks, packaging, hands, utensils, herbs, blood or gore. Subject: two raw SIRLOIN MELTIQUE steaks, elongated striploin shape with a narrow cream fat cap on one long edge. Predominantly solid rosy red muscle with sparse subtle short fine pale fat streaks from fat infusion. At least 90 percent of cut face looks like red muscle. NOT Wagyu, NOT densely marbled, NO white branching lace or white web throughout meat. Moderately thick everyday foodservice meltique steak portions, realistic slight irregularity, arranged diagonally and slightly overlapping.",
+      "source": "/home/faisal/.codex/generated_images/01a1794a-0f3b-7ba1-bc35-0b2aa0b10696/exec-81a08da2-243d-461f-89ef-2b145cf50495.png",
+      "destination": "public/images/product-sirloin-v2.webp"
+    },
+    {
+      "id": "tenderloin",
+      "prompt": "Use case: product-mockup. Generate a square photorealistic ingredient catalog photo for Tatsuo Beef. Matte dark charcoal textured slate, soft warm directional studio light from upper left, tiny scattered salt crystals. Product entirely within central 78%, clean generous margins. High-end but honest food photography, natural surface texture. No text, labels, logos, watermarks, packaging, hands, utensils, herbs, blood or gore. Subject: three raw TENDERLOIN MELTIQUE medallions, compact round/oval filet shape, lean trimmed outer edge without a fat cap. Predominantly uniform red muscle with only a few subtle fine pale short streaks, at least 90 percent red meat surface. NOT Wagyu, NOT heavily marbled, no dense branching white networks. Clearly visible natural fine meat grain and realistic slightly moist surface. Three thick round medallions arranged diagonally with small gaps.",
+      "source": "/home/faisal/.codex/generated_images/01a1794a-0f3b-7ba1-bc35-0b2aa0b10696/exec-e3cbd34e-00e4-4f2d-80c7-5951535a3832.png",
+      "destination": "public/images/product-tenderloin-v2.webp"
+    },
+    {
+      "id": "kaki-sapi",
+      "prompt": "Use case: product-mockup. Generate a square photorealistic ingredient catalog photo for Tatsuo Beef. Matte dark charcoal textured slate, soft warm directional studio light from upper left, tiny scattered salt crystals. Product entirely within central 78%, clean generous margins. High-end but honest food photography, natural surface texture. No text, labels, logos, watermarks, packaging, hands, utensils, herbs, blood or gore. Subject: two cleaned adult CATTLE LOWER LEGS / beef feet sold as Indonesian kaki sapi for kikil soup. Anatomically unambiguously bovine, long narrow straight lower shanks with tough yellowish ivory skin and large broad dark brown cloven cattle hooves at the ends, two substantial symmetrical hoof halves per foot. Length of each lower leg shaft about THREE times hoof length. Clearly elongated adult cow feet, NOT short plump pig trotters, NOT pink pig skin, no little side toes. Neatly cleaned hairless butcher ingredient, no exposed bloody cut ends. Two whole lower-leg portions placed diagonally parallel on slate, fully within frame.",
+      "source": "/home/faisal/.codex/generated_images/01a1794a-0f3b-7ba1-bc35-0b2aa0b10696/exec-e6ad94f3-fec1-43da-b09e-4aa5833bb358.png",
+      "destination": "public/images/catalog/kaki-sapi-v2.webp"
+    }
+  ]
+}

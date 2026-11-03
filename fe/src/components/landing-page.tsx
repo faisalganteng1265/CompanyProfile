@@ -18,7 +18,7 @@ const products = [
     id: "01",
     name: "Tenderloin Meltique",
     category: "Daging sapi",
-    image: "/images/product-tenderloin.webp",
+    image: "/images/product-tenderloin-v2.webp",
     note: "Tender. Juicy. Memorable.",
     use: "Steakhouse · Hotel · Restoran",
     description:

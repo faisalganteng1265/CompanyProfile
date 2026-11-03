@@ -24,7 +24,7 @@ const cuts = [
   {
     name: "Tenderloin Meltique",
     slug: "tenderloin-meltique",
-    image: "product-tenderloin",
+    image: "product-tenderloin-v2",
   },
   {
     name: "Shortplate Beef",
@@ -39,7 +39,7 @@ const cuts = [
   {
     name: "Sirloin Meltique",
     slug: "sirloin-meltique",
-    image: "product-sirloin",
+    image: "product-sirloin-v2",
   },
   {
     name: "Saikoro",

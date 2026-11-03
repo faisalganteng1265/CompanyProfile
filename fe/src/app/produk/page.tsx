@@ -55,7 +55,7 @@ export default function ProductsPage() {
               aria-label="Jelajahi koleksi daging sapi"
             >
               <Image
-                src="/images/product-tenderloin.webp"
+                src="/images/product-tenderloin-v2.webp"
                 alt="Potongan tenderloin meltique"
                 width={1000}
                 height={1000}

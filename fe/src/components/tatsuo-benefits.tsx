@@ -36,10 +36,10 @@ const promises = [
 ];
 const tiles = [
   "product-oxtail",
-  "product-tenderloin",
+  "product-tenderloin-v2",
   "product-shortplate",
   "product-chicken",
-  "product-sirloin",
+  "product-sirloin-v2",
   "product-saikoro",
   "product-salmon",
   "product-shrimp",

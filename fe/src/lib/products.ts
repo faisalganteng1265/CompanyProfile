@@ -10,7 +10,8 @@ export type Product = {
   featured?: boolean;
 };
 const photoOverrides: Record<string, string> = {
-  "sirloin-meltique": "/images/product-sirloin.webp",
+  "kaki-sapi": "/images/catalog/kaki-sapi-v2.webp",
+  "sirloin-meltique": "/images/product-sirloin-v2.webp",
   saikoro: "/images/product-saikoro.webp",
   "udang-vaname": "/images/product-shrimp.webp",
 };
@@ -77,7 +78,7 @@ export const products: Product[] = [
     "Signature cut",
     "Potongan khas dalam meltique dengan tekstur lembut dan marbling yang kaya. Pilihan untuk menghadirkan sajian steak yang berkesan di meja pelanggan Anda.",
     ["Steakhouse", "Hotel", "Restoran"],
-    "/images/product-tenderloin.webp",
+    "/images/product-tenderloin-v2.webp",
   ),
   beef(
     "slice-meltique",

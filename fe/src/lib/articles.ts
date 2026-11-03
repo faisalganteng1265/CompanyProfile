@@ -57,7 +57,7 @@ export const articles: Article[] = [
     excerpt:
       "Dari steak hingga irisan untuk grill, setiap potongan membawa karakter tersendiri. Mulai pilihan Anda dari cara bahan itu akan disajikan.",
     readTime: "3 menit baca",
-    image: "/images/product-tenderloin.webp",
+    image: "/images/product-tenderloin-v2.webp",
     imageAlt: "Potongan tenderloin bermarbling di atas slate gelap",
     intro:
       "Memilih daging untuk usaha kuliner bukan hanya soal menemukan nama potongan yang populer. Pilihan yang tepat berawal dari hubungan antara bahan, metode pengolahan, dan pengalaman makan yang Anda inginkan.",
